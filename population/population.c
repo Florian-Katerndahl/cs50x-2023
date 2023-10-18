@@ -19,7 +19,7 @@ int main(void)
     do
     {
         end_size = get_long("Enter the final size of your llama population: ");
-    } while (end_size < 9);
+    } while (end_size < start_size);
 
     // Calculate number of years until we reach threshold
     int year = 0;
