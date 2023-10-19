@@ -8,7 +8,7 @@ int main(void)
     {
         name = get_string("What's your name? ");
     }
-    while (name != NULL);
+    while (name == NULL);
 
     printf("hello, %s\n", name);
 }
