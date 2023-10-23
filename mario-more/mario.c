@@ -12,7 +12,7 @@ int main(void)
     {
         print_spaces(height, i);
         print_hashes(i);
-        printf(" ");
+        printf("  ");
         print_hashes(i);
 
         printf("\n");
