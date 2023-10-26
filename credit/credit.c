@@ -25,9 +25,15 @@ int main(void)
     return 0;
 }
 
-char *to_string(long cn)
+char[256] to_string(long cn)
 {
-    
+    char num_as_string[256];
+    for (int i = 0; cn > 0; i++)
+    {
+        num_as_string[i] = cn % 10;
+        cn /= 10;
+    }
+    return num_as_string;
 }
 
 int is_valid(long cn)
