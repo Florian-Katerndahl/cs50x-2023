@@ -32,7 +32,7 @@ void to_string(long cn, char dest[256])
 {
     for (int i = 0; cn > 0; i++)
     {
-        printf(")
+        printf("%ld\n", cn % 10);
         dest[i] = cn % 10;
         cn /= 10;
     }
