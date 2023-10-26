@@ -41,11 +41,12 @@ int to_digits(long cn, int dest[256])
     return i;
 }
 
-int is_valid(long cn, int digits)
+int is_valid(int src, int digits)
 {
+    int chksm = 0;
     for (int i = 0; i < digits; i++)
     {
-        
+        chksm += i % 2 == 0 ? src[i] : src[i] * 2
     }
     return 1;
 }
