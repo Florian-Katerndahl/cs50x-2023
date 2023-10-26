@@ -1,7 +1,7 @@
 #include <cs50.h>
 #include <stdio.h>
 
-void to_string(long cn, char dest[256]);
+void to_string(long cn, char dest[]);
 int is_valid(long cn);
 int is_amex(long cn);
 int is_master(long cn);
@@ -19,6 +19,7 @@ int main(void)
 
     to_string(card_number, num_as_string);
     printf("%s\n", num_as_string);
+
     if (!is_valid(card_number)) printf("INVALID\n");
     else if (is_amex(card_number)) printf("AMEX\n");
     else if (is_master(card_number)) printf("MASTERCARD\n");
@@ -28,7 +29,7 @@ int main(void)
     return 0;
 }
 
-void to_string(long cn, char *dest)
+void to_string(long cn, char dest[])
 {
     for (int i = 0; cn > 0; i++)
     {
