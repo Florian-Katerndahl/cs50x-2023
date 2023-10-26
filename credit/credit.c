@@ -28,7 +28,7 @@ int main(void)
     return 0;
 }
 
-void to_string(long cn, char dest[256])
+void to_string(long cn, char *dest)
 {
     for (int i = 0; cn > 0; i++)
     {
