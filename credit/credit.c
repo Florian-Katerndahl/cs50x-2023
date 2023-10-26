@@ -1,15 +1,15 @@
 #include <cs50.h>
 #include <stdio.h>
 
-void to_digits(long cn, char dest[]);
-int is_valid(long cn);
+int to_digits(long cn, int dest[256]);
+int is_valid(int src[256], int digits);
 int is_amex(long cn);
 int is_master(long cn);
 int is_visa(long cn);
 
 int main(void)
 {
-    int nDigits[256] = { 0 };
+    int card_arr[256] = { 0 };
     long card_number;
     do
     {
@@ -17,10 +17,9 @@ int main(void)
     }
     while (card_number < 0);
 
-    to_digits(card_number, nDigits);
-    printf("%s\n", num_as_string);
+    int nDigits = to_digits(card_number, card_arr);
 
-    if (!is_valid(card_number)) printf("INVALID\n");
+    if (!is_valid(card_arr, nDigits)) printf("INVALID\n");
     else if (is_amex(card_number)) printf("AMEX\n");
     else if (is_master(card_number)) printf("MASTERCARD\n");
     else if (is_visa(card_number)) printf("VISA\n");
@@ -41,12 +40,13 @@ int to_digits(long cn, int dest[256])
     return i;
 }
 
-int is_valid(int src, int digits)
+int is_valid(int src[256], int digits)
 {
     int chksm = 0;
     for (int i = 0; i < digits; i++)
     {
-        chksm += src[i] * 2 * (i % 2);
+        int tmp = src[i] * ( 1 + (i % 2));
+        chksm += tmp % 10 + (tmp / 10) % 10;
     }
     return !chksm % 10;
 }
