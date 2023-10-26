@@ -35,8 +35,8 @@ void to_string(long cn, char *dest)
     {
         dest[i] = cn % 10;
         cn /= 10;
+        printf("a%d", dest[i]);
     }
-    printf("%s\n", dest);
 }
 
 int is_valid(long cn)
