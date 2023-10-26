@@ -17,7 +17,7 @@ int main(void)
     }
     while (card_number < 0);
 
-    to_string(card_number, num_as_string);
+    to_string(card_number, &num_as_string[0]);
     printf("%s\n", num_as_string);
 
     if (!is_valid(card_number)) printf("INVALID\n");
@@ -29,14 +29,14 @@ int main(void)
     return 0;
 }
 
-void to_string(long cn, char dest[])
+void to_string(long cn, char *dest)
 {
     for (int i = 0; cn > 0; i++)
     {
-        printf("%ld\n", cn % 10);
         dest[i] = cn % 10;
         cn /= 10;
     }
+    printf("%s\n", dest);
 }
 
 int is_valid(long cn)
