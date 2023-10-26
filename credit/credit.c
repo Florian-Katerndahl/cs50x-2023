@@ -1,7 +1,7 @@
 #include <cs50.h>
 #include <stdio.h>
 
-void to_string(long cn, char dest[]);
+void to_digits(long cn, char dest[]);
 int is_valid(long cn);
 int is_amex(long cn);
 int is_master(long cn);
@@ -9,7 +9,7 @@ int is_visa(long cn);
 
 int main(void)
 {
-    char num_as_string[256] = { 0 };
+    int nDigits[256] = { 0 };
     long card_number;
     do
     {
@@ -17,7 +17,7 @@ int main(void)
     }
     while (card_number < 0);
 
-    to_string(card_number, &num_as_string[0]);
+    to_digits(card_number, nDigits);
     printf("%s\n", num_as_string);
 
     if (!is_valid(card_number)) printf("INVALID\n");
@@ -29,19 +29,24 @@ int main(void)
     return 0;
 }
 
-void to_string(long cn, char *dest)
+int to_digits(long cn, int dest[256])
 {
-    for (int i = 0; cn > 0; i++)
+    int i = 0;
+    while (i > 0)
     {
         dest[i] = cn % 10;
         cn /= 10;
-        printf("a%d", dest[i]);
+        i++;
     }
+    return i;
 }
 
-int is_valid(long cn)
+int is_valid(long cn, int digits)
 {
-    int nb = sizeof(long);
+    for (int i = 0; i < digits; i++)
+    {
+        
+    }
     return 1;
 }
 
