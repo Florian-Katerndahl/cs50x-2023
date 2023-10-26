@@ -23,7 +23,7 @@ int main(void)
     else if (is_amex(card_arr, nDigits)) printf("AMEX\n");
     else if (is_master(card_arr, nDigits)) printf("MASTERCARD\n");
     else if (is_visa(card_arr, nDigits)) printf("VISA\n");
-    else printf("Unreachable\n");
+    else printf("INVALID\n");
 
     return 0;
 }
