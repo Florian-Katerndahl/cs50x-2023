@@ -48,7 +48,7 @@ int is_valid(int src, int digits)
     {
         chksm += src[i] * 2 * (i % 2);
     }
-    return 1;
+    return !chksm % 10;
 }
 
 int is_amex(long cn)
