@@ -23,7 +23,7 @@ int main(void)
     else if (is_amex(card_arr, nDigits)) printf("AMEX\n");
     else if (is_master(card_arr, nDigits)) printf("MASTERCARD\n");
     else if (is_visa(card_arr, nDigits)) printf("VISA\n");
-    else printf("INVALID\n");
+    else printf("Unreachable\n");
 
     return 0;
 }
@@ -31,7 +31,7 @@ int main(void)
 int to_digits(long cn, int dest[256])
 {
     int i = 0;
-    while (i > 0)
+    while (cn > 0)
     {
         dest[i] = cn % 10;
         cn /= 10;
@@ -46,22 +46,22 @@ int is_valid(int src[256], int digits)
     for (int i = 0; i < digits; i++)
     {
         int tmp = src[i] * ( 1 + (i % 2));
-        chksm += tmp % 10 + (tmp / 10) % 10;
+        chksm += tmp % 10 + ((tmp / 10) % 10);
     }
-    return !chksm % 10;
+    return !(chksm % 10);
 }
 
 int is_amex(int src[256], int digits)
 {
-    return digits == 15 && src[digits] == 3 && (src[digits-1] == 5 || src[digits-1] == 7);
+    return digits == 15 && src[digits-1] == 3 && (src[digits-2] == 5 || src[digits-2] == 7);
 }
 
 int is_master(int src[256], int digits)
 {
-    return digits == 16 && src[digits] == 5 && src[digits-1] > 0 &&  src[digits-1] < 6;
+    return digits == 16 && src[digits-1] == 5 && src[digits-2] > 0 &&  src[digits-2] < 6;
 }
 
 int is_visa(int src[256], int digits)
 {
-    return (digits == 13 || digits == 16) && src[digits] == 4;
+    return (digits == 13 || digits == 16) && src[digits-1] == 4;
 }
