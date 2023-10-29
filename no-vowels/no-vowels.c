@@ -26,7 +26,7 @@ string replace(string input)
 {
     for (int i = 0, l = strlen(input); i < l; i++)
     {
-        switch(input[i])
+        switch (input[i])
         {
             case 'a':
                 input[i] = '6';
