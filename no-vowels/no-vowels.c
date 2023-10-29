@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <string.h>
 
-string replace(string input[1]);
+string replace(string input);
 
 int main(int argc, string argv[])
 {
@@ -22,7 +22,7 @@ int main(int argc, string argv[])
     return 0;
 }
 
-string replace(string input[1])
+string replace(string input)
 {
     int length = strlen(input) + 1;
     string converted[length] = {0};
