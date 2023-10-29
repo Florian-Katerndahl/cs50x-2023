@@ -24,27 +24,25 @@ int main(int argc, string argv[])
 
 string replace(string input)
 {
-    string converted[strlen(input) + 1];
     for (int i = 0, l = strlen(input); i < l; i++)
     {
         switch(input[i])
         {
             case 'a':
-                converted[i] = '6';
+                input[i] = '6';
                 break;
             case 'e':
-                converted[i] = '3'
+                input[i] = '3';
                 break;
             case 'i':
-                converted[i] = '1';
+                input[i] = '1';
                 break;
             case 'o':
-                converted[i] = '0';
+                input[i] = '0';
                 break;
             default:
-                converted[i] = input[i];
                 break;
         }
     }
-    return converted;
+    return input;
 }
