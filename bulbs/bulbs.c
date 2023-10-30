@@ -19,26 +19,25 @@ int main(void)
     size_t ssize = strlen(message);
     for (size_t i = 0; i < ssize; i++)
     {
-        /*for (size_t j = 0; j < BITS_IN_BYTE; j++)
+        for (size_t j = 0; j < BITS_IN_BYTE; j++)
         {
             print_bulb( 1 && (message[i] & ((1 << 7) >> j)));
         }
         printf("\n");
-        printf("\n");*/
-
+/*
         int c = message[i];
-
-        for (int j = 0; j < BITS_IN_BYTE && c; j++)
+        for (int j = BITS_IN_BYTE - 1; j >= 0; j--)
         {
             bits[j] = c % 2;
             c /= 2;
         }
-        
-        for (int j = BITS_IN_BYTE - 1; j >= 0; j++)
+
+        for (int j = 0; j < BITS_IN_BYTE; j++)
         {
             print_bulb(bits[j]);
         }
         printf("\n");
+*/
     }
 
     // see readibilty
