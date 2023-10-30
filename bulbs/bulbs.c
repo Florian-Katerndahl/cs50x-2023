@@ -8,7 +8,7 @@ void print_bulb(int bit);
 
 int main(void)
 {
-    char bits[BITS_IN_BYTE]={0};
+    char bits[BITS_IN_BYTE] = {0};
     char *message;
     do
     {
@@ -21,10 +21,10 @@ int main(void)
     {
         for (size_t j = 0; j < BITS_IN_BYTE; j++)
         {
-            print_bulb( 1 && (message[i] & ((1 << 7) >> j)));
+            print_bulb(1 && (message[i] & ((1 << 7) >> j)));
         }
         printf("\n");
-/*
+        /*
         int c = message[i];
         for (int j = BITS_IN_BYTE - 1; j >= 0; j--)
         {
@@ -37,11 +37,11 @@ int main(void)
             print_bulb(bits[j]);
         }
         printf("\n");
-*/
+        */
     }
 
     // see readibilty
-    //free(message);
+    // free(message);
     return 0;
 }
 
