@@ -1,6 +1,7 @@
 #include <ctype.h>
 #include <cs50.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 // Points assigned to each letter of the alphabet
@@ -18,10 +19,21 @@ int main(void)
     int score1 = compute_score(word1);
     int score2 = compute_score(word2);
 
-    // TODO: Print the winner
+    printf("%s\n", score1 > score2 ? "Player 1 wins!" : score1 == score2 ? "Tie!" : "Player 2 wins!");
+    return 0;
 }
 
 int compute_score(string word)
 {
-    // TODO: Compute and return score for string
+    int score = 0;
+    size_t ssize = strlen(word);
+    int c;
+    for (size_t i = 0; i < ssize; i++)
+    {
+        c = tolower(word[i]);
+        if (c < 97 || c > 122)
+            continue;
+        sum += POINTS[c - 97];
+    }
+    return score;
 }
