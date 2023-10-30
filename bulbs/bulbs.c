@@ -20,7 +20,7 @@ int main(void)
     {
         for (size_t j = 0; j < BITS_IN_BYTE; j++)
         {
-            printf("%d ", 1 && message[i] & (1 << j));
+            printf("%d ", 1 && message[i] & (255 << j));
 
             //print_bulb(message[i] & (1 << j));
         }
