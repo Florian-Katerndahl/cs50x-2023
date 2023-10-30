@@ -1,13 +1,13 @@
 #include <cs50.h>
+#include <math.h>
 #include <stdio.h>
 #include <string.h>
-#include <math.h>
 
-float coleman_liau(const char * text);
+float coleman_liau(const char *text);
 
 int main(void)
 {
-    char * text;
+    char *text;
     do
     {
         text = get_string("Text: ");
@@ -26,7 +26,7 @@ int main(void)
     return 0;
 }
 
-float coleman_liau(const char * text)
+float coleman_liau(const char *text)
 {
     unsigned int letter_count = 0;
     unsigned int word_count = 0;
@@ -47,5 +47,6 @@ float coleman_liau(const char * text)
     // since counting white spaces dismisses one word, add one
     word_count++;
 
-    return 0.0588 * (((float) letter_count) / ((float) word_count) * 100.0) - 0.296 *  (((float) sentence_count) / ((float) word_count) * 100.0) - 15.8;
+    return 0.0588 * (((float) letter_count) / ((float) word_count) * 100.0) -
+           0.296 * (((float) sentence_count) / ((float) word_count) * 100.0) - 15.8;
 }
