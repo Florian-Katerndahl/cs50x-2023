@@ -44,5 +44,8 @@ float coleman_liau(const char * text)
             sentence_count++;
     }
 
+    // since counting white spaces dismisses one word, add one
+    word_count++;
+
     return 0.0588 * (((float) letter_count) / ((float) word_count) * 100.0) - 0.296 *  (((float) sentence_count) / ((float) word_count) * 100.0) - 15.8;
 }
