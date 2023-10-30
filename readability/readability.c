@@ -24,7 +24,8 @@ int main(void)
     else
         printf("Grade %d\n", grade);
 
-    free(text);
+    // apparently, that's not allowed?
+    //free(text);
     return 0;
 }
 
