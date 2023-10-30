@@ -1,6 +1,5 @@
 #include <cs50.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
 const int BITS_IN_BYTE = 8;
@@ -16,9 +15,20 @@ int main(void)
     }
     while (message == NULL);
 
-    
+    size_t ssize = strlen(message);
+    for (size_t i = 0; i < ssize; i++)
+    {
+        for (size_t j = 0; j < BITS_IN_BYTE; j++)
+        {
+            printf("%d ", message[i] & (1 << j));
 
-    free(message);
+            //print_bulb(message[i] & (1 << j));
+        }
+        printf("\n");
+    }
+
+    // see readibilty
+    //free(message);
     return 0;
 }
 
