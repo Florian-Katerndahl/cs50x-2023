@@ -28,14 +28,15 @@ int main(void)
 
         int c = message[i];
 
-        for (int i = 0; i < BITS_IN_BYTE; i++)
+        for (int j = 0; j < BITS_IN_BYTE && c; j++)
         {
-            
-        }
-        while (c)
-        {
-            print_bulb(c % 2);
+            bits[j] = c % 2;
             c /= 2;
+        }
+        
+        for (int j = BITS_IN_BYTE - 1; j >= 0; j++)
+        {
+            print_bulb(bits[j]);
         }
         printf("\n");
     }
