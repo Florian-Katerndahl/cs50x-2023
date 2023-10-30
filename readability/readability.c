@@ -1,6 +1,7 @@
 #include <cs50.h>
 #include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 float coleman_liau(const char *text);
@@ -23,6 +24,7 @@ int main(void)
     else
         printf("Grade %d\n", grade);
 
+    free(text);
     return 0;
 }
 
