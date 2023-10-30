@@ -40,7 +40,7 @@ float coleman_liau(const char * text)
             letter_count++;
         if (c == ' ')
             word_count++;
-        if (c == '.' || c == '?' || c == '!' || c == ';' || c == ':')
+        if (c == '.' || c == '?' || c == '!')
             sentence_count++;
     }
 
