@@ -33,7 +33,7 @@ int compute_score(string word)
         c = tolower(word[i]);
         if (c < 97 || c > 122)
             continue;
-        sum += POINTS[c - 97];
+        score += POINTS[c - 97];
     }
     return score;
 }
