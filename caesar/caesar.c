@@ -15,11 +15,10 @@ int main(int argc, char **argv)
 
     start = *(argv + 1);
     int shift = strtol(start, &end, 10);
-    if (
-        *end != '\0' // there's more to parse; in this case treated as an error
+    if (*end != '\0'            // there's more to parse; in this case treated as an error
         || (*(argv + 1) == end) // no digits found
         // further checks omitted
-        )
+    )
     {
         printf("Usage123: ./caeser key\n");
         return 1;
@@ -40,7 +39,8 @@ int main(int argc, char **argv)
         if ((plain[i] > 64 && plain[i] < 91) || (plain[i] > 96 && plain[i] < 123))
         {
             norm = islower(plain[i]) ? 97 : 65; // remember: dont program if you can barely look ahaed
-            c = (plain[i] % norm + shift % 26) % 26 + norm; // holy shit, that took a long time: started with index table in mind and thus a mod 25
+            c = (plain[i] % norm + shift % 26) % 26 +
+                norm; // holy shit, that took a long time: started with index table in mind and thus a mod 25
         }
         else
         {
