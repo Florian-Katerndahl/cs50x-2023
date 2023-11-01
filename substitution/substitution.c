@@ -19,20 +19,22 @@ int main(int argc, char **argv)
     }
 
     int hist[26] = {0};
+    int c;
     for (size_t i = 0; i < 26; i++)
     {
         if ((*(argv + 1)[i] > 64 && *(argv + 1)[i] < 91) || (*(argv + 1)[i] > 96 && *(argv + 1)[i] < 123))
         {
-            printf("Usage: ./caeser key\n");
+            printf("Usagenon: ./caeser key\n");
             return 1;
         }
+        *(argv + 1)[i] = tolower(*(argv + 1)[i]);
         hist[i]++;
     }
     for (size_t i = 0; i < 26; i++)
     {
         if (hist[i] != 1)
         {
-            printf("Usage: ./caeser key\n");
+            printf("Usagehsit: ./caeser key\n");
             return 1;
         }
     }
@@ -46,15 +48,17 @@ int main(int argc, char **argv)
 
     printf("ciphertext: ");
     size_t length = strlen(plain);
-    int c, norm;
+    int norm, islowerc;
     for (size_t i = 0; i < length; i++)
     {
         if ((plain[i] > 64 && plain[i] < 91) || (plain[i] > 96 && plain[i] < 123))
         {
+            islowerc = islower(plain[i]);
             // remember: dont program if you can barely look ahead
-            norm = islower(plain[i]) ? 97 : 65;
+            norm = islowerc ? 97 : 65;
             // holy shit, that took a long time: started with index table in mind and thus a mod 25
             c = ((plain[i] % norm) % 25)[*(argv + 1)];
+            c = islowerc ? c : toupper(c);
         }
         else
         {
