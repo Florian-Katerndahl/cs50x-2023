@@ -15,7 +15,11 @@ int main(int argc, char **argv)
     if (
         **endptr != '\0' // there's more to parse; in this case treated as an error
         || ((argv + 1) == endptr) // no digits found
-        ||
+        // further checks omitted
         )
+    {
+        printf("Usage: ./caeser key\n");
+        return 1;
+    }
     return 0;
 }
