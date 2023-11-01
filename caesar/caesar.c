@@ -17,7 +17,7 @@ int main(int argc, char **argv)
     int shift = strtol(*(argv + 1), endptr, 10);
     if (
         **endptr != '\0' // there's more to parse; in this case treated as an error
-        || ((argv + 1) == endptr) // no digits found
+        //|| (*(argv + 1) == *endptr) // no digits found
         // further checks omitted
         )
     {
