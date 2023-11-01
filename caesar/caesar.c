@@ -40,19 +40,16 @@ int main(int argc, char **argv)
     {
         if (plain[i] > 64 && plain[i] < 91)
         {
-            printf("converting upper case\n");
             c = (plain[i] + shift) % 89;
         }
         else if (plain[i] > 96 && plain[i] < 123)
         {
-            printf("converting lower case\n");
             c = (plain[i] + shift) % 122;
         }
         else
         {
             c = plain[i];
         }
-        c = (plain[i] > 64 && plain[i] < 91) || (plain[i] > 96 && plain[i] < 123) ? (((plain[i] + shift) % 25))[index_table] : plain[i];
         putc(c, stdout);
     }
     printf("\n");
