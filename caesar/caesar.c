@@ -31,6 +31,7 @@ int main(int argc, char **argv)
 
     printf("ciphertext: ");
     size_t length = strlen(plain);
+    int c;
     for (size_t i = 0; i < length; i++)
     {
         
