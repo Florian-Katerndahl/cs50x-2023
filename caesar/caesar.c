@@ -1,5 +1,6 @@
 #include <cs50.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 int main(int argc, char **argv)
 {
@@ -9,6 +10,7 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    int shift = 
+    char **endptr = &(argv + 1);
+    int shift = strtol(argv + 1, endptr, 10)
     return 0;
 }
