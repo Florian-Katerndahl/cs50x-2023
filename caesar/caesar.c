@@ -7,16 +7,17 @@ const char index_table[] = "abcdefghijklmnopqrstuvwxyzABDCDEFGHIJKLMNOPQRSTUVXYZ
 
 int main(int argc, char **argv)
 {
+    char *start, *end;
     if (argc != 2)
     {
         printf("Usage: ./caeser key\n");
         return 1;
     }
 
-    char **endptr = argv + 1;
-    int shift = strtol(*(argv + 1), endptr, 10);
+    start = *(argv + 1);
+    int shift = strtol(start, &end, 10);
     if (
-        **endptr != '\0' // there's more to parse; in this case treated as an error
+        *end != '\0' // there's more to parse; in this case treated as an error
         //|| (*(argv + 1) == *endptr) // no digits found
         // further checks omitted
         )
@@ -39,11 +40,13 @@ int main(int argc, char **argv)
     {
         if (plain[i] > 64 && plain[i] < 91)
         {
+            printf("converting upper case\n");
             c = (plain[i] + shift) % 89;
         }
         else if (plain[i] > 96 && plain[i] < 123)
         {
-            c = (plain[i] + shift) % 89;
+            printf("converting lower case\n");
+            c = (plain[i] + shift) % 122;
         }
         else
         {
