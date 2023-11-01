@@ -34,8 +34,10 @@ int main(int argc, char **argv)
     int c;
     for (size_t i = 0; i < length; i++)
     {
-        
+        c = (c > 64 && c < 91) || (c > 96 || c < 123) ? 
+        putc(c, stdout);
     }
+    printf("\n");
 
     return 0;
 }
