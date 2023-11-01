@@ -4,8 +4,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-const char index_table[] = "abcdefghijklmnopqrstuvwxyzABDCDEFGHIJKLMNOPQRSTUVXYZ";
-
 int main(int argc, char **argv)
 {
     char *start, *end;
@@ -19,7 +17,7 @@ int main(int argc, char **argv)
     int shift = strtol(start, &end, 10);
     if (
         *end != '\0' // there's more to parse; in this case treated as an error
-        //|| (*(argv + 1) == *endptr) // no digits found
+        || (*(argv + 1) == end) // no digits found
         // further checks omitted
         )
     {
