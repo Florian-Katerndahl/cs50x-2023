@@ -40,8 +40,7 @@ int main(int argc, char **argv)
         if ((plain[i] > 64 && plain[i] < 91) || (plain[i] > 96 && plain[i] < 123))
         {
             norm = islower(c) ? 97 : 65;
-            c = (plain[i] % norm + shift % 26) % 25 + norm;
-            //printf("Normed conversion: %c\n", c + norm);
+            c = (plain[i] % norm + shift % 26) % 26 + norm; // holy shit, that took a long time: started with index table in mind and thus a mod 25
         }
         else
         {
