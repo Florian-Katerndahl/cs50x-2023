@@ -44,7 +44,7 @@ int main(int argc, char **argv)
         }
         else if (plain[i] > 96 && plain[i] < 123)
         {
-            c = (plain[i] + shift) % 122;
+            c = (plain[i] + shift) % 121;
         }
         else
         {
