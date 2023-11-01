@@ -38,13 +38,11 @@ int main(int argc, char **argv)
     int c;
     for (size_t i = 0; i < length; i++)
     {
-        if (plain[i] > 64 && plain[i] < 91)
+        if ((plain[i] > 64 && plain[i] < 91) || (plain[i] > 96 && plain[i] < 123))
         {
-            c = (plain[i] + shift) % 89;
-        }
-        else if (plain[i] > 96 && plain[i] < 123)
-        {
-            c = (plain[i] + shift) % 121;
+            norm = islower(c) ? 65 : 97;
+            c = (plain % norm + shift) % 25;
+            printf("Normed conversion: %c\n", c);
         }
         else
         {
