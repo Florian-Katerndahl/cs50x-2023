@@ -21,5 +21,20 @@ int main(int argc, char **argv)
         printf("Usage: ./caeser key\n");
         return 1;
     }
+
+    char *plain;
+    do
+    {
+        plain = get_string("plaintext:  ");
+    }
+    while (plain == NULL);
+
+    printf("ciphertext: ");
+    size_t length = strlen(plain);
+    for (size_t i = 0; i < length; i++)
+    {
+        
+    }
+
     return 0;
 }
