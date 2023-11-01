@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+const char index_table[] = {'a', }
+
 int main(int argc, char **argv)
 {
     if (argc != 2)
@@ -34,7 +36,7 @@ int main(int argc, char **argv)
     int c;
     for (size_t i = 0; i < length; i++)
     {
-        c = (c > 64 && c < 91) || (c > 96 || c < 123) ? 
+        c = (plain[i] > 64 && plain[i] < 91) || (plain[i] > 96 || plain[i] < 123) ? (((plain[i] + shift) % 25) + plain[i])[index_table] : plain[i];
         putc(c, stdout);
     }
     printf("\n");
