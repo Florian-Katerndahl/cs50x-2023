@@ -21,7 +21,7 @@ int main(int argc, char **argv)
         // further checks omitted
         )
     {
-        printf("Usage: ./caeser key\n");
+        printf("Usage123: ./caeser key\n");
         return 1;
     }
 
