@@ -22,12 +22,13 @@ int main(int argc, char **argv)
     int c;
     for (size_t i = 0; i < 26; i++)
     {
-        if ((*(argv + 1)[i] > 64 && *(argv + 1)[i] < 91) || (*(argv + 1)[i] > 96 && *(argv + 1)[i] < 123))
+        if ((*(argv + 1)[i] < 64 && *(argv + 1)[i] > 91) || (*(argv + 1)[i] < 96 && *(argv + 1)[i] > 123))
         {
-            printf("Usagenon: ./caeser key\n");
+            printf("Usage: ./caeser key\n");
             return 1;
         }
-        *(argv + 1)[i] = tolower(*(argv + 1)[i]);
+        printf("%c\n",  tolower(*(argv + 1)[i]));
+        argv[1][i] = tolower(*(argv + 1)[i]);
         hist[i]++;
     }
     for (size_t i = 0; i < 26; i++)
