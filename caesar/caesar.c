@@ -41,9 +41,9 @@ int main(int argc, char **argv)
     {
         if ((plain[i] > 64 && plain[i] < 91) || (plain[i] > 96 && plain[i] < 123))
         {
-            norm = islower(c) ? 65 : 97;
-            c = (plain[i] % norm + shift) % 25;
-            printf("Normed conversion: %d\n", c + norm - 1);
+            norm = islower(c) ? 97 : 65;
+            c = (plain[i] % norm + shift) % 25 + norm;
+            //printf("Normed conversion: %c\n", c + norm);
         }
         else
         {
