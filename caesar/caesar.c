@@ -1,4 +1,5 @@
 #include <cs50.h>
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -35,14 +36,14 @@ int main(int argc, char **argv)
 
     printf("ciphertext: ");
     size_t length = strlen(plain);
-    int c;
+    int c, norm;
     for (size_t i = 0; i < length; i++)
     {
         if ((plain[i] > 64 && plain[i] < 91) || (plain[i] > 96 && plain[i] < 123))
         {
             norm = islower(c) ? 65 : 97;
-            c = (plain % norm + shift) % 25;
-            printf("Normed conversion: %c\n", c);
+            c = (plain[i] % norm + shift) % 25;
+            printf("Normed conversion: %d\n", c + norm - 1);
         }
         else
         {
