@@ -28,8 +28,8 @@ int main(int argc, char **argv)
             return 1;
         }
         printf("%c\n",  tolower(*(argv + 1)[i]));
-        argv[1][i] = tolower(*(argv + 1)[i]);
-        hist[i]++;
+        //argv[1][i] = tolower(*(argv + 1)[i]);
+        //hist[i]++;
     }
     for (size_t i = 0; i < 26; i++)
     {
