@@ -18,6 +18,16 @@ int main(int argc, char **argv)
         return 1;
     }
 
+    for (size_t i = 0; i < 26; i++)
+    {
+        if ((*(argv + 1)[i] > 64 && *(argv + 1)[i] < 91) || (*(argv + 1)[i] > 96 && *(argv + 1)[i] < 123))
+        {
+            printf("Key must contain 26 characters.\n");
+            return 1;
+        }
+
+    }
+
     char *plain;
     do
     {
@@ -35,7 +45,7 @@ int main(int argc, char **argv)
             // remember: dont program if you can barely look ahead
             norm = islower(plain[i]) ? 97 : 65;
             // holy shit, that took a long time: started with index table in mind and thus a mod 25
-            c = tolower(((plain[i] % norm) % 25)[*(argv + 1)]);
+            c = ((plain[i] % norm) % 25)[*(argv + 1)];
         }
         else
         {
