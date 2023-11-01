@@ -18,14 +18,23 @@ int main(int argc, char **argv)
         return 1;
     }
 
+    int hist[26] = {0};
     for (size_t i = 0; i < 26; i++)
     {
         if ((*(argv + 1)[i] > 64 && *(argv + 1)[i] < 91) || (*(argv + 1)[i] > 96 && *(argv + 1)[i] < 123))
         {
-            printf("Key must contain 26 characters.\n");
+            printf("Usage: ./caeser key\n");
             return 1;
         }
-
+        hist[i]++;
+    }
+    for (size_t i = 0; i < 26; i++)
+    {
+        if (hist[i] != 1)
+        {
+            printf("Usage: ./caeser key\n");
+            return 1;
+        }
     }
 
     char *plain;
