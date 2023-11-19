@@ -22,20 +22,18 @@ int main(int argc, char **argv)
     int c;
     for (size_t i = 0; i < 26; i++)
     {
-        if ((*(argv + 1)[i] < 64 && *(argv + 1)[i] > 91) || (*(argv + 1)[i] < 96 && *(argv + 1)[i] > 123))
+        if (!isalpha(argv[1][i]))
         {
             printf("Usage: ./caeser key\n");
             return 1;
         }
-        printf("%c\n",  tolower(*(argv + 1)[i]));
-        //argv[1][i] = tolower(*(argv + 1)[i]);
-        //hist[i]++;
+        hist[(int) tolower(argv[1][i]) - 'a']++;
     }
     for (size_t i = 0; i < 26; i++)
     {
         if (hist[i] != 1)
         {
-            printf("Usagehsit: ./caeser key\n");
+            printf("Usage: ./caeser key\n");
             return 1;
         }
     }
@@ -52,14 +50,12 @@ int main(int argc, char **argv)
     int norm, islowerc;
     for (size_t i = 0; i < length; i++)
     {
-        if ((plain[i] > 64 && plain[i] < 91) || (plain[i] > 96 && plain[i] < 123))
+        if (isalpha(plain[i]))
         {
             islowerc = islower(plain[i]);
-            // remember: dont program if you can barely look ahead
             norm = islowerc ? 97 : 65;
-            // holy shit, that took a long time: started with index table in mind and thus a mod 25
-            c = ((plain[i] % norm) % 25)[*(argv + 1)];
-            c = islowerc ? c : toupper(c);
+            c = ((plain[i] % norm) % 26)[argv[1]];
+            c = islowerc ? tolower(c) : toupper(c);
         }
         else
         {
