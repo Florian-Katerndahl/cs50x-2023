@@ -108,6 +108,14 @@ int main(int argc, string argv[])
 
     // Print the game's result
     // TODO #7
+    if (won)
+    {
+        printf("You won!\n");
+    }
+    else
+    {
+        printf("%s\n", choice);
+    }
 
     // that's all folks!
     return 0;
@@ -172,7 +180,18 @@ void print_word(string guess, int wordsize, int status[])
     // TODO #6
     for (int i = 0; i < wordsize; i++)
     {
-        
+        if (status[i] == EXACT)
+        {
+            printf(GREEN"%c"RESET, guess[i]);
+        }
+        else if (status[i] == CLOSE)
+        {
+            printf(YELLOW"%c"RESET, guess[i]);
+        }
+        else
+        {
+            printf(RED"%c"RESET, guess[i]);
+        }
     }
 
     printf("\n");
