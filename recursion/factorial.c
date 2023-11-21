@@ -1,10 +1,11 @@
 #include <cs50.h>
 #include <stdio.h>
+#include <stdint.h>
 
 int factorial(int n)
 {
-    if (n < 1) {
-        printf("ERROR: n must be larger than or equal to 1\n");
+    if (n < 1 || n == INT_MAX) {
+        printf("ERROR: n must be larger than or equal to 1 and smaller than INT_MAX\n");
         return -1;
     }
 
