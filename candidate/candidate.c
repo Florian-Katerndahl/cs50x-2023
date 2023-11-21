@@ -20,7 +20,17 @@ int main(void)
 
 candidate get_candidate(void)
 {
-    candidate c;
-    
+    candidate c = {0};
+    do
+    {
+        c.name = get_string("Enter candidate's name: ");
+    }
+    while (c.name == NULL);
+
+    do
+    {
+        c.votes = get_int("Enter candidate's number of votes: ");
+    }
+    while ()
 
 }
