@@ -14,10 +14,18 @@ candidate get_candidate(void);
 
 int main(void)
 {
-    candidate candidate = get_candidate();
+    candidate c_arr[3];
 
-    printf("Candidate entered: \n");
-    printf("Name: %s with %d votes\n", candidate.name, candidate.votes);
+    for (int i = 0; i < 3; i ++)
+    {
+        c_arr[i] = get_candidate();
+    }
+
+    printf("Candidates entered: \n");
+    for (int i = 0; i < 3; i ++)
+    {
+        printf("%s with %d vote(s)\n", c_arr[i].name, c_arr[i].votes);
+    }
 
     return 0;
 }
