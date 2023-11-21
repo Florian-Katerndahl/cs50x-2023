@@ -1,5 +1,6 @@
 #include <cs50.h>
 #include <stdio.h>
+#include <stdint.h>
 
 // typdef a anonymous struct
 typedef struct
@@ -14,6 +15,9 @@ candidate get_candidate(void);
 int main(void)
 {
     candidate candidate = get_candidate();
+
+    printf("Candidate entered: \n");
+    printf("Name: %s with %d votes\n", candidate.name, candidate.votes);
 
     return 0;
 }
@@ -31,6 +35,7 @@ candidate get_candidate(void)
     {
         c.votes = get_int("Enter candidate's number of votes: ");
     }
-    while ()
+    while (c.votes == INT_MAX);
 
+    return c;
 }
