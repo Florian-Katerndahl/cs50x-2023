@@ -50,7 +50,7 @@ int main(void)
     temps[9].city = "San Francisco";
     temps[9].temp = 66;
 
-    sort_cities("bubble");
+    sort_cities("selection");
 
     printf("\nAverage July Temperatures by City\n\n");
 
@@ -70,7 +70,12 @@ void sort_cities(string method)
         for (int i = 0; i < NUM_CITIES; i++)
         {
             swaps = 0;
-            for (int j = 0; j < NUM_CITIES - 1 - i; j++)
+            /*since the i-th elemnt bubbles up, we don't need
+            * to check its index again;
+            * to be in line with the pseudo-code given in the lecture however,
+            * this optimization is omitted: NUM_CITIES - 1 - i
+            */
+            for (int j = 0; j < NUM_CITIES - 1; j++)
             {
                 if (temps[j].temp < temps[j + 1].temp)
                 {
@@ -85,18 +90,8 @@ void sort_cities(string method)
                 printf("already sorted, breaking\n");
                 break;
             }
-            for (int k = 0; k < NUM_CITIES; k++)
-            {
-                printf("%i ", temps[k].temp);
-            }
-            printf("\n");
 
         }
-        /*while (swaps != 0)
-        {
-            swaps = 0;
-            for
-        }*/
     }
     else if (strcmp(method, "selection") == 0)
     {
@@ -118,10 +113,5 @@ void sort_cities(string method)
             temps[smallest_idx] = temp;
             sorted_before++;
         }
-        for (int k = 0; k < NUM_CITIES; k++)
-            {
-                printf("%i ", temps[k].temp);
-            }
-            printf("\n");
     }
 }
