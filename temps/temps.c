@@ -65,7 +65,7 @@ void sort_cities(string method)
 {
     if (strcmp(method, "bubble") == 0)
     {// bubble sort stops, if no swaps were made in a pass
-        int swaps = -1;
+        int swaps;
         avg_temp temp;
         // - 1 because array of size 1 is already sorted
         for (int i = 0; i < NUM_CITIES; i++)
