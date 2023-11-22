@@ -64,18 +64,18 @@ int main(void)
 void sort_cities(string method)
 {
     if (strcmp(method, "bubble") == 0)
-    {// bubble sort has stops, if no swaps were made in a pass
+    {// bubble sort stops, if no swaps were made in a pass
 
     }
-    else if (strcmp(method, "seletion") == 0)
+    else if (strcmp(method, "selection") == 0)
     {
         size_t sorted_before = 0, length = NUM_CITIES, smallest_idx;
         avg_temp smallest, temp;
         while (sorted_before < length - 1)
         {
-            for (size_t i = sorted_before; i < length - 1; i++)
+            for (size_t i = sorted_before; i < length; i++)
             {
-                if (i == sorted_before || temps[i].temp < smallest.temp)
+                if (i == sorted_before || temps[i].temp > smallest.temp)
                 {
                     smallest = temps[i];
                     smallest_idx = i;
