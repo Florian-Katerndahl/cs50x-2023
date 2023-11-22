@@ -3,8 +3,9 @@
 #include <math.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
-int convert(string input);
+int convert_iter(string input);
 
 int main(void)
 {
@@ -20,10 +21,17 @@ int main(void)
     }
 
     // Convert string to int
-    printf("%i\n", convert(input));
+    printf("%i\n", convert_iter(input));
 }
 
-int convert(string input)
+int convert_iter(string input)
 {
-    
+    size_t len = strlen(input);
+    int result = 0;
+    for (int i = len - 1; i >= 0; i--)
+    {
+        printf("%d\n", i);
+    }
+
+    return result;
 }
