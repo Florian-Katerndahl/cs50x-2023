@@ -65,7 +65,12 @@ void sort_cities(string method)
 {
     if (strcmp(method, "bubble") == 0)
     {// bubble sort stops, if no swaps were made in a pass
-
+        int swaps = -1;
+        while (swaps != 0)
+        {
+            swaps = 0;
+            for 
+        }
     }
     else if (strcmp(method, "selection") == 0)
     {
