@@ -16,7 +16,7 @@ avg_temp;
 
 avg_temp temps[NUM_CITIES];
 
-void sort_cities(void);
+void sort_cities(string method);
 
 int main(void)
 {
@@ -69,6 +69,23 @@ void sort_cities(string method)
     }
     else if (strcmp(method, "seletion") == 0)
     {
-        
+        size_t sorted_before = 0, length = NUM_CITIES, smallest_idx;
+        avg_temp smallest, temp;
+        while (sorted_before < length - 1)
+        {
+            for (size_t i = sorted_before; i < length - 1; i++)
+            {
+                if (i == sorted_before || temps[i].temp < smallest.temp)
+                {
+                    smallest = temps[i];
+                    smallest_idx = i;
+                }
+            }
+
+            temp = temps[sorted_before];
+            temps[sorted_before] = smallest;
+            temps[smallest_idx] = tmp;
+            sorted_before++;
+        }
     }
 }
