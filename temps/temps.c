@@ -67,10 +67,10 @@ void sort_cities(string method)
     {// bubble sort stops, if no swaps were made in a pass
         int swaps = -1;
         avg_temp temp;
-        for (int i = 0; i < NUM_CITIES - 1; i++)
+        for (int i = 0; i < NUM_CITIES; i++)
         {
             swaps = 0;
-            for (int j = 0; j < NUM_CITIES - 1; j++)
+            for (int j = 0; j < NUM_CITIES - 2; j++)
             {
                 if (temps[j].temp > temps[j + 1].temp)
                 {
