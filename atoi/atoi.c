@@ -40,11 +40,11 @@ int convert_iter(string input)
 
 int convert_rec(string input)
 {
-    size_t len = strlen(input)
+    size_t len = strlen(input);
     if (len == 0)
         return 0;
 
-    int result = (input[len - 1] - '0') * (int) powl(10, len - 1 - i);
+    int result = (input[len - 1] - '0') * (int) powl(10, 1);
     input[len - 1] = '\0';
 
     return result + convert_rec(input);
