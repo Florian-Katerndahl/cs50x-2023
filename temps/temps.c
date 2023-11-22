@@ -81,6 +81,7 @@ void sort_cities(string method)
             */
             for (int j = 0; j > NUM_CITIES - 1; j++)
             {
+                printf("%d > %d\n", temps[j].temp, temps[j + 1].temp);
                 if (temps[j].temp > temps[j + 1].temp)
                 {
                     printf("Swapping\n");
