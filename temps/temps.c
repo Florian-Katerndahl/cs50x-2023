@@ -85,7 +85,7 @@ void sort_cities(string method)
                 printf("already sorted, breaking\n");
                 break;
             }
-             for (int k = 0; k < NUM_CITIES; k++)
+            for (int k = 0; k < NUM_CITIES; k++)
             {
                 printf("%i ", temps[k].temp);
             }
@@ -118,5 +118,10 @@ void sort_cities(string method)
             temps[smallest_idx] = temp;
             sorted_before++;
         }
+        for (int k = 0; k < NUM_CITIES; k++)
+            {
+                printf("%i ", temps[k].temp);
+            }
+            printf("\n");
     }
 }
