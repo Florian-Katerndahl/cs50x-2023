@@ -70,9 +70,9 @@ void sort_cities(string method)
         for (int i = 0; i < NUM_CITIES - 1; i++)
         {
             swaps = 0;
-            for (int j = 0; j < NUM_CITIES - 2; j++)
+            for (int j = 0; j < NUM_CITIES - 1; j++)
             {
-                if (temps[j].temp < temps[j + 1].temp)
+                if (temps[j].temp > temps[j + 1].temp)
                 {
                     swaps++;
                     temp = temps[j + 1];
