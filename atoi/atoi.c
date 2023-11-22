@@ -27,13 +27,23 @@ int main(void)
 int convert_iter(string input)
 {
     size_t len = strlen(input);
-    int result = 0, temp;
+    int result = 0;
     for (int i = len - 1; i >= 0; i--)
     {
-        temp = (input[i] - '0') * (1 << (len - 1 - i));
-        printf("%d * %d\n", (input[i] - '0'), (1 << (len - 1 - i)));
-        result += temp;
+        result += (input[i] - '0') * (int) powl(10, len - 1 - i);
     }
 
     return result;
+}
+
+int convert_rec(string input)
+{
+    size_t len = strlen(input)
+    if (len == 0)
+        return 0;
+    int result = (input[len - 1] - '0') * (int) powl(10, len - 1 - i);
+    input[len - 1] = '\0';
+
+
+    return result + convert_rec(input);
 }
