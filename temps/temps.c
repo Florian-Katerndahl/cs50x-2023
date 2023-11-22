@@ -50,7 +50,7 @@ int main(void)
     temps[9].city = "San Francisco";
     temps[9].temp = 66;
 
-    sort_cities("selection");
+    sort_cities("bubble");
 
     printf("\nAverage July Temperatures by City\n\n");
 
@@ -66,11 +66,31 @@ void sort_cities(string method)
     if (strcmp(method, "bubble") == 0)
     {// bubble sort stops, if no swaps were made in a pass
         int swaps = -1;
-        while (swaps != 0)
+        avg_temp temp;
+        for (int i = 0; i < NUM_CITIES - 1; i++)
         {
             swaps = 0;
-            for 
+            for (int j = 0; j < NUM_CITIES - 2; j++)
+            {
+                if (temps[j].temp < temps[j + 1].temp)
+                {
+                    swaps++;
+                    temp = temps[j + 1];
+                    temps[j + 1] = temps[j];
+                    temps[j] = temp;
+                }
+            }
+            if (swaps == 0)
+            {
+                printf("already sorted, breaking\n");
+                break;
+            }
         }
+        /*while (swaps != 0)
+        {
+            swaps = 0;
+            for
+        }*/
     }
     else if (strcmp(method, "selection") == 0)
     {
