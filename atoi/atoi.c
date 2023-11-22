@@ -44,8 +44,8 @@ int convert_rec(string input)
     if (len == 0)
         return 0;
 
-    int result = (input[len - 1] - '0') * (int) powl(10, 1);
+    int result = (input[len - 1] - '0');
     input[len - 1] = '\0';
 
-    return result + convert_rec(input);
+    return result + 10 * convert_rec(input);
 }
