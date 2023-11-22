@@ -11,8 +11,7 @@ typedef struct
 {
     string city;
     int temp;
-}
-avg_temp;
+} avg_temp;
 
 avg_temp temps[NUM_CITIES];
 
@@ -64,27 +63,22 @@ int main(void)
 void sort_cities(string method)
 {
     if (strcmp(method, "bubble") == 0)
-    {// bubble sort stops, if no swaps were made in a pass
+    { // bubble sort stops, if no swaps were made in a pass
         int swaps;
         avg_temp temp;
         // - 1 because array of size 1 is already sorted
-        for (int i = 0; i < NUM_CITIES; i++)
+        for (int i = 0; i < NUM_CITIES - 1; i++)
         {
-            printf("Starting outer loop\n");
             swaps = 0;
             /*since the i-th elemnt bubbles up, we don't need
-            * to check its index again;
-            * to be in line with the pseudo-code given in the lecture however,
-            * this optimization is omitted: NUM_CITIES - 1 - i
-            *
-            *
-            */
-            for (int j = 0; j > NUM_CITIES - 1; j++)
+             * to check its index again;
+             * to be in line with the pseudo-code given in the lecture however,
+             * this optimization is omitted: NUM_CITIES - 1 - i
+             */
+            for (int j = 0; j < NUM_CITIES - 1; j++)
             {
-                printf("%d > %d\n", temps[j].temp, temps[j + 1].temp);
-                if (temps[j].temp > temps[j + 1].temp)
+                if (temps[j].temp < temps[j + 1].temp)
                 {
-                    printf("Swapping\n");
                     swaps++;
                     temp = temps[j + 1];
                     temps[j + 1] = temps[j];
@@ -92,10 +86,7 @@ void sort_cities(string method)
                 }
             }
             if (swaps == 0)
-            {
-                printf("already sorted, breaking\n");
                 break;
-            }
         }
     }
     else if (strcmp(method, "selection") == 0)
