@@ -31,7 +31,7 @@ int convert_iter(string input)
     for (int i = len - 1; i >= 0; i--)
     {
         temp = (input[i] - '0') * (1 << (len - 1 - i));
-        printf("%d\n", temp);
+        printf("%d * %d\n", (input[i] - '0'), (1 << (len - 1 - i)));
         result += temp;
     }
 
