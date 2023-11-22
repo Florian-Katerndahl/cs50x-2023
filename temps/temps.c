@@ -84,7 +84,7 @@ void sort_cities(string method)
 
             temp = temps[sorted_before];
             temps[sorted_before] = smallest;
-            temps[smallest_idx] = tmp;
+            temps[smallest_idx] = temp;
             sorted_before++;
         }
     }
