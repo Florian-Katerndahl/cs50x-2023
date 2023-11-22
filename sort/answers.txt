@@ -1,6 +1,6 @@
-sort1 uses: TODO
+sort1 uses: bubble sort
 
-How do you know?: TODO
+How do you know?: sorting an already sorted list takes substantially less time compared to a random or reversed list
 
 sort2 uses: TODO
 
