@@ -72,7 +72,7 @@ void sort_cities(string method)
             swaps = 0;
             for (int j = 0; j < NUM_CITIES - 2; j++)
             {
-                if (temps[j].temp > temps[j + 1].temp)
+                if (temps[j].temp < temps[j + 1].temp)
                 {
                     swaps++;
                     temp = temps[j + 1];
@@ -85,6 +85,12 @@ void sort_cities(string method)
                 printf("already sorted, breaking\n");
                 break;
             }
+             for (int k = 0; k < NUM_CITIES; k++)
+            {
+                printf("%i ", temps[k].temp);
+            }
+            printf("\n");
+
         }
         /*while (swaps != 0)
         {
