@@ -70,7 +70,7 @@ void sort_cities(string method)
         // - 1 because array of size 1 is already sorted
         for (int i = 0; i < NUM_CITIES; i++)
         {
-            printf("Starting loop\n");
+            printf("Starting outer loop\n");
             swaps = 0;
             /*since the i-th elemnt bubbles up, we don't need
             * to check its index again;
@@ -96,7 +96,6 @@ void sort_cities(string method)
                 printf("already sorted, breaking\n");
                 break;
             }
-
         }
     }
     else if (strcmp(method, "selection") == 0)
