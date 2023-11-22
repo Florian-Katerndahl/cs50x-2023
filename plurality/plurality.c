@@ -50,7 +50,7 @@ int main(int argc, string argv[])
     for (int i = 0; i < voter_count; i++)
     {
         string name = get_string("Vote: ");
-
+        printf("Got vote for %s\n", name);
         // Check for invalid vote
         if (!vote(name))
         {
@@ -67,6 +67,7 @@ bool vote(string name)
 {
     for (int i = 0; i < MAX; i++)
     {
+        printf("Trying to compare vote with candidate list\n");
         if (strcmp(name, candidates[i].name) == 0)
         {
             printf("Found candidate %s in list\n", name);
