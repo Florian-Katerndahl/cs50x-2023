@@ -70,6 +70,7 @@ void sort_cities(string method)
         // - 1 because array of size 1 is already sorted
         for (int i = 0; i < NUM_CITIES; i++)
         {
+            printf("Starting loop\n");
             swaps = 0;
             /*since the i-th elemnt bubbles up, we don't need
             * to check its index again;
@@ -82,6 +83,7 @@ void sort_cities(string method)
             {
                 if (temps[j].temp > temps[j + 1].temp)
                 {
+                    printf("Swapping\n");
                     swaps++;
                     temp = temps[j + 1];
                     temps[j + 1] = temps[j];
