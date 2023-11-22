@@ -3,6 +3,7 @@
 
 #include <cs50.h>
 #include <stdio.h>
+#include <string.h>
 
 #define NUM_CITIES 10
 
@@ -49,7 +50,7 @@ int main(void)
     temps[9].city = "San Francisco";
     temps[9].temp = 66;
 
-    sort_cities();
+    sort_cities("selection");
 
     printf("\nAverage July Temperatures by City\n\n");
 
@@ -60,7 +61,14 @@ int main(void)
 }
 
 // TODO: Sort cities by temperature in descending order
-void sort_cities(void)
+void sort_cities(string method)
 {
-    // Add your code here
+    if (strcmp(method, "bubble") == 0)
+    {// bubble sort has stops, if no swaps were made in a pass
+
+    }
+    else if (strcmp(method, "seletion") == 0)
+    {
+        
+    }
 }
