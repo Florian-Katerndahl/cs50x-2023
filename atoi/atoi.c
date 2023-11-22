@@ -6,6 +6,7 @@
 #include <stdlib.h>
 
 int convert_iter(string input);
+int convert_rec(string input);
 
 int main(void)
 {
@@ -22,6 +23,7 @@ int main(void)
 
     // Convert string to int
     printf("%i\n", convert_iter(input));
+    printf("%i\n", convert_rec(input));
 }
 
 int convert_iter(string input)
@@ -41,9 +43,9 @@ int convert_rec(string input)
     size_t len = strlen(input)
     if (len == 0)
         return 0;
+
     int result = (input[len - 1] - '0') * (int) powl(10, len - 1 - i);
     input[len - 1] = '\0';
-
 
     return result + convert_rec(input);
 }
