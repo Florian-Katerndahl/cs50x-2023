@@ -27,10 +27,12 @@ int main(void)
 int convert_iter(string input)
 {
     size_t len = strlen(input);
-    int result = 0;
+    int result = 0, temp;
     for (int i = len - 1; i >= 0; i--)
     {
-        printf("%d\n", i);
+        temp = (input[i] - '0') * (1 << (len - 1 - i));
+        printf("%d\n", temp);
+        result += temp;
     }
 
     return result;
