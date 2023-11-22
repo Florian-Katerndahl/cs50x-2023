@@ -74,6 +74,8 @@ void sort_cities(string method)
              * to check its index again;
              * to be in line with the pseudo-code given in the lecture however,
              * this optimization is omitted: NUM_CITIES - 1 - i
+             *
+             * ... to n-2 is inclusive and thus the same as n-1 exclusive
              */
             for (int j = 0; j < NUM_CITIES - 1; j++)
             {

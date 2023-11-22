@@ -75,29 +75,35 @@ void add_items(void)
 {
     menu[0].item = "Burger";
     menu[0].price = 9.5f;
-    menu[0].item = "Vegan Burger";
-    menu[0].price = 11.0f;
-    menu[0].item = "Hot Dog";
-    menu[0].price = 5.0f;
-    menu[0].item = "Cheese Dog";
-    menu[0].price = 7.0f;
-    menu[0].item = "Fries";
-    menu[0].price = 5.0f;
-    menu[0].item = "Cheese Fries";
-    menu[0].price = 6.0f;
-    menu[0].item = "Cold Pressed Juice";
-    menu[0].price = 7.0f;
-    menu[0].item = "Cold Brew";
-    menu[0].price = 3.0f;
-    menu[0].item = "Water";
-    menu[0].price = 2.0f;
-    menu[0].item = "Soda";
-    menu[0].price = 2.0f;
+    menu[1].item = "Vegan Burger";
+    menu[1].price = 11.0f;
+    menu[2].item = "Hot Dog";
+    menu[2].price = 5.0f;
+    menu[3].item = "Cheese Dog";
+    menu[3].price = 7.0f;
+    menu[4].item = "Fries";
+    menu[4].price = 5.0f;
+    menu[5].item = "Cheese Fries";
+    menu[5].price = 6.0f;
+    menu[6].item = "Cold Pressed Juice";
+    menu[6].price = 7.0f;
+    menu[7].item = "Cold Brew";
+    menu[7].price = 3.0f;
+    menu[8].item = "Water";
+    menu[8].price = 2.0f;
+    menu[9].item = "Soda";
+    menu[9].price = 2.0f;
     return;
 }
 
 // Search through the menu array to find an item's cost
 float get_cost(string item)
 {
+    for (int i = 0; i < NUM_ITEMS; i++)
+    {
+        if (strcasecmp(item, menu[i].item) == 0)
+            return menu[i].price;
+    }
+
     return 0.0;
 }
