@@ -56,7 +56,7 @@ int main(void)
 
     for (int i = 0; i < NUM_CITIES; i++)
     {
-        printf("%s: %i\n", temps[i].city, temps[i].temp);
+        //printf("%s: %i\n", temps[i].city, temps[i].temp);
     }
 }
 
@@ -67,10 +67,10 @@ void sort_cities(string method)
     {// bubble sort stops, if no swaps were made in a pass
         int swaps = -1;
         avg_temp temp;
-        for (int i = 0; i < NUM_CITIES; i++)
+        for (int i = 0; i < NUM_CITIES - 1; i++)
         {
             swaps = 0;
-            for (int j = 0; j < NUM_CITIES - 2; j++)
+            for (int j = 0; j < NUM_CITIES - 1; j++)
             {
                 if (temps[j].temp < temps[j + 1].temp)
                 {
