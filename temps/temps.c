@@ -68,7 +68,7 @@ void sort_cities(string method)
         int swaps = -1;
         avg_temp temp;
         // - 1 because array of size 1 is already sorted
-        for (int i = 0; i < NUM_CITIES - 1; i++)
+        for (int i = 0; i < NUM_CITIES; i++)
         {
             swaps = 0;
             /*since the i-th elemnt bubbles up, we don't need
@@ -80,7 +80,7 @@ void sort_cities(string method)
             */
             for (int j = 0; j > NUM_CITIES - 1; j++)
             {
-                if (temps[j].temp < temps[j + 1].temp)
+                if (temps[j].temp > temps[j + 1].temp)
                 {
                     swaps++;
                     temp = temps[j + 1];
