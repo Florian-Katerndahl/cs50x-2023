@@ -175,6 +175,12 @@ void sort_pairs(void)
     return;
 }
 
+int walk_cycles(int locked[], int max_steps, pair start)
+{
+    if (max_steps == 0) return 0;
+    
+}
+
 // Lock pairs into the candidate graph in order, without creating cycles
 void lock_pairs(void)
 {
