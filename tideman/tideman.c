@@ -145,14 +145,14 @@ void sort_pairs(void)
     pair temp;
     for (int i = 0; i < pair_count; i++)
     {
-        for (int j = 0; j < pair_count - 1; j++)
+        for (int j = i; j < pair_count - 1 - i; j++)
         {
             if (preferences[pairs[j].winner][pairs[j].loser] - preferences[pairs[j].winner][pairs[j].loser] <
                 preferences[pairs[j + 1].winner][pairs[j + 1].loser] - preferences[pairs[j + 1].winner][pairs[j + 1].loser])
                 {
-                    temp = pairs[j];
-                    pairs[j] = pairs[j + 1];
-                    pairs[j + 1] = temp;
+                    temp = pairs[j + 1];
+                    pairs[j + 1] = pairs[j];
+                    pairs[j] = temp;
                 }
         }
     }
@@ -162,7 +162,7 @@ void sort_pairs(void)
 // Lock pairs into the candidate graph in order, without creating cycles
 void lock_pairs(void)
 {
-    // TODO
+    
     return;
 }
 
