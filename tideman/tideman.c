@@ -177,15 +177,16 @@ void sort_pairs(void)
 
 int forms_cycle(int original, int next)
 {
+    int circle = 0;
     if (locked[next][original]) return 1;
-    
+
     for (int i = 0; i < candidate_count; i++)
     {
         if (!locked[next][i]) continue;
         if (i == original) return 1;
-        return forms_cycle(orignal, i);
+        circle += forms_cycle(original, i);
     }
-    return 0;
+    return circle;
 }
 
 // Lock pairs into the candidate graph in order, without creating cycles
