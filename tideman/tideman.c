@@ -175,12 +175,24 @@ void sort_pairs(void)
     return;
 }
 
+int forms_cycle(int orignal, int next)
+{
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (!locked[next][i]) continue;
+        if (i == original) return 1;
+        return forms_cycle(orignal, i);
+    }
+    return 0;
+}
+
 // Lock pairs into the candidate graph in order, without creating cycles
 void lock_pairs(void)
 {
     for (int i = 0; i < pair_count; i++)
     {
-        if (locked[pairs[i].winner][pairs[i].loser]) continue;
+        // locked[pairs[i].winner][pairs[i].loser]
+        if (forms_cycle(pairs[i].winner, pairs[i].loser)) continue;
         locked[pairs[i].winner][pairs[i].loser] = true;
     }
     return;
