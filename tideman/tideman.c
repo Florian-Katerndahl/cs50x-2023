@@ -92,7 +92,7 @@ int main(int argc, string argv[])
     add_pairs();
     sort_pairs();
     lock_pairs();
-pairs    print_winner();
+    print_winner();
     return 0;
 }
 
@@ -132,7 +132,7 @@ void add_pairs(void)
         {
             if (preferences[i][j] == preferences[j][i]) continue;
             int winner = preferences[i][j] > preferences[j][i] ? i : j;
-            int loser = preferences[i][j] > preferences[j][i] ? i : j;
+            int loser = preferences[i][j] < preferences[j][i] ? i : j;
             pairs[pair_count] = (pair) {.winner = winner, .loser = loser};
             pair_count++;
         }
