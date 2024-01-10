@@ -175,8 +175,10 @@ void sort_pairs(void)
     return;
 }
 
-int forms_cycle(int orignal, int next)
+int forms_cycle(int original, int next)
 {
+    if (locked[next][original]) return 1;
+    
     for (int i = 0; i < candidate_count; i++)
     {
         if (!locked[next][i]) continue;
