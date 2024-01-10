@@ -1,5 +1,6 @@
 #include <cs50.h>
 #include <stdio.h>
+#include <string.h>
 
 // Max number of candidates
 #define MAX 9
@@ -116,7 +117,7 @@ void record_preferences(int ranks[])
     {
         for (int j = i + 1; j < candidate_count; j++)
         {
-            preferences[rank[i]][rank[j]]++;
+            preferences[ranks[i]][ranks[j]]++;
         }
     }
     return;
@@ -175,10 +176,14 @@ void print_winner(void)
 {
     for (int j = 0; j < candidate_count; j++)
     {
-        int c
+        int beaten_by = 0;
         for (int i = 0; i < candidate_count; i++)
         {
-            if
+            beaten_by = locked[i][j];
+        }
+        if (beaten_by == 0) {
+            printf("%s\n", candidates[j]);
+            break;
         }
     }
     return;
