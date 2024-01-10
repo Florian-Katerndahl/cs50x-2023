@@ -163,8 +163,8 @@ void sort_pairs(void)
     {
         for (int j = i; j < pair_count - 1 - i; j++)
         {
-            if (preferences[pairs[j].winner][pairs[j].loser] - preferences[pairs[j].winner][pairs[j].loser] <
-                preferences[pairs[j + 1].winner][pairs[j + 1].loser] - preferences[pairs[j + 1].winner][pairs[j + 1].loser])
+            if (preferences[pairs[j].winner][pairs[j].loser] - preferences[pairs[j].loser][pairs[j].winner] <
+                preferences[pairs[j + 1].winner][pairs[j + 1].loser] - preferences[pairs[j + 1].loser][pairs[j + 1].winner])
                 {
                     temp = pairs[j + 1];
                     pairs[j + 1] = pairs[j];
@@ -173,12 +173,6 @@ void sort_pairs(void)
         }
     }
     return;
-}
-
-int walk_cycles(int locked[], int max_steps, pair start)
-{
-    if (max_steps == 0) return 0;
-
 }
 
 // Lock pairs into the candidate graph in order, without creating cycles
