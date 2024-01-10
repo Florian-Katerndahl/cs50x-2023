@@ -151,6 +151,7 @@ void sort_pairs(void)
             if (preferences[pairs[j].winner][pairs[j].loser] - preferences[pairs[j].winner][pairs[j].loser] <
                 preferences[pairs[j + 1].winner][pairs[j + 1].loser] - preferences[pairs[j + 1].winner][pairs[j + 1].loser])
                 {
+                    
                     temp = pairs[j + 1];
                     pairs[j + 1] = pairs[j];
                     pairs[j] = temp;
