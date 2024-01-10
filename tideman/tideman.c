@@ -91,6 +91,14 @@ int main(int argc, string argv[])
 
     add_pairs();
     sort_pairs();
+    for (int i = 0; i < candidate_count; i++)
+    {
+        for (int j = 0; j < candidate_count; j++)
+        {
+            printf("%d ", preferences[i][j]);
+        }
+        printf("\n");
+    }
     for (int i = 0; i < pair_count; i++)
     {
         printf("%s won over %s with a margin of %d\n",
