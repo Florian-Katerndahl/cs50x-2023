@@ -91,7 +91,7 @@ int main(int argc, string argv[])
 
     add_pairs();
     sort_pairs();
-    for (int i = 0; i < candidate_count; i++)
+    /*for (int i = 0; i < candidate_count; i++)
     {
         for (int j = 0; j < candidate_count; j++)
         {
@@ -105,7 +105,7 @@ int main(int argc, string argv[])
                 candidates[pairs[i].winner],
                 candidates[pairs[i].loser],
                 preferences[pairs[i].winner][pairs[i].loser] - preferences[pairs[i].loser][pairs[i].winner]);
-    }
+    }*/
     lock_pairs();
     print_winner();
     return 0;
@@ -178,7 +178,7 @@ void sort_pairs(void)
 int walk_cycles(int locked[], int max_steps, pair start)
 {
     if (max_steps == 0) return 0;
-    
+
 }
 
 // Lock pairs into the candidate graph in order, without creating cycles
