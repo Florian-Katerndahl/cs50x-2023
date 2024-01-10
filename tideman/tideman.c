@@ -91,6 +91,13 @@ int main(int argc, string argv[])
 
     add_pairs();
     sort_pairs();
+    for (int i = 0; i < pair_count; i++)
+    {
+        printf("%s won over %s with a margin of %d\n",
+                candidates[pairs[i].winner],
+                candidates[pairs[i].loser],
+                preferences[pairs[i].winner][pairs[i].loser] - preferences[pairs[i].loser][pairs[i].winner]);
+    }
     lock_pairs();
     print_winner();
     return 0;
@@ -151,7 +158,6 @@ void sort_pairs(void)
             if (preferences[pairs[j].winner][pairs[j].loser] - preferences[pairs[j].winner][pairs[j].loser] <
                 preferences[pairs[j + 1].winner][pairs[j + 1].loser] - preferences[pairs[j + 1].winner][pairs[j + 1].loser])
                 {
-                    
                     temp = pairs[j + 1];
                     pairs[j + 1] = pairs[j];
                     pairs[j] = temp;
