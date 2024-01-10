@@ -215,7 +215,8 @@ void print_winner(void)
         {
             curr += locked[i][j];
         }
-        if (curr <= beaten_by) {
+        if (curr < beaten_by)
+        {
             winner = candidates[j];
         }
     }
