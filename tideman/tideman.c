@@ -182,6 +182,10 @@ int forms_cycle(int original, int next)
 
     for (int i = 0; i < candidate_count; i++)
     {
+        if (locked[next][i])
+        {
+            return forms_cycle(original, i);
+        }
         if (!locked[next][i]) continue;
         if (i == original) return 1;
         circle += forms_cycle(original, i);
