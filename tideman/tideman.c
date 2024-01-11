@@ -207,11 +207,9 @@ void lock_pairs(void)
 // Print the winner of the election
 void print_winner(void)
 {
-    int beaten_by = candidate_count;
     int winner_idx = 0;
-    string winner;
-    int losses[] = { 0 };
     int min_losses = candidate_count;
+    int losses[] = { 0 };
     for (int j = 0; j < candidate_count; j++)
     {
         int l = 0;
