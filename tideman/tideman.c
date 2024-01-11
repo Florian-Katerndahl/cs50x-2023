@@ -209,7 +209,7 @@ void print_winner(void)
 {
     int winner_idx = 0;
     int min_losses = candidate_count;
-    int losses[] = {0};
+    int losses[MAX] = {0};
     for (int j = 0; j < candidate_count; j++)
     {
         int l = 0;
