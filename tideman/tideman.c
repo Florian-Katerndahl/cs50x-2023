@@ -215,7 +215,9 @@ void print_winner(void)
     {
         int l = 0;
         for (int i = 0; i < candidate_count; i++)
+        {
             l += locked[i][j];
+        }
         losses[j] = l;
     }
 
