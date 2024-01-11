@@ -225,6 +225,7 @@ void print_winner(void)
         for (int i = 0; i < candidate_count; i++)
         {
             losses[j] += locked[i][j];
+            printf("%d ", locked[i][j]);
         }
         printf("Candidate %s has lost %d times\n", candidates[j], losses[j]);
     }
