@@ -178,7 +178,7 @@ void sort_pairs(void)
 int forms_cycle(int original, int next)
 {
     int circle = 0;
-    //if (locked[next][original]) return 1;
+    if (locked[next][original]) return 1;
 
     for (int i = 0; i < candidate_count; i++)
     {
