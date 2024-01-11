@@ -210,18 +210,25 @@ void print_winner(void)
     int beaten_by = candidate_count;
     int winner_idx;
     string winner;
+    int losses[] = { 0 };
+    int min_losses = candidate_count;
     for (int j = 0; j < candidate_count; j++)
     {
-        int curr = 0;
         for (int i = 0; i < candidate_count; i++)
         {
-            curr += locked[i][j];
-        }
-        if (curr < beaten_by)
-        {
-            winner = candidates[j];
+            losses[j] += locked[i][j];
         }
     }
-    printf("%s\n", winner);
+
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (losses[i] < min_losses)
+        {
+            min_losses = losses[i];
+            winner_idx = i;
+        }
+    }
+
+    printf("%s\n", candidates[winner_idx]);
     return;
 }
