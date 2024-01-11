@@ -145,10 +145,11 @@ void add_pairs(void)
     {
         for (int j = 0; j < i; j++)
         {
-            if (preferences[i][j] == preferences[j][i]) continue;
+            if (preferences[i][j] == preferences[j][i])
+                continue;
             int winner = preferences[i][j] > preferences[j][i] ? i : j;
             int loser = preferences[i][j] < preferences[j][i] ? i : j;
-            pairs[pair_count] = (pair) {.winner = winner, .loser = loser};
+            pairs[pair_count] = (pair){.winner = winner, .loser = loser};
             pair_count++;
         }
     }
@@ -165,11 +166,11 @@ void sort_pairs(void)
         {
             if (preferences[pairs[j].winner][pairs[j].loser] - preferences[pairs[j].loser][pairs[j].winner] <
                 preferences[pairs[j + 1].winner][pairs[j + 1].loser] - preferences[pairs[j + 1].loser][pairs[j + 1].winner])
-                {
-                    temp = pairs[j + 1];
-                    pairs[j + 1] = pairs[j];
-                    pairs[j] = temp;
-                }
+            {
+                temp = pairs[j + 1];
+                pairs[j + 1] = pairs[j];
+                pairs[j] = temp;
+            }
         }
     }
     return;
@@ -178,16 +179,15 @@ void sort_pairs(void)
 int forms_cycle(int original, int next)
 {
     int circle = 0;
-    if (locked[next][original]) return 1;
+    if (locked[next][original])
+        return 1;
 
     for (int i = 0; i < candidate_count; i++)
     {
-         if (locked[next][i])
-            return (int) (locked[next][original]) + forms_cycle(original, i);
-        /*if (locked[next][i])
+        if (locked[next][i])
         {
             circle += forms_cycle(original, i);
-        }*/
+        }
     }
     return circle;
 }
@@ -198,7 +198,8 @@ void lock_pairs(void)
     for (int i = 0; i < pair_count; i++)
     {
         // locked[pairs[i].winner][pairs[i].loser]
-        if (forms_cycle(pairs[i].winner, pairs[i].loser)) continue;
+        if (forms_cycle(pairs[i].winner, pairs[i].loser))
+            continue;
         locked[pairs[i].winner][pairs[i].loser] = true;
     }
     return;
@@ -209,11 +210,12 @@ void print_winner(void)
 {
     int winner_idx = 0;
     int min_losses = candidate_count;
-    int losses[] = { 0 };
+    int losses[] = {0};
     for (int j = 0; j < candidate_count; j++)
     {
         int l = 0;
-        for (int i = 0; i < candidate_count; i++) l += locked[i][j];
+        for (int i = 0; i < candidate_count; i++)
+            l += locked[i][j];
         losses[j] = l;
     }
 
