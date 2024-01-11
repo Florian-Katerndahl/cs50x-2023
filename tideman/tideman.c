@@ -222,11 +222,13 @@ void print_winner(void)
     int min_losses = candidate_count;
     for (int j = 0; j < candidate_count; j++)
     {
+        int l = 0;
         for (int i = 0; i < candidate_count; i++)
         {
-            losses[j] += locked[i][j];
+            l += locked[i][j];
             printf("%d ", locked[i][j]);
         }
+        losses[j] = l;
         printf("Candidate %s has lost %d times\n", candidates[j], losses[j]);
     }
 
