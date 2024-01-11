@@ -182,11 +182,14 @@ int forms_cycle(int original, int next)
 
     for (int i = 0; i < candidate_count; i++)
     {
+        // if (locked[next][i])
+        //    return (int) (locked[i][original]) + forms_cycle(original, i);
         if (locked[next][i])
-            return (int) (locked[i][original]) + forms_cycle(original, i);
-
+        {
+            circle += forms_cycle(original, i);
+        }
     }
-    return 0;
+    return circle;
 }
 
 // Lock pairs into the candidate graph in order, without creating cycles
