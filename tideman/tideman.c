@@ -208,7 +208,7 @@ void lock_pairs(void)
 void print_winner(void)
 {
     int beaten_by = candidate_count;
-    int winner_idx;
+    int winner_idx = 0;
     string winner;
     int losses[] = { 0 };
     int min_losses = candidate_count;
@@ -226,6 +226,7 @@ void print_winner(void)
         {
             min_losses = losses[i];
             winner_idx = i;
+            printf("Found candidate with fewer losses. New winner is %s\n", candidates[winner_idx]);
         }
     }
 
