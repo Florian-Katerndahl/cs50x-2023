@@ -107,14 +107,6 @@ int main(int argc, string argv[])
                 preferences[pairs[i].winner][pairs[i].loser] - preferences[pairs[i].loser][pairs[i].winner]);
     }*/
     lock_pairs();
-    for (int i = 0; i < candidate_count; i++)
-    {
-        for (int j = 0; j < candidate_count; j++)
-        {
-            printf("%d ", locked[i][j]);
-        }
-        printf("\n");
-    }
     print_winner();
     return 0;
 }
@@ -223,13 +215,8 @@ void print_winner(void)
     for (int j = 0; j < candidate_count; j++)
     {
         int l = 0;
-        for (int i = 0; i < candidate_count; i++)
-        {
-            l += locked[i][j];
-            printf("%d ", locked[i][j]);
-        }
+        for (int i = 0; i < candidate_count; i++) l += locked[i][j];
         losses[j] = l;
-        printf("Candidate %s has lost %d times\n", candidates[j], losses[j]);
     }
 
     for (int i = 0; i < candidate_count; i++)
@@ -238,7 +225,6 @@ void print_winner(void)
         {
             min_losses = losses[i];
             winner_idx = i;
-            printf("Found candidate with fewer losses. New winner is %s\n", candidates[winner_idx]);
         }
     }
 
