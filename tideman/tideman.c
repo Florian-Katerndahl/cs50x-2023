@@ -197,7 +197,6 @@ void lock_pairs(void)
 {
     for (int i = 0; i < pair_count; i++)
     {
-        // locked[pairs[i].winner][pairs[i].loser]
         if (forms_cycle(pairs[i].winner, pairs[i].loser))
             continue;
         locked[pairs[i].winner][pairs[i].loser] = true;
