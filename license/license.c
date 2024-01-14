@@ -34,6 +34,7 @@ int main(int argc, char *argv[])
     }
 
     // alternative with malloc
+    rewind(infile);
     idx = 0;
     char *plates2[8];
     while (fread(buffer, 1, 7, infile) == 7)
@@ -57,6 +58,8 @@ int main(int argc, char *argv[])
     for (int i = 0; i < 8; i++)
     {
         printf("%s\n", plates2[i]);
+        free(plates2[i]);
+        plates2[i] = NULL;
     }
 
     fclose(infile);
