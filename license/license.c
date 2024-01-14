@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main(int argc, char *argv[])
 {
@@ -29,14 +29,14 @@ int main(int argc, char *argv[])
 
         // Save plate number in array
         strncpy(plates[idx], buffer, 7);
-        //plates[idx] = buffer;
+        // plates[idx] = buffer;
         idx++;
     }
 
     // alternative with malloc
     rewind(infile);
     idx = 0;
-    char *plates2[8];
+    char *plates2[8]; // <- array of char pointers!
     while (fread(buffer, 1, 7, infile) == 7)
     {
         // Replace '\n' with '\0'
@@ -53,7 +53,6 @@ int main(int argc, char *argv[])
         strncpy(plates2[idx], buffer, 7);
         idx++;
     }
-
 
     for (int i = 0; i < 8; i++)
     {
