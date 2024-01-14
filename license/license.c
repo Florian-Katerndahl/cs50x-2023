@@ -14,12 +14,13 @@ int main(int argc, char *argv[])
     char buffer[7];
 
     // Create array to store plate numbers
-    char *plates[8][];
+    char plates[8][7];
 
     FILE *infile = fopen(argv[1], "r");
 
     int idx = 0;
 
+    // alternaive: fgets
     while (fread(buffer, 1, 7, infile) == 7)
     {
         // Replace '\n' with '\0'
@@ -35,4 +36,7 @@ int main(int argc, char *argv[])
     {
         printf("%s\n", plates[i]);
     }
+
+    fclose(infile);
+    return 0;
 }
