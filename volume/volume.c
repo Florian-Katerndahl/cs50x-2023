@@ -7,6 +7,23 @@
 // Number of bytes in .wav header
 const int HEADER_SIZE = 44;
 
+struct WAVE_HEADER
+{
+    uint8_t file_container[4];
+    uint32_t file_size;
+    uint8_t file_type[4];
+    uint8_t format[4];
+    uint32_t format_length;
+    uint16_t format_type;
+    uint16_t channels;
+    uint32_t sample_rate;
+    uint32_t samples;
+    uint16_t bytes_per_channel_pair;
+    uint16_t bits_per_sample;
+    uint8_t data_mark[4];
+    uint32_t data_size;
+};
+
 int main(int argc, char *argv[])
 {
     // Check command-line arguments
@@ -32,6 +49,9 @@ int main(int argc, char *argv[])
     }
 
     float factor = atof(argv[3]);
+
+    if (sizeof(struct WAVE_HEADER) != 44)
+        return 69;
 
     // TODO: Copy header from input file to output file
     uint8_t header[HEADER_SIZE] = { 0 };
