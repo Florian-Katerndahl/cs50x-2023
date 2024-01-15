@@ -38,15 +38,19 @@ int main(int argc, char *argv[])
     fread(header, sizeof(header), 1, input);
     fwrite(header, sizeof(header), 1, output);
 
-    uint32_t data_size = (header[40] << 24 | header[41] << 16 | header[]);
+    uint32_t data_size = (header[40] << 24 | header[41] << 16 | header[42] << 8 | header[43]) / 2;
 
     // TODO: Read samples from input file and write updated data to output file
     uint16_t data;
+    uint32_t count = 0;
     while (fread(&data, sizeof(data), 1, input))
     {
         data = (uint16_t) ((float) (data) * factor);
         fwrite(&data, sizeof(data), 1, output);
+        count++;
     }
+
+    printf("Expected %u samples, got %u samples\n", data_size, count);
 
     // Close files
     fclose(input);
