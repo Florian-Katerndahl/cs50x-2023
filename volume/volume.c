@@ -1,9 +1,9 @@
 // Modifies the volume of an audio file
 
+#include <math.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 
 // Number of bytes in .wav header
 const int HEADER_SIZE = 44;
@@ -55,17 +55,16 @@ int main(int argc, char *argv[])
         return 69;
 
     // TODO: Copy header from input file to output file
-    uint8_t header[HEADER_SIZE] = { 0 };
+    uint8_t header[HEADER_SIZE] = {0};
     struct WAVE_HEADER hstruct;
     fread(&header, sizeof(header), 1, input);
     fwrite(&header, sizeof(header), 1, output);
 
     printf("N Channels: %u\n", hstruct.channels);
     // TODO: Read samples from input file and write updated data to output file
-    int16_t data;
+    int16_t data; // damn, took me ages to notice the data is storedas int16_t not uint16_t
     while (fread(&data, sizeof(data), 1, input))
     {
-        //data = (uint16_t) round((float) (data) * factor); // result was truncated and not rounded....#
         data *= factor;
         fwrite(&data, sizeof(data), 1, output);
     }
