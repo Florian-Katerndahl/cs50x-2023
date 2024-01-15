@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
     fread(header, sizeof(header), 1, input);
     fwrite(header, sizeof(header), 1, output);
 
-    uint32_t data_size = 0;
+    uint32_t data_size = (header[40] << 24 | header[41] << 16 | header[]);
 
     // TODO: Read samples from input file and write updated data to output file
     uint16_t data;
