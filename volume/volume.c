@@ -56,9 +56,11 @@ int main(int argc, char *argv[])
 
     // TODO: Copy header from input file to output file
     uint8_t header[HEADER_SIZE] = { 0 };
-    fread(header, sizeof(header), 1, input);
-    fwrite(header, sizeof(header), 1, output);
+    struct WAVE_HEADER hstruct;
+    fread(&header, sizeof(header), 1, input);
+    fwrite(&header, sizeof(header), 1, output);
 
+    printf("N Channels: %u\n", hstruct.channels);
     // TODO: Read samples from input file and write updated data to output file
     uint16_t data;
     while (fread(&data, sizeof(data), 1, input))
