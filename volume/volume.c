@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
 
     float factor = atof(argv[3]);
 
-    if (sizeof(struct WAVE_HEADER) != 44)
+    if (sizeof(struct WAVE_HEADER) != HEADER_SIZE)
         return 69;
 
     // TODO: Copy header from input file to output file
