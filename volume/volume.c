@@ -5,7 +5,7 @@
 #include <stdlib.h>
 
 // Number of bytes in .wav header
-const int HEADER_SIZE = 44;
+const uint8_t HEADER_SIZE = 44;
 
 int main(int argc, char *argv[])
 {
