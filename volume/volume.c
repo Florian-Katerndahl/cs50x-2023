@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
     uint16_t data;
     while (fread(&data, sizeof(data), 1, input))
     {
-        data = (uint16_t) round((float) data * factor); // result was truncated and not rounded....
+        data = (uint16_t) round((float) (data) * factor); // result was truncated and not rounded....
         fwrite(&data, sizeof(data), 1, output);
     }
 
