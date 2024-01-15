@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
     uint16_t data;
     while (fread(&data, sizeof(data), 1, input))
     {
-        data = (uint16_t) ((float) (data) * factor);
+        data = (uint16_t) (data * factor);
         fwrite(&data, sizeof(data), 1, output);
     }
 
