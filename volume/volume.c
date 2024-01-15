@@ -62,7 +62,9 @@ int main(int argc, char *argv[])
     uint16_t data;
     while (fread(&data, sizeof(data), 1, input))
     {
+        printf("%hu ", data);
         data = (uint16_t) (data * factor);
+        printf("%hu\n", data);
         fwrite(&data, sizeof(data), 1, output);
     }
 
