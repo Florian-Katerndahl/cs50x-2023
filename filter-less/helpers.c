@@ -1,9 +1,8 @@
 #include "helpers.h"
-#include <stdio.h>
+#include <math.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
 
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
@@ -29,9 +28,12 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int x = 0; x < width; x++)
         {
-            uint16_t sepiaRed = (uint16_t) round(0.393 * image[y][x].rgbtRed + 0.769 * image[y][x].rgbtGreen + 0.189 * image[y][x].rgbtBlue);
-            uint16_t sepiaGreen = (uint16_t) round(0.349 * image[y][x].rgbtRed + 0.686 * image[y][x].rgbtGreen + 0.168 * image[y][x].rgbtBlue);
-            uint16_t sepiaBlue = (uint16_t) round(0.272 * image[y][x].rgbtRed + 0.534 * image[y][x].rgbtGreen + 0.131 * image[y][x].rgbtBlue);
+            uint16_t sepiaRed =
+                (uint16_t) round(0.393 * image[y][x].rgbtRed + 0.769 * image[y][x].rgbtGreen + 0.189 * image[y][x].rgbtBlue);
+            uint16_t sepiaGreen =
+                (uint16_t) round(0.349 * image[y][x].rgbtRed + 0.686 * image[y][x].rgbtGreen + 0.168 * image[y][x].rgbtBlue);
+            uint16_t sepiaBlue =
+                (uint16_t) round(0.272 * image[y][x].rgbtRed + 0.534 * image[y][x].rgbtGreen + 0.131 * image[y][x].rgbtBlue);
 
             image[y][x].rgbtRed = sepiaRed > UINT8_MAX ? UINT8_MAX : sepiaRed;
             image[y][x].rgbtGreen = sepiaGreen > UINT8_MAX ? UINT8_MAX : sepiaGreen;
@@ -61,7 +63,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
-    RGBTRIPLE (*copy)[width] = calloc(height, width * sizeof(RGBTRIPLE));
+    RGBTRIPLE(*copy)[width] = calloc(height, width * sizeof(RGBTRIPLE));
 
     for (int y = 0; y < height; y++)
     {
@@ -76,7 +78,8 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             {
                 for (int v = x - 1; v < x + 2; v++)
                 {
-                    if (h < 0 || h > height - 1 || v < 0 || v > width - 1) continue;
+                    if (h < 0 || h > height - 1 || v < 0 || v > width - 1)
+                        continue;
                     blurRed += image[h][v].rgbtRed;
                     blurGreen += image[h][v].rgbtGreen;
                     blurBlue += image[h][v].rgbtBlue;
