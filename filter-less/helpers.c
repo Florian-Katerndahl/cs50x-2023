@@ -1,6 +1,5 @@
 #include "helpers.h"
 #include <stdint.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
@@ -50,7 +49,6 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int x = 0; x < midpoint; x++)
         {
-            printf("Flipping %d with %d; total width: %d\n", x, width - x - 1, width);
             tmp = image[y][x];
             image[y][x] = image[y][width - x - 1];
             image[y][width - x - 1] = tmp;
