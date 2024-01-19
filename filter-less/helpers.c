@@ -1,4 +1,5 @@
 #include "helpers.h"
+#include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
@@ -71,9 +72,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             uint16_t blurGreen = 0;
             float count = 0;
 
-            for (int h = y - 1; h < y + 1; h++)
+            for (int h = y - 1; h < y + 2; h++)
             {
-                for (int v = x - 1; v < x + 1; v++)
+                for (int v = x - 1; v < x + 2; v++)
                 {
                     if (h < 0 || h > height - 1 || v < 0 || v > width - 1) continue;
                     blurRed += image[h][v].rgbtRed;
