@@ -48,7 +48,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
     int midpoint = width % 2 == 0 ? width / 2 : width / 2 + 1;
     for (int y = 0; y < height; y++)
     {
-        for (int x = 0; x < midpoint; x++)
+        for (int x = 0; x < midpoint - 1; x++)
         {
             printf("Flipping %d with %d; total width: %d\n", x, width - x - 1, width);
             tmp = image[y][x];
