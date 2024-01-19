@@ -79,8 +79,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 // Detect edges
 void edges(int height, int width, RGBTRIPLE image[height][width])
 {
-    RGBTRIPLE(*Gx)[width] = calloc(height, width * sizeof(RGBTRIPLE));
-    RGBTRIPLE(*Gy)[width] = calloc(height, width * sizeof(RGBTRIPLE));
+    RGBTRIPLE(*copy)[width] = calloc(height, width * sizeof(RGBTRIPLE));
 
     int Gx_kernel[9] = {-1, 0, 1,
                         -2, 0, 2,
@@ -93,22 +92,24 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int x = 1; x < width - 1; x++)
         {
-            uint16_t blurRed = 0;
-            uint16_t blurBlue = 0;
-            uint16_t blurGreen = 0;
-            float count = 0;
+            uint16_t gxRed = 0;
+            uint16_t gxBlue = 0;
+            uint16_t gxGreen = 0;
+            uint16_t gyRed = 0;
+            uint16_t gyBlue = 0;
+            uint16_t gyGreen = 0;
 
             for (int h = -1; h < 2; h++)
             {
                 for (int v = -1; v < 2; v++)
                 {
-                    Gx[y + h][x + v].rgbtRed   += image[y + h][x + v].rgbtRed   * Gx_kernel[h + 1][v + 1];
-                    Gx[y + h][x + v].rgbtGreen += image[y + h][x + v].rgbtGreen * Gx_kernel[h + 1][v + 1];
-                    Gx[y + h][x + v].rgbtBlue  += image[y + h][x + v].rgbtBlue  * Gx_kernel[h + 1][v + 1];
+                    gxRed   += image[y + h][x + v].rgbtRed   * Gx_kernel[h + 1][v + 1];
+                    gxGreen += image[y + h][x + v].rgbtGreen * Gx_kernel[h + 1][v + 1];
+                    gxBlue  += image[y + h][x + v].rgbtBlue  * Gx_kernel[h + 1][v + 1];
 
-                    Gy[y + h][x + v].rgbtRed   += image[y + h][x + v].rgbtRed   * Gy_kernel[h + 1][v + 1];
-                    Gy[y + h][x + v].rgbtGreen += image[y + h][x + v].rgbtGreen * Gy_kernel[h + 1][v + 1];
-                    Gy[y + h][x + v].rgbtBlue  += image[y + h][x + v].rgbtBlue  * Gy_kernel[h + 1][v + 1];
+                    gyRed   += image[y + h][x + v].rgbtRed   * Gy_kernel[h + 1][v + 1];
+                    gyGreen += image[y + h][x + v].rgbtGreen * Gy_kernel[h + 1][v + 1];
+                    gyBlue  += image[y + h][x + v].rgbtBlue  * Gy_kernel[h + 1][v + 1];
                 }
             }
 
@@ -119,7 +120,6 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
     }
 
     memcpy(image, copy, height * width * sizeof(RGBTRIPLE));
-    free(Gx);
-    free(Gy);
+    free(copy);
     return;
 }
