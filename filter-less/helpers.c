@@ -66,26 +66,25 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
         for (int x = 0; x < width; x++)
         {
             if (!y || y == height - 1 || !x || x == width - 1) continue;
-            for (int h = )
-            uint8_t blurRed = (
-                image[y - 1][x - 1].rgbtRed + image[y - 1][x].rgbtRed + image[y - 1][x + 1].rgbtRed +
-                image[y]    [x - 1].rgbtRed + image[y]    [x].rgbtRed + image[y]    [x + 1].rgbtRed +
-                image[y + 1][x - 1].rgbtRed + image[y + 1][x].rgbtRed + image[y + 1][x + 1].rgbtRed
-            ) / 9;
-            uint8_t blurGreen = (
-                image[y - 1][x - 1].rgbtGreen + image[y - 1][x].rgbtGreen + image[y - 1][x + 1].rgbtGreen +
-                image[y]    [x - 1].rgbtGreen + image[y]    [x].rgbtGreen + image[y]    [x + 1].rgbtGreen +
-                image[y + 1][x - 1].rgbtGreen + image[y + 1][x].rgbtGreen + image[y + 1][x + 1].rgbtGreen
-            ) / 9;
-            uint8_t blurBlue = (
-                image[y - 1][x - 1].rgbtBlue + image[y - 1][x].rgbtBlue + image[y - 1][x + 1].rgbtBlue +
-                image[y]    [x - 1].rgbtBlue + image[y]    [x].rgbtBlue + image[y]    [x + 1].rgbtBlue +
-                image[y + 1][x - 1].rgbtBlue + image[y + 1][x].rgbtBlue + image[y + 1][x + 1].rgbtBlue
-            ) / 9;
+            uint8_t blurRed = 0;
+            uint8_t blurBlue = 0;
+            uint8_t blurGreen = 0;
+            size_t count = 0;
 
-            copy[y][x].rgbtRed = blurRed;
-            copy[y][x].rgbtGreen = blurGreen;
-            copy[y][x].rgbtBlue = blurBlue;
+            for (int h = y - 1; h < y + 1; h++)
+            {
+                for (int v = x - 1; v < x + 1; v++)
+                {
+                    if (!h || h == y + 1 || !v || x == x + 1) continue;
+                    blurRed += image[h][v].rgbtRed;
+                    blurGreen += image[h][v].rgbtGreen;
+                    blurBlue += image[h][v].rgbtBlue;
+                }
+            }
+
+            copy[y][x].rgbtRed = blurRed / count;
+            copy[y][x].rgbtGreen = blurGreen / count;
+            copy[y][x].rgbtBlue = blurBlue / count;
         }
     }
 
