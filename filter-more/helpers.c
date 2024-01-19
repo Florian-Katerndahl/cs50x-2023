@@ -93,6 +93,11 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int x = 1; x < width - 1; x++)
         {
+            uint16_t blurRed = 0;
+            uint16_t blurBlue = 0;
+            uint16_t blurGreen = 0;
+            float count = 0;
+
             for (int h = -1; h < 2; h++)
             {
                 for (int v = -1; v < 2; v++)
@@ -106,6 +111,10 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                     Gy[y + h][x + v].rgbtBlue  += image[y + h][x + v].rgbtBlue  * Gy_kernel[h + 1][v + 1];
                 }
             }
+
+            copy[y][x].rgbtRed = (uint8_t) round(blurRed / count);
+            copy[y][x].rgbtGreen = (uint8_t) round(blurGreen / count);
+            copy[y][x].rgbtBlue = (uint8_t) round(blurBlue / count);
         }
     }
 
