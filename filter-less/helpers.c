@@ -66,6 +66,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
         for (int x = 0; x < width; x++)
         {
             if (!y || y == height - 1 || !x || x == width - 1) continue;
+            for (int h = )
             uint8_t blurRed = (
                 image[y - 1][x - 1].rgbtRed + image[y - 1][x].rgbtRed + image[y - 1][x + 1].rgbtRed +
                 image[y]    [x - 1].rgbtRed + image[y]    [x].rgbtRed + image[y]    [x + 1].rgbtRed +
