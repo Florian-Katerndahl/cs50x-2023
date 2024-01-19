@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
@@ -82,9 +83,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 }
             }
 
-            copy[y][x].rgbtRed = blurRed / count;
-            copy[y][x].rgbtGreen = blurGreen / count;
-            copy[y][x].rgbtBlue = blurBlue / count;
+            copy[y][x].rgbtRed = (uint8_t) round(blurRed / (float) count);
+            copy[y][x].rgbtGreen = (uint8_t) round(blurGreen / (float) count);
+            copy[y][x].rgbtBlue = (uint8_t) round(blurBlue / (float) count);
         }
     }
 
