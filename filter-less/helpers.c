@@ -69,7 +69,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             uint16_t blurRed = 0;
             uint16_t blurBlue = 0;
             uint16_t blurGreen = 0;
-            size_t count = 0;
+            float count = 0;
 
             for (int h = y - 1; h < y + 1; h++)
             {
@@ -83,9 +83,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 }
             }
 
-            copy[y][x].rgbtRed = (uint8_t) round(blurRed / (float) count);
-            copy[y][x].rgbtGreen = (uint8_t) round(blurGreen / (float) count);
-            copy[y][x].rgbtBlue = (uint8_t) round(blurBlue / (float) count);
+            copy[y][x].rgbtRed = (uint8_t) round(blurRed / count);
+            copy[y][x].rgbtGreen = (uint8_t) round(blurGreen / count);
+            copy[y][x].rgbtBlue = (uint8_t) round(blurBlue / count);
         }
     }
 
