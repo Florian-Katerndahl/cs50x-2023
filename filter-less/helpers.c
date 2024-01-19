@@ -65,7 +65,6 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int x = 0; x < width; x++)
         {
-            if (!y || y == height - 1 || !x || x == width - 1) continue;
             uint16_t blurRed = 0;
             uint16_t blurBlue = 0;
             uint16_t blurGreen = 0;
