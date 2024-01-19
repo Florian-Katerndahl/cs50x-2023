@@ -79,6 +79,38 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 // Detect edges
 void edges(int height, int width, RGBTRIPLE image[height][width])
 {
+    RGBTRIPLE(*Gx)[width] = calloc(height, width * sizeof(RGBTRIPLE));
+    RGBTRIPLE(*Gy)[width] = calloc(height, width * sizeof(RGBTRIPLE));
 
+    int Gx_kernel[9] = {-1, 0, 1,
+                        -2, 0, 2,
+                        -1, 0, 1};
+    int Gy_kernel[9] = {-2, -2, -1,
+                         0,  0,  0,
+                         1,  2,  1};
+
+    for (int y = 1; y < height - 1; y++)
+    {
+        for (int x = 1; x < width - 1; x++)
+        {
+            for (int h = -1; h < 2; h++)
+            {
+                for (int v = -1; v < 2; v++)
+                {
+                    Gx[y + h][x + v].rgbtRed   += image[y + h][x + v].rgbtRed   * Gx_kernel[h + 1][v + 1];
+                    Gx[y + h][x + v].rgbtGreen += image[y + h][x + v].rgbtGreen * Gx_kernel[h + 1][v + 1];
+                    Gx[y + h][x + v].rgbtBlue  += image[y + h][x + v].rgbtBlue  * Gx_kernel[h + 1][v + 1];
+
+                    Gy[y + h][x + v].rgbtRed   += image[y + h][x + v].rgbtRed   * Gy_kernel[h + 1][v + 1];
+                    Gy[y + h][x + v].rgbtGreen += image[y + h][x + v].rgbtGreen * Gy_kernel[h + 1][v + 1];
+                    Gy[y + h][x + v].rgbtBlue  += image[y + h][x + v].rgbtBlue  * Gy_kernel[h + 1][v + 1];
+                }
+            }
+        }
+    }
+
+    memcpy(image, copy, height * width * sizeof(RGBTRIPLE));
+    free(Gx);
+    free(Gy);
     return;
 }
