@@ -81,12 +81,13 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
 {
     RGBTRIPLE(*copy)[width] = calloc(height, width * sizeof(RGBTRIPLE));
 
-    int Gx_kernel[9] = {-1, 0, 1,
-                        -2, 0, 2,
-                        -1, 0, 1};
-    int Gy_kernel[9] = {-2, -2, -1,
-                         0,  0,  0,
-                         1,  2,  1};
+    int Gx_kernel[3][3] = {{-1, 0, 1,},
+                           {-2, 0, 2,},
+                           {-1, 0, 1}};
+
+    int Gy_kernel[3][3] = {{-2, -2, -1,},
+                           {0,  0,  0,},
+                           {1,  2,  1}};
 
     for (int y = 1; y < height - 1; y++)
     {
