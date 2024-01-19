@@ -28,9 +28,9 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int x = 0; x < width; x++)
         {
-            uint16_t sepiaRed = (uint8_t) round(0.393 * image[y][x].rgbtRed + 0.769 * image[y][x].rgbtGreen + 0.189 * image[y][x].rgbtBlue);
-            uint16_t sepiaGreen = (uint8_t) round(0.349 * image[y][x].rgbtRed + 0.686 * image[y][x].rgbtGreen + 0.168 * image[y][x].rgbtBlue);
-            uint16_t sepiaBlue = (uint8_t) round(0.272 * image[y][x].rgbtRed + 0.534 * image[y][x].rgbtGreen + 0.131 * image[y][x].rgbtBlue);
+            uint16_t sepiaRed = (uint16_t) round(0.393 * image[y][x].rgbtRed + 0.769 * image[y][x].rgbtGreen + 0.189 * image[y][x].rgbtBlue);
+            uint16_t sepiaGreen = (uint16_t) round(0.349 * image[y][x].rgbtRed + 0.686 * image[y][x].rgbtGreen + 0.168 * image[y][x].rgbtBlue);
+            uint16_t sepiaBlue = (uint16_t) round(0.272 * image[y][x].rgbtRed + 0.534 * image[y][x].rgbtGreen + 0.131 * image[y][x].rgbtBlue);
 
             image[y][x].rgbtRed = sepiaRed > UINT8_MAX ? UINT8_MAX : sepiaRed;
             image[y][x].rgbtGreen = sepiaGreen > UINT8_MAX ? UINT8_MAX : sepiaGreen;
