@@ -111,22 +111,7 @@ int main(int argc, char *argv[])
     int midpoint = header.subchunk2Size % 2 == 0 ? header.subchunk2Size / 2 : (header.subchunk2Size / 2) + 1;
     for (int i = 0; i * block_size < midpoint; i ++)
     {
-        /*for (int j = 0; j < block_size; j++)
-        {
-            block[j] = data[i + j];
-        }
-        for (int j = 0; j < block_size; j++)
-        {
-            data[i * block_size + j] = data[header.subchunk2Size - ((1 + i) * block_size) + j];
-            //printf("%d, %d, %d, %d\n", i * block_size+ j, midpoint + midpoint - ((1 + i) * block_size) + j, header.subchunk2Size, midpoint);
-        }
-
-        for (int j = 0; j < block_size; j++)
-        {
-           data[header.subchunk2Size - ((1 + i) * block_size) + j] = block[j];
-        }*/
-
-        printf("Copying data from %p to %p; EOB is at %p\n", data + i, data + header.subchunk2Size - ((1 + i) * block_size), data + header.subchunk2Size);
+        //printf("Copying data from %p to %p; EOB is at %p\n", data + i, data + header.subchunk2Size - ((1 + i) * block_size), data + header.subchunk2Size);
         memcpy(block, data + i * block_size, block_size);
         memmove(data + i * block_size, data + header.subchunk2Size - ((1 + i) * block_size), block_size);
         memcpy(data + header.subchunk2Size - ((1 + i) * block_size), block, block_size);
