@@ -119,10 +119,10 @@ int main(int argc, char *argv[])
         {
             data[i + j] = data[header.subchunk2Size - ((1 + i) * block_size - 1) + j];
         }
-        for (int j = 0; j < block_size; j++)
+        /*for (int j = 0; j < block_size; j++)
         {
             data[header.subchunk2Size - ((1 + i) * block_size - 1) + j] = block[j];
-        }
+        }*/
 
         /*printf("Copying data from %p to %p; EOB is at %p\n", data + i, data + header.subchunk2Size - ((1 + i) * block_size), data + header.subchunk2Size);
         memcpy(block, data + i, block_size);
