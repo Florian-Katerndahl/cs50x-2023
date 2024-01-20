@@ -125,9 +125,9 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             uint32_t cBlue = (uint32_t) round(sqrt(gxBlue * gxBlue + gyBlue * gyBlue));
 
 
-            copy[y][x].rgbtRed = (uint8_t) cRed > UINT8_MAX ? UINT8_MAX : cRed;
-            copy[y][x].rgbtGreen = (uint8_t) cGreen > UINT8_MAX ? UINT8_MAX : cGreen;
-            copy[y][x].rgbtBlue = (uint8_t) cBlue > UINT8_MAX ? UINT8_MAX : cBlue;
+            copy[y][x].rgbtRed = cRed > UINT8_MAX ? UINT8_MAX : cRed;
+            copy[y][x].rgbtGreen = cGreen > UINT8_MAX ? UINT8_MAX : cGreen;
+            copy[y][x].rgbtBlue = cBlue > UINT8_MAX ? UINT8_MAX : cBlue;
         }
     }
 
