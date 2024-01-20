@@ -21,11 +21,22 @@ int main(int argc, char *argv[])
 
     char outname[8] = { 0 };
     uint8_t data[512];
-    size_t out_index = 0;
+    int out_index = 0;
+    FILE *out = NULL;
 
     while (fread(data, 1, 512, infile) == 512)
     {
-        if (data[0] == 0xff && data[1] == 0xd8 && data[2] == 0xff && ((data[3] & 0xe0) == 0xe0))
+        if (data[0] !== 0xff || data[1] != 0xd8 || data[2] != 0xff || ((data[3] & 0xe0) != 0xe0))
+            if (out == NULL)
+                continue;
+            else
+                fwrite(data, 1, 512, outfile);
+        else
+        {
+            snprintf(outname, 8, "%3d.jpg", out_index);
+            out_index++;
+        }
+
     }
 
     return 0;
