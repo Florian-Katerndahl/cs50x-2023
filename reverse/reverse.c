@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
 
     // Use check_format to ensure WAV format
     // TODO #4
-    if (!check_format(header))
+    if (check_format(header))
     {
         fprintf(stderr, "Input is not a WAV file.\n");
         fclose(input);
@@ -87,7 +87,6 @@ int main(int argc, char *argv[])
 int check_format(WAVHEADER header)
 {
     // TODO #4
-    printf("%c%c%c%c\n", header.format[0], header.format[1], header.format[2], header.format[3]);
     if (strncmp((char*) header.format, "WAVE", 4))
         return 1;
 
