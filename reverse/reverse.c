@@ -81,8 +81,21 @@ int main(int argc, char *argv[])
     // TODO #8
     switch (block_size)
     {
-        case 8:
-            
+        case 8: {
+
+        } break;
+        case 16: {
+
+        } break;
+        case 32 {
+
+        } break;
+        default:
+            fprintf(stderr, "Error: Unsupported bit rate\n");
+            fclose(input);
+            fclose(output);
+            free(data);
+            return 1;
     }
 
     fclose(input);
