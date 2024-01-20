@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-uint8_t JPEG_signature[4] = {0xff, 0xd8, 0xff, 0xe0}
-
 int main(int argc, char *argv[])
 {
     if (argc != 2)
@@ -26,13 +24,24 @@ int main(int argc, char *argv[])
 
     while (fread(data, 1, 512, infile) == 512)
     {
-        if (data[0] !== 0xff || data[1] != 0xd8 || data[2] != 0xff || ((data[3] & 0xe0) != 0xe0))
+        if (data[0] != 0xff || data[1] != 0xd8 || data[2] != 0xff || ((data[3] & 0xe0) != 0xe0))
+        {
             if (out == NULL)
+            {
                 continue;
+            }
             else
-                fwrite(data, 1, 512, outfile);
+            {
+                fwrite(data, 1, 512, out);
+            }
+        }
         else
         {
+            if (out != NULL)
+            {
+                fclose(out);
+            }
+
             snprintf(outname, 8, "%3d.jpg", out_index);
             out = fopen(outname, "wb");
             if (out == NULL)
@@ -41,11 +50,14 @@ int main(int argc, char *argv[])
                 fclose(infile);
                 return 1;
             }
-            
+
+            fwrite(data, 1, 512, out);
+
             out_index++;
         }
 
     }
 
+    fclose(out);
     return 0;
 }
