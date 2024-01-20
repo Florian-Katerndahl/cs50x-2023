@@ -79,7 +79,8 @@ int main(int argc, char *argv[])
 
     // Write reversed audio to file
     // TODO #8
-    switch (block_size)
+    
+    switch (header.bitsPerSample)
     {
         case 8: {
 
@@ -100,6 +101,7 @@ int main(int argc, char *argv[])
 
     fclose(input);
     fclose(output);
+    free(data);
     return 0;
 }
 
