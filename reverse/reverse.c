@@ -114,7 +114,8 @@ int main(int argc, char *argv[])
 
     for (int i = 0, i < header.subchunk2Size, i += block_size)
     {
-        
+        memcpy(block, data + i, block_size);
+        memcpy(data)
     }
 
     fclose(input);
