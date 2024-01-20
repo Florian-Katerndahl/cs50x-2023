@@ -108,7 +108,7 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             {
                 for (int v = -1; v < 2; v++)
                 {
-                    if (h < 0 || h > height - 1 || v < 0 || v > width - 1)
+                    if (y + h < 0 || y + h > height - 1 || x + v < 0 || x + v > width - 1)
                         continue;
                     gxRed   += image[y + h][x + v].rgbtRed   * Gx_kernel[h + 1][v + 1];
                     gxGreen += image[y + h][x + v].rgbtGreen * Gx_kernel[h + 1][v + 1];
