@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
                 fclose(out);
             }
 
-            snprintf(outname, 8, "%3d.jpg", out_index);
+            snprintf(outname, 8, "%.3d.jpg", out_index);
             out = fopen(outname, "wb");
             if (out == NULL)
             {
