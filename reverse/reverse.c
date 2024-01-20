@@ -127,9 +127,9 @@ int main(int argc, char *argv[])
         }*/
 
         printf("Copying data from %p to %p; EOB is at %p\n", data + i, data + header.subchunk2Size - ((1 + i) * block_size), data + header.subchunk2Size);
-        memcpy(block, i * block_size + j, block_size);
-        memmove(i * block_size + j, data + header.subchunk2Size - ((1 + i) * block_size) + j, block_size);
-        memcpy(data + header.subchunk2Size - 1 - i, block, block_size);
+        memcpy(block, data + i * block_size, block_size);
+        memmove(data + i * block_size, data + header.subchunk2Size - ((1 + i) * block_size), block_size);
+        memcpy(data + header.subchunk2Size - ((1 + i) * block_size), block, block_size);
     }
 
     if (fwrite(data, 1, header.subchunk2Size, output) != header.subchunk2Size)
