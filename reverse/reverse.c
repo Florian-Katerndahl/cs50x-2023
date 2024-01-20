@@ -79,7 +79,11 @@ int main(int argc, char *argv[])
 
     // Write reversed audio to file
     // TODO #8
-    
+    switch (block_size)
+    {
+        case 8:
+            
+    }
 
     fclose(input);
     fclose(output);
