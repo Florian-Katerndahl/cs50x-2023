@@ -79,24 +79,42 @@ int main(int argc, char *argv[])
 
     // Write reversed audio to file
     // TODO #8
-    
-    switch (header.bitsPerSample)
+    uint8_t *data = calloc(header.subchunk2Size, sizeof(uint8_t));
+    if (data == NULL)
     {
-        case 8: {
+        fprintf(stderr, "Error: Could not allocate buffer\n"):
+        fclose(input);
+        fclose(output);
+        return 1;
+    }
 
-        } break;
-        case 16: {
+    uint8_t *block = calloc(block_size, sizeof(uint8_t));
+    if (block == NULL)
+    {
+        fprintf(stderr, "Error: Could not allocate buffer\n"):
+        fclose(input);
+        fclose(output);
+        free(data);
+        return 1;
+    }
 
-        } break;
-        case 32 {
+    while (fread(block, 1, block_size, input) == block_size)
+    {
 
-        } break;
-        default:
-            fprintf(stderr, "Error: Unsupported bit rate\n");
-            fclose(input);
-            fclose(output);
-            free(data);
-            return 1;
+    }
+
+    if (fread(data, 1, header.subchunk2Size, input) != header.subchunk2Size)
+    {
+        fprintf(stderr, "Error: Could not read data from file\n");
+        fclose(input);
+        fclose(output);
+        free(data)
+        return 1;
+    }
+
+    for (int i = 0, i < header.subchunk2Size, i += block_size)
+    {
+        
     }
 
     fclose(input);
