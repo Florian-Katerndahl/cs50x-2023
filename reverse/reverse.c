@@ -109,7 +109,7 @@ int main(int argc, char *argv[])
     }
 
     int midpoint = header.subchunk2Size % 2 ? header.subchunk2Size / 2 : (header.subchunk2Size / 2) + 1;
-    for (int i = 0; i < midpoint; i += (block_size))
+    for (int i = 0; i < midpoint; i ++)
     {
         for (int j = 0; j < block_size; j++)
         {
@@ -117,8 +117,8 @@ int main(int argc, char *argv[])
         }
         for (int j = 0; j < block_size; j++)
         {
-            data[i + j] = data[header.subchunk2Size - 1 - ((1 + i) * block_size - 1) + j];
-            printf("%d, %d, %d\n", i, header.subchunk2Size - (1 + i) * block_size + j, header.subchunk2Size);
+            data[i *block_size+ j] = data[header.subchunk2Size - 1 - ((1 + i) * block_size - 1) + j];
+            printf("%d, %d, %d\n", i, header.subchunk2Size - ((1 + i) * block_size) + j, header.subchunk2Size);
         }
         if (i > 2)
             exit(1);
