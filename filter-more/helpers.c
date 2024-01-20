@@ -79,7 +79,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 // Detect edges
 void edges(int height, int width, RGBTRIPLE image[height][width])
 {
-    RGBTRIPLE(*copy)[width] = calloc(height, width * sizeof(RGBTRIPLE));
+    RGBTRIPLE(*copy)[width] = calloc(height + 2, (width + 2) * sizeof(RGBTRIPLE));
 
     static int Gx_kernel[3][3] = {
         {-1, 0, 1},
