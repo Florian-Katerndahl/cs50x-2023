@@ -98,29 +98,27 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    while (fread(block, 1, block_size, input) == block_size)
-    {
-
-    }
-
     if (fread(data, 1, header.subchunk2Size, input) != header.subchunk2Size)
     {
         fprintf(stderr, "Error: Could not read data from file\n");
         fclose(input);
         fclose(output);
-        free(data)
+        free(data);
+        free(block);
         return 1;
     }
 
     for (int i = 0, i < header.subchunk2Size, i += block_size)
     {
         memcpy(block, data + i, block_size);
-        memcpy(data)
+        memmove(data + i, data + header.subchunk2Size - 1 - i, block_size);
+        memcpy(data + header.subchunk2Size - 1 - i, block, block_size);
     }
 
     fclose(input);
     fclose(output);
     free(data);
+    free(block);
     return 0;
 }
 
