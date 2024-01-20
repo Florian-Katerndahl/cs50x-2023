@@ -1,6 +1,6 @@
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
 
 int main(int argc, char *argv[])
 {
@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    char outname[8] = { 0 };
+    char outname[8] = {0};
     uint8_t data[512];
     int out_index = 0;
     FILE *out = NULL;
@@ -55,7 +55,6 @@ int main(int argc, char *argv[])
 
             out_index++;
         }
-
     }
 
     fclose(out);
