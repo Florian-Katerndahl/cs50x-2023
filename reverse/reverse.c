@@ -72,7 +72,6 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-
     // Use get_block_size to calculate size of block
     // TODO #7
     int block_size = get_block_size(header);
@@ -109,9 +108,10 @@ int main(int argc, char *argv[])
     }
 
     int midpoint = header.subchunk2Size % 2 == 0 ? header.subchunk2Size / 2 : (header.subchunk2Size / 2) + 1;
-    for (int i = 0; i * block_size < midpoint; i ++)
+    for (int i = 0; i * block_size < midpoint; i++)
     {
-        //printf("Copying data from %p to %p; EOB is at %p\n", data + i, data + header.subchunk2Size - ((1 + i) * block_size), data + header.subchunk2Size);
+        // printf("Copying data from %p to %p; EOB is at %p\n", data + i, data + header.subchunk2Size - ((1 + i) * block_size), data
+        // + header.subchunk2Size);
         memcpy(block, data + i * block_size, block_size);
         memmove(data + i * block_size, data + header.subchunk2Size - ((1 + i) * block_size), block_size);
         memcpy(data + header.subchunk2Size - ((1 + i) * block_size), block, block_size);
@@ -137,7 +137,7 @@ int main(int argc, char *argv[])
 int check_format(WAVHEADER header)
 {
     // TODO #4
-    if (strncmp((char*) header.format, "WAVE", 4))
+    if (strncmp((char *) header.format, "WAVE", 4))
         return 1;
 
     return 0;
