@@ -111,7 +111,7 @@ int main(int argc, char *argv[])
     for (int i = 0; i < header.subchunk2Size; i += block_size)
     {
         memcpy(block, data + i, block_size);
-        memmove(data + i, data + header.subchunk2Size - 1 - i, block_size);
+        memmove(data + i, data + header.subchunk2Size - ((1 + i) * block_size), block_size);
         memcpy(data + header.subchunk2Size - 1 - i, block, block_size);
     }
 
