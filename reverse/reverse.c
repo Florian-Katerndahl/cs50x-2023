@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
     if (strstr(argv[1], "wav") == NULL || strstr(argv[2], "wav") == NULL)
     {
         fprintf(stderr, "Input is not a WAV file.\n");
-        return 1;
+        return 10;
     }
 
     // Open input file for reading
@@ -87,6 +87,7 @@ int main(int argc, char *argv[])
 int check_format(WAVHEADER header)
 {
     // TODO #4
+    printf("%c%c%c%c\n", header.format[0], header.format[1], header.format[2], header.format[3]);
     if (strncmp((char*) header.format, "WAVE", 4))
         return 1;
 
