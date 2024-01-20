@@ -29,18 +29,32 @@ int main(int argc, char *argv[])
     FILE *input = fopen(argv[1], "rb");
     if (input == NULL)
     {
-        fprintf(stderr, "Error: Could not open file %s\n");
+        fprintf(stderr, "Error: Could not open file %s\n", argv[1]);
         return 1;
     }
 
     // Read header
     // TODO #3
+    WAVEHEADER header;
+    fred(&header, sizeof(WAVEHEADER), 1, input);
 
     // Use check_format to ensure WAV format
     // TODO #4
+    if (!check_format)
+    {
+        fprintf(stderr, "Input is not a WAV file.\n");
+        fclose(input);
+        return 1;
+    }
 
     // Open output file for writing
     // TODO #5
+    FILE *output = fopen(argv[2], "wb");
+    if (output == NULL)
+    {
+        fprintf(stderr, "Error: Could not open file %s\n", argv[2]);
+        return 1;
+    }
 
     // Write header to file
     // TODO #6
@@ -50,11 +64,16 @@ int main(int argc, char *argv[])
 
     // Write reversed audio to file
     // TODO #8
+
+    fclose(input);
+    fclose(output);
+    return 0;
 }
 
 int check_format(WAVHEADER header)
 {
     // TODO #4
+    if (strcmp(header.format, "))
     return 0;
 }
 
