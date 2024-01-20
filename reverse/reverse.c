@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    if (strstr(argv[1], "wav") == NULL || strstr(argv[2]) == NULL)
+    if (strstr(argv[1], "wav") == NULL || strstr(argv[2], "wav") == NULL)
     {
         fprintf(stderr, "Input is not a WAV file.\n");
         return 1;
@@ -35,12 +35,17 @@ int main(int argc, char *argv[])
 
     // Read header
     // TODO #3
-    WAVEHEADER header;
-    fred(&header, sizeof(WAVEHEADER), 1, input);
+    WAVHEADER header;
+    if (fread(&header, sizeof(WAVHEADER), 1, input) != 1)
+    {
+        fprintf(stderr, "Error: Could not read from input file\n");
+        fclose(input);
+        return 1;
+    }
 
     // Use check_format to ensure WAV format
     // TODO #4
-    if (!check_format)
+    if (!check_format(header))
     {
         fprintf(stderr, "Input is not a WAV file.\n");
         fclose(input);
@@ -53,11 +58,20 @@ int main(int argc, char *argv[])
     if (output == NULL)
     {
         fprintf(stderr, "Error: Could not open file %s\n", argv[2]);
+        fclose(input);
         return 1;
     }
 
     // Write header to file
     // TODO #6
+    if (fwrite(&header, sizeof(WAVHEADER), 1, output) != 1)
+    {
+        fprintf(stderr, "Error: Could not write to output file\n");
+        fclose(input);
+        fclose(output);
+        return 1;
+    }
+
 
     // Use get_block_size to calculate size of block
     // TODO #7
@@ -73,7 +87,9 @@ int main(int argc, char *argv[])
 int check_format(WAVHEADER header)
 {
     // TODO #4
-    if (strcmp(header.format, "))
+    if (strncmp((char*) header.format, "WAVE", 4))
+        return 1;
+
     return 0;
 }
 
