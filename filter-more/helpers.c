@@ -81,17 +81,9 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
 {
     RGBTRIPLE(*copy)[width] = calloc(height, width * sizeof(RGBTRIPLE));
 
-    static int Gx_kernel[3][3] = {
-        {-1, 0, 1},
-        {-2, 0, 2},
-        {-1, 0, 1}
-        };
+    static int Gx_kernel[3][3] = {{-1, 0, 1}, {-2, 0, 2}, {-1, 0, 1}};
 
-    static int Gy_kernel[3][3] = {
-        {-1, -2, -1},
-        { 0,  0,  0},
-        { 1,  2,  1}
-        };
+    static int Gy_kernel[3][3] = {{-1, -2, -1}, {0, 0, 0}, {1, 2, 1}};
 
     for (int y = 0; y < height; y++)
     {
@@ -110,20 +102,19 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 {
                     if (y + h < 0 || y + h > height - 1 || x + v < 0 || x + v > width - 1)
                         continue;
-                    gxRed   += image[y + h][x + v].rgbtRed   * Gx_kernel[h + 1][v + 1];
+                    gxRed += image[y + h][x + v].rgbtRed * Gx_kernel[h + 1][v + 1];
                     gxGreen += image[y + h][x + v].rgbtGreen * Gx_kernel[h + 1][v + 1];
-                    gxBlue  += image[y + h][x + v].rgbtBlue  * Gx_kernel[h + 1][v + 1];
+                    gxBlue += image[y + h][x + v].rgbtBlue * Gx_kernel[h + 1][v + 1];
 
-                    gyRed   += image[y + h][x + v].rgbtRed   * Gy_kernel[h + 1][v + 1];
+                    gyRed += image[y + h][x + v].rgbtRed * Gy_kernel[h + 1][v + 1];
                     gyGreen += image[y + h][x + v].rgbtGreen * Gy_kernel[h + 1][v + 1];
-                    gyBlue  += image[y + h][x + v].rgbtBlue  * Gy_kernel[h + 1][v + 1];
+                    gyBlue += image[y + h][x + v].rgbtBlue * Gy_kernel[h + 1][v + 1];
                 }
             }
 
             uint32_t cRed = (uint32_t) round(sqrt(gxRed * gxRed + gyRed * gyRed));
             uint32_t cGreen = (uint32_t) round(sqrt(gxGreen * gxGreen + gyGreen * gyGreen));
             uint32_t cBlue = (uint32_t) round(sqrt(gxBlue * gxBlue + gyBlue * gyBlue));
-
 
             copy[y][x].rgbtRed = cRed > UINT8_MAX ? UINT8_MAX : cRed;
             copy[y][x].rgbtGreen = cGreen > UINT8_MAX ? UINT8_MAX : cGreen;
