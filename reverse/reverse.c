@@ -117,7 +117,7 @@ int main(int argc, char *argv[])
         }
         for (int j = 0; j < block_size; j++)
         {
-            data[i *block_size+ j] = data[header.subchunk2Size - 1 - ((1 + i) * block_size - 1) + j];
+            data[i *block_size+ j] = data[header.subchunk2Size - ((1 + i) * block_size) + j];
             printf("%d, %d, %d\n", i, header.subchunk2Size - ((1 + i) * block_size) + j, header.subchunk2Size);
         }
 
