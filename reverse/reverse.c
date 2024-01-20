@@ -108,7 +108,8 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    for (int i = 0; i < header.subchunk2Size; i += block_size)
+    int midpoint = header.subchunk2Size % 2 ? header.subchunk2Size / 2 : (header.subchunk2Size / 2) + 1;
+    for (int i = 0; i < midpoint; i += block_size)
     {
         printf("Copying data from %p to %p; EOB is at %p\n", data + i, data + header.subchunk2Size - ((1 + i) * block_size), data + header.subchunk2Size);
         memcpy(block, data + i, block_size);
