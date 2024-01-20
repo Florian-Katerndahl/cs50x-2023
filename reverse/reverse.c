@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "wav.h"
 
@@ -17,10 +18,20 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    if ()
+    if (strstr(argv[1], "wav") == NULL || strstr(argv[2]) == NULL)
+    {
+        fprintf(stderr, "Input is not a WAV file.\n");
+        return 1;
+    }
 
     // Open input file for reading
     // TODO #2
+    FILE *input = fopen(argv[1], "rb");
+    if (input == NULL)
+    {
+        fprintf(stderr, "Error: Could not open file %s\n");
+        return 1;
+    }
 
     // Read header
     // TODO #3
