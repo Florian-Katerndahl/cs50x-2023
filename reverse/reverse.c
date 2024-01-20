@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
     uint8_t *data = calloc(header.subchunk2Size, sizeof(uint8_t));
     if (data == NULL)
     {
-        fprintf(stderr, "Error: Could not allocate buffer\n"):
+        fprintf(stderr, "Error: Could not allocate buffer\n");
         fclose(input);
         fclose(output);
         return 1;
@@ -91,7 +91,7 @@ int main(int argc, char *argv[])
     uint8_t *block = calloc(block_size, sizeof(uint8_t));
     if (block == NULL)
     {
-        fprintf(stderr, "Error: Could not allocate buffer\n"):
+        fprintf(stderr, "Error: Could not allocate buffer\n");
         fclose(input);
         fclose(output);
         free(data);
@@ -108,7 +108,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    for (int i = 0, i < header.subchunk2Size, i += block_size)
+    for (int i = 0; i < header.subchunk2Size; i += block_size)
     {
         memcpy(block, data + i, block_size);
         memmove(data + i, data + header.subchunk2Size - 1 - i, block_size);
