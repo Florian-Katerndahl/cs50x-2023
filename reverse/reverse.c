@@ -115,6 +115,16 @@ int main(int argc, char *argv[])
         memcpy(data + header.subchunk2Size - 1 - i, block, block_size);
     }
 
+    if (fwrite(data, 1, header.subchunk2Size, output) != header.subchunk2Size)
+    {
+        fprintf(stderr, "Error: Failed to write revered data to file\n");
+        fclose(input);
+        fclose(output);
+        free(data);
+        free(block);
+        return 1;
+    }
+
     fclose(input);
     fclose(output);
     free(data);
