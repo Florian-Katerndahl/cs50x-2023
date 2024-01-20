@@ -34,6 +34,14 @@ int main(int argc, char *argv[])
         else
         {
             snprintf(outname, 8, "%3d.jpg", out_index);
+            out = fopen(outname, "wb");
+            if (out == NULL)
+            {
+                fprintf(stderr, "Error: Could not open file %s\n", outname);
+                fclose(infile);
+                return 1;
+            }
+            
             out_index++;
         }
 
