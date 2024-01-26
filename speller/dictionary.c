@@ -32,8 +32,8 @@ unsigned int hash(const char *word)
     // TODO: Improve this hash function
     //return toupper(word[0]) - 'A';
     if (strlen(word) > 1)
-        reutnr 
-    return strlen(word);
+        return toupper(word[0]) - 'A' + return toupper(word[1]) - 'A';
+    return toupper(word[0]) - 'A';
 }
 
 // Loads dictionary into memory, returning true if successful, else false
