@@ -12,5 +12,12 @@
 
 int main(void)
 {
+    FILE *file = fopen(text, "r");
+    if (file == NULL)
+    {
+        printf("Could not open %s.\n", text);
+        unload();
+        return 1;
+    }
 
 }
