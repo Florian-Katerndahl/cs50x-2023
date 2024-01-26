@@ -71,7 +71,7 @@ int main(void)
     for (int i = 0; i < 26 * LENGTH; i++)
     {
         if (hist[i])
-            printf("%d => %d\n", i, hist[i]);
+            printf("%.3d => %d\n", i, hist[i]);
     }
 
 }
