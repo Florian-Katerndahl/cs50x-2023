@@ -109,9 +109,18 @@ int main(int argc, char *argv[])
 // TODO: Complete the check function, return true if found, false if not found
 bool check(char *word)
 {
-    node *start = root;
-    if (tolower(word[0]) - 'a' != NULL)
-        check()
+    node *cursor = root;
+    for (int i = 0, n = strlen(word); i < n; i++)
+    {
+        if (cursor->children[tolower(word[0]) - 'a'] != NULL)
+        {
+            cursor = cursor->children[tolower(word[0]) - 'a'];
+        }
+    }
+
+    if (cursor->is_word)
+        return true;
+
     return false;
 }
 
