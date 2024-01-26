@@ -31,6 +31,8 @@ unsigned int hash(const char *word)
 {
     // TODO: Improve this hash function
     //return toupper(word[0]) - 'A';
+    if (strlen(word) > 1)
+        reutnr 
     return strlen(word);
 }
 
