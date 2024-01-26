@@ -8,6 +8,9 @@
 // Default dictionary
 #define DICTIONARY "dictionaries/large"
 
+// Histogram
+int *hist[26*LENGTH];
+
 int main(void)
 {
     FILE *file = fopen(DICTIONARY, "r");
@@ -18,7 +21,6 @@ int main(void)
 
     char word[LENGTH + 1];
     int index = 0;
-    int words = 0;
 
     // Spell-check each word in text
     char c;
@@ -57,9 +59,6 @@ int main(void)
         {
             // Terminate current word
             word[index] = '\0';
-
-            // Update counter
-            words++;
 
             hist[hash(word)] += 1;
 
