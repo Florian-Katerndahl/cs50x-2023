@@ -1,12 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 #include "dictionary.h"
-
-// Undefine any definitions
-#undef calculate
-#undef getrusage
 
 // Default dictionary
 #define DICTIONARY "dictionaries/large"
@@ -20,6 +17,8 @@ int main(void)
     }
 
     char word[LENGTH + 1];
+    int index = 0;
+    int words = 0;
 
     // Spell-check each word in text
     char c;
