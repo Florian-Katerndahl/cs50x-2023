@@ -2,6 +2,7 @@
 
 #include <ctype.h>
 #include <stdbool.h>
+#include <string.h>
 
 #include "dictionary.h"
 
@@ -17,6 +18,9 @@ const unsigned int N = 26 * LENGTH;
 
 // Hash table
 node *table[N];
+
+// Histogram
+int *hist[N] = {0};
 
 // Returns true if word is in dictionary, else false
 bool check(const char *word)

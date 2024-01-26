@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "dictionary.h"
 
@@ -15,8 +16,6 @@ int main(void)
     FILE *file = fopen(DICTIONARY, "r");
     if (file == NULL)
     {
-        printf("Could not open %s.\n", text);
-        unload();
         return 1;
     }
 
@@ -63,14 +62,8 @@ int main(void)
             // Update counter
             words++;
 
-            // Check word's spelling
-            bool misspelled = !check(word);
+            hist[hash(word)] += 1;
 
-            if (misspelled)
-            {
-                printf("%s\n", word);
-                misspellings++;
-            }
 
             // Prepare for next word
             index = 0;
