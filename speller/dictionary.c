@@ -17,7 +17,7 @@ typedef struct node
 const unsigned int N = 26 * LENGTH;
 
 // Hash table
-//node *table[N];
+node *table[N];
 
 // Returns true if word is in dictionary, else false
 bool check(const char *word)
@@ -31,7 +31,7 @@ unsigned int hash(const char *word)
 {
     // TODO: Improve this hash function
     //return toupper(word[0]) - 'A';
-    return (toupper(word[0]) - 'A' + strlen(word) % N);
+    return (toupper(word[0]) - 'A') % N;
 }
 
 // Loads dictionary into memory, returning true if successful, else false

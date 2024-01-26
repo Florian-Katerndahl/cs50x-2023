@@ -9,7 +9,7 @@
 #define DICTIONARY "dictionaries/large"
 
 // Histogram
-int *hist[26*LENGTH];
+int hist[26*LENGTH];
 
 int main(void)
 {
@@ -66,6 +66,12 @@ int main(void)
             // Prepare for next word
             index = 0;
         }
+    }
+
+    for (int i = 0; i < 26 * LENGTH; i++)
+    {
+        if (hist[i])
+            printf("%d => %d\n", i, hist[i]);
     }
 
 }
