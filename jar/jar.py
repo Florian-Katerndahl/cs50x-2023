@@ -32,6 +32,6 @@ def main():
     jar.deposit(100)
     print(jar)
     jar.withdraw(50)
-    print(jar.capacity, jar.size)
+    #print(jar.capacity, jar.size)
 
 main()
