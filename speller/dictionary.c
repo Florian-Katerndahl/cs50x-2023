@@ -71,6 +71,7 @@ bool load(const char *dictionary)
         head = new;
     }
 
+    fclose(f);
     return true;
 }
 
