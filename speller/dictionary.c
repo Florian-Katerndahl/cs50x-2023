@@ -97,9 +97,10 @@ bool unload(void)
 {
     for (int i = 0; i < N; i++)
     {
-        printf("Trying to free bucket %d\n", i);
         node *head = table[i];
         node *lp;
+        printf("Trying to free bucket %d\n", i);
+        printf("Head pointing to %p\n", head);
         while (head)
         {
             lp = head->next;
