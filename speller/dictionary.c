@@ -57,7 +57,6 @@ bool check(const char *word)
 unsigned int hash(const char *word)
 {
     // TODO: Improve this hash function
-    //return toupper(word[0]) - 'A';
     unsigned int len = strlen(word);
     unsigned int hash = len;
     unsigned int overflow;
@@ -66,9 +65,14 @@ unsigned int hash(const char *word)
         hash += (word[i] << 4);
         overflow = (word[i] >> 4);
         if (overflow)
-            hash |= overflow;
+            hash ^= overflow;
     }
-    return hash % N; // no real reason for this here
+    return hash % N;
+    /*
+     * Hmm, this does not seem to improve anything. Originally, I just
+     * added character values and ^'ed the final hash with the string length
+     * before modulo operation. That seemed to work as well!
+    */
 }
 
 // Loads dictionary into memory, returning true if successful, else false
