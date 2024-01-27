@@ -2,10 +2,10 @@
 
 #include <ctype.h>
 #include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <strings.h>
-#include <stdlib.h>
-#include <stdio.h>
 
 #include "dictionary.h"
 
@@ -74,7 +74,12 @@ unsigned int hash(const char *word)
      * Hmm, this does not seem to improve anything. Originally, I just
      * added character values and ^'ed the final hash with the string length
      * before modulo operation. That seemed to work as well!
-    */
+     * for (int i = 0; word[i] != '\0'; i++)
+      {
+        hash += word[i];
+      }
+      return (hash ^ len) % N;
+     */
 }
 
 // Loads dictionary into memory, returning true if successful, else false
