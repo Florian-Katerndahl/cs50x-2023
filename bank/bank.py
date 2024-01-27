@@ -1,8 +1,9 @@
 greeting = input("Greeting: ")
+first_word = greeting.split()[0].lower()
 
-if greeting.split()[0].lower() == "hello":
+if first_word == "hello":
     print("$0")
-elif greeting.split()[0].lower()[0] == "h":
+elif first_word[0] == "h":
     print("$20")
 else:
     print("$100")
