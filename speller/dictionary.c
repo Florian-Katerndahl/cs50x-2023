@@ -52,7 +52,7 @@ unsigned int hash(const char *word)
     {
         hash += tolower(word[i]);
     }
-    return hash % N;
+    return (hash ^ strlen(word)) % N;
 }
 
 // Loads dictionary into memory, returning true if successful, else false

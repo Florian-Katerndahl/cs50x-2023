@@ -59,10 +59,7 @@ int main(void)
         {
             // Terminate current word
             word[index] = '\0';
-            //force_upper(word);
-            printf("%s hashes to %d\n", word, hash(word));
             hist[hash(word)] += 1;
-
 
             // Prepare for next word
             index = 0;
