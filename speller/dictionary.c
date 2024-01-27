@@ -60,11 +60,15 @@ unsigned int hash(const char *word)
     //return toupper(word[0]) - 'A';
     unsigned int len = strlen(word);
     unsigned int hash = len;
+    unsigned int overflow;
     for (int i = 0; word[i] != '\0'; i++)
     {
         hash += (word[i] << 4);
+        overflow = (word[i] >> 4);
+        if (overflow)
+            hash |= overflow;
     }
-    return (hash ^ len) % N; // no real reason for this here
+    return hash % N; // no real reason for this here
 }
 
 // Loads dictionary into memory, returning true if successful, else false
