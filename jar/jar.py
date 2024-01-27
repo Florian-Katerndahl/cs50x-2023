@@ -18,13 +18,21 @@ class Jar:
             raise ValueError("Not enough cookies :(")
         self.size -= n
 
+    @property
+    def capacity(self):
+        return self.capacity
+
+    @property
+    def size(self):
+        return self.size
 
 
 def main():
-    jar = Jar()
+    jar = Jar(200)
     jar.deposit(100)
     print(jar)
     jar.withdraw(50)
+    print(jar)
     #print(jar.capacity, jar.size)
 
 main()
