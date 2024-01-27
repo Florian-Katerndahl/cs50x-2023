@@ -22,16 +22,16 @@ const unsigned int N = 8192;
 // Hash table
 node *table[N];
 
-void force_upper(char *word)
+void force_lower(char *word)
 {
     for (int i = 0; word[i] != '\0'; i++)
-        word[i] = toupper(word[i]);
+        word[i] = tolower(word[i]);
 }
 
 // Returns true if word is in dictionary, else false
 bool check(const char *word)
 {
-    // TODO
+    force_lower(word);
     node *head = table[hash(word)];
     while (head)
     {
@@ -51,7 +51,7 @@ unsigned int hash(const char *word)
     unsigned int hash = len;
     for (int i = 0; word[i] != '\0'; i++)
     {
-        hash += tolower(word[i]);
+        hash += word[i];
     }
     return (hash ^ len) % N;
 }

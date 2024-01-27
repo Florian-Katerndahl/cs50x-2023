@@ -10,7 +10,7 @@
 #define LENGTH 45
 
 // Prototypes
-void force_upper(char *word);
+void force_lower(char *word);
 bool check(const char *word);
 unsigned int hash(const char *word);
 bool load(const char *dictionary);
