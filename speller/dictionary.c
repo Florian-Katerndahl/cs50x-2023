@@ -50,6 +50,23 @@ unsigned int hash(const char *word)
 bool load(const char *dictionary)
 {
     // TODO
+    FILE *f = fopen(dictionary, "rt");
+    if (f == NULL)
+        return false;
+
+    char *word[LENGTH + 2];
+    while (fgets(word, LENGTH + 2, f))
+    {
+        if (word[0] == '\n')
+            break;
+        word[strlen(word) - 1] = '\0';
+
+        node *head = table[hash(word)];
+        node *new = malloc(sizeof(node));
+        strcpy(new->word, word);
+        
+    }
+
     return false;
 }
 
