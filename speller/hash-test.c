@@ -1,7 +1,7 @@
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 
 #include "dictionary.h"
 
@@ -9,7 +9,7 @@
 #define DICTIONARY "dictionaries/large"
 
 // Histogram
-int hist[26*LENGTH];
+int hist[26 * LENGTH];
 
 int main(void)
 {
@@ -37,7 +37,8 @@ int main(void)
             if (index > LENGTH)
             {
                 // Consume remainder of alphabetical string
-                while (fread(&c, sizeof(char), 1, file) && isalpha(c));
+                while (fread(&c, sizeof(char), 1, file) && isalpha(c))
+                    ;
 
                 // Prepare for new word
                 index = 0;
@@ -48,7 +49,8 @@ int main(void)
         else if (isdigit(c))
         {
             // Consume remainder of alphanumeric string
-            while (fread(&c, sizeof(char), 1, file) && isalnum(c));
+            while (fread(&c, sizeof(char), 1, file) && isalnum(c))
+                ;
 
             // Prepare for new word
             index = 0;
@@ -71,5 +73,4 @@ int main(void)
         if (hist[i])
             printf("%.3d => %d\n", i, hist[i]);
     }
-
 }
