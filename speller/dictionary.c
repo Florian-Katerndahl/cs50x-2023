@@ -31,14 +31,25 @@ void force_lower(char *word)
 // Returns true if word is in dictionary, else false
 bool check(const char *word)
 {
-    force_lower(word);
-    node *head = table[hash(word)];
+    char *n = malloc(strlen(word) + 1);
+    if (n == NULL)
+    {
+        fprintf(stderr, "ERROR: LUL, by more RAM!\n");
+        exit(1);
+    }
+    strcpy(n, word);
+    force_lower(n);
+    node *head = table[hash(n)];
     while (head)
     {
-        if (strcasecmp(head->word, word) == 0)
+        if (strcmp(head->word, n) == 0)
+        {
+            free(n);
             return true;
+        }
         head = head->next;
     }
+    free(n);
     return false;
 }
 
