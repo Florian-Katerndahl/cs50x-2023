@@ -62,7 +62,7 @@ unsigned int hash(const char *word)
     unsigned int hash = len;
     for (int i = 0; word[i] != '\0'; i++)
     {
-        hash += word[i];
+        hash += (word[i] << 4);
     }
     return (hash ^ len) % N; // no real reason for this here
 }
