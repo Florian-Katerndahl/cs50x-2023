@@ -1,7 +1,7 @@
 import sys
 from pyfiglet import Figlet
 
-if len(sys.argv) != 1 or len(sys.argv) != 3:
+if len(sys.argv) != 1 and len(sys.argv) != 3:
     print("Invalid usage")
     print(sys.argv)
     sys.exit(1)
@@ -18,4 +18,4 @@ user_input = input("Input: ")
 
 print("Output")
 
-print(f.renderText())
+print(f.renderText(user_input))
