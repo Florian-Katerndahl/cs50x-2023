@@ -3,7 +3,9 @@
 #include <ctype.h>
 #include <stdbool.h>
 #include <string.h>
+#include <strings.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "dictionary.h"
 
@@ -55,7 +57,7 @@ bool load(const char *dictionary)
     if (f == NULL)
         return false;
 
-    char *word[LENGTH + 2];
+    char word[LENGTH + 2];
     while (fgets(word, LENGTH + 2, f))
     {
         if (word[0] == '\n')
