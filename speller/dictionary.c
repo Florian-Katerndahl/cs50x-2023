@@ -47,12 +47,13 @@ unsigned int hash(const char *word)
 {
     // TODO: Improve this hash function
     //return toupper(word[0]) - 'A';
-    unsigned int hash = strlen(word);
+    unsigned int len = strlen(word);
+    unsigned int hash = len;
     for (int i = 0; word[i] != '\0'; i++)
     {
         hash += tolower(word[i]);
     }
-    return (hash ^ strlen(word)) % N;
+    return (hash ^ len) % N;
 }
 
 // Loads dictionary into memory, returning true if successful, else false
