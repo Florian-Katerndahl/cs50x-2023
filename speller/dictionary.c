@@ -69,6 +69,7 @@ bool load(const char *dictionary)
         strcpy(new->word, word);
         new->next = head;
         head = new;
+        table[hash(word)] = head;
     }
 
     fclose(f);
@@ -99,12 +100,9 @@ bool unload(void)
     {
         node *head = table[i];
         node *lp;
-        printf("Trying to free bucket %d\n", i);
-        printf("Head pointing to %p\n", head);
         while (head)
         {
             lp = head->next;
-            printf("Freeing Node %s\n", head->word);
             free(head);
             head = lp;
         }
