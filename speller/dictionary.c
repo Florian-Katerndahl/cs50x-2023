@@ -3,6 +3,7 @@
 #include <ctype.h>
 #include <stdbool.h>
 #include <string.h>
+#include <stdlib.h>
 
 #include "dictionary.h"
 
@@ -64,10 +65,11 @@ bool load(const char *dictionary)
         node *head = table[hash(word)];
         node *new = malloc(sizeof(node));
         strcpy(new->word, word);
-        
+        new->next = head;
+        head = new;
     }
 
-    return false;
+    return true;
 }
 
 // Returns number of words in dictionary if loaded, else 0 if not yet loaded
