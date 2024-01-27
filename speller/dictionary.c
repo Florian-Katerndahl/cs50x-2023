@@ -19,10 +19,23 @@ const unsigned int N = 26 * LENGTH;
 // Hash table
 node *table[N];
 
+void force_upper(char *word)
+{
+    for (int i = 0; word[i] != '\0'; i++)
+        word[i] = toupper(word[i]);
+}
+
 // Returns true if word is in dictionary, else false
 bool check(const char *word)
 {
     // TODO
+    node *head = table[hash(word)];
+    while (head)
+    {
+        if (strcasecmp(head->word, word) == 0)
+            return true;
+        head = head->next;
+    }
     return false;
 }
 
@@ -30,9 +43,6 @@ bool check(const char *word)
 unsigned int hash(const char *word)
 {
     // TODO: Improve this hash function
-    //return toupper(word[0]) - 'A';
-    if (strlen(word) > 1)
-        return toupper(word[0]) - 'A' + return toupper(word[1]) - 'A';
     return toupper(word[0]) - 'A';
 }
 
