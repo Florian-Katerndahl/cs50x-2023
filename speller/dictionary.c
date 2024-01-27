@@ -60,6 +60,8 @@ unsigned int hash(const char *word)
     unsigned int len = strlen(word);
     unsigned int hash = len;
     unsigned int overflow;
+    // tried to adapt https://en.wikipedia.org/wiki/Hash_function#Character_folding
+    // no clue, if correct; results are not better than version described below!
     for (int i = 0; word[i] != '\0'; i++)
     {
         hash += (word[i] << 4);
