@@ -86,7 +86,6 @@ unsigned int size(void)
         while (head)
         {
             count++;
-            printf("Counting\n");
             head = head->next;
         }
     }
