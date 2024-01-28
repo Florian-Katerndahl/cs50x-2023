@@ -30,7 +30,6 @@ def main():
     for suspect in db:
         str_count = 0
         for STR, count in subsequences.items():
-            print(suspect.get(STR), count)
             if int(suspect.get(STR)) == count:
                 str_count += 1
         if str_count == len(keys[1:]):
