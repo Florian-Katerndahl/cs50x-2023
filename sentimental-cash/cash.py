@@ -6,17 +6,19 @@ coins_needed = 0
 while change_owed < 0:
     change_owed = get_float("Change owed: ")
 
-n_quarters = change_owed // 0.25
-change_owed -= n_quarters * 0.25
+change_owed = int(change_owed * 100)
 
-n_dimes = change_owed // 0.1
-change_owed -= n_dimes * 0.1
+n_quarters = change_owed / 25
+change_owed -= n_quarters * 25
 
-n_nickels = change_owed // 0.05
-change_owed -= n_nickels * 0.05
+n_dimes = change_owed / 10
+change_owed -= n_dimes * 1
 
-n_pennies = change_owed // 0.01
-change_owed -= n_pennies * 0.01
+n_nickels = change_owed / 5
+change_owed -= n_nickels * 5
+
+n_pennies = change_owed / 1
+change_owed -= n_pennies * 1
 
 print(f"{change_owed}")
 
