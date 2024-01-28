@@ -3,4 +3,5 @@ def main():
 
 
 def coleman_liau(text):
-    n_words
+    word_count = len(test.split())
+    
