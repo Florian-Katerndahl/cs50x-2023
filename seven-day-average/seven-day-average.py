@@ -40,8 +40,13 @@ def calculate(reader):
     for row in reader:
         state = row.get("state")
         previous = previous_cases.get(state, 0)
+
+        old_cases = new_cases.get(state, [])
+        if (len(old_cases) > 13):
+            _ = old_cases.pop(0)
+
         new = int(row["cases"]) - previous
-        new_cases.update({state: new_cases.get(state, []) + [new]})
+        new_cases.update({state: old_cases + [new]})
         previous_cases[state] = new
 
     return new_cases
