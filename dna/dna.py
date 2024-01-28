@@ -10,8 +10,11 @@ def main():
         sys.exit(1)
 
     # TODO: Read database file into a variable
-    db = open(sys.argv[1], "rt")
-    db_reader = csv.DictReader(db)
+    db = []
+    with open(sys.argv[1], "rt") as f:
+        db_reader = csv.DictReader(f)
+        for row in db_reader:
+            db.append(row)
 
     # TODO: Read DNA sequence file into a variable
     with open(sys.argv[2], "rt") as f:
