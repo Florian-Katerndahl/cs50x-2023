@@ -26,7 +26,10 @@ def main():
         subsequences.update{subsequence: longest_match(seq, subsequence)}
 
     # TODO: Check database for matching profiles
-    
+    for suspect in db:
+        for STR, count in subsequences.items():
+            if suspect.get(STR) != count:
+                break
 
     return
 
