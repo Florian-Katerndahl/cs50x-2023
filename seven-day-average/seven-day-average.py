@@ -47,8 +47,6 @@ def calculate(reader):
 
         new = int(row["cases"]) - previous
         new_cases.update({state: old_cases + [new]})
-        if state == "California":
-            print(f"{row.get('date')}: old={previous_cases.get(state, 0)}, {new=}")
         previous_cases[state] = int(row["cases"])
 
     return new_cases
