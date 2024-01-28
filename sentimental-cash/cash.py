@@ -1,7 +1,6 @@
 from cs50 import get_float
 
 change_owed = -1.0
-coins_needed = 0
 
 while change_owed < 0:
     change_owed = get_float("Change owed: ")
@@ -20,9 +19,9 @@ change_owed -= n_nickels * 5
 n_pennies = change_owed / 1
 change_owed -= n_pennies * 1
 
-print(f"{change_owed}")
+print(f"{n_quarters}")
 
 if change_owed:
     raise ValueError(f"The fuck... {change_owed = }")
 
-print(f"{int(n_quarters + n_dimes + n_nickels + n_pennies)}")
+#print(f"{int(n_quarters + n_dimes + n_nickels + n_pennies)}")
