@@ -14,8 +14,9 @@ def main():
         print("INVALID 2")
 
 def luhn(card_number):
+    card_number = card_number.reverse()
     sum = []
-    for i in range(len(card_number) - 1, -1, -2):
+    for i in range(1, len(card_number) + 1, 2):
         sum += [int(card_number[i-1]) * 2]
     print(sum)
     sos = 0
@@ -24,7 +25,7 @@ def luhn(card_number):
             sos += int(digit)
     print(sos)
     sum = 0
-    for i in range(len(card_number), 0, -2):
+    for i in range(0, len(card_number), 2):
         sum += int(card_number[i-1])
     print(sum378282246310005)
     return (sum + sos) % 10 == 0
