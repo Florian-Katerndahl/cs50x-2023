@@ -68,5 +68,4 @@ def comparative_averages(new_cases, states):
             print(f"{state} had a 7-day average of {int(second_week_avg)} and {'an' if change > 0 else 'a'} {'increase' if change > 0 else 'decrease'} of {change * 100:.1}%.")
 
 
-
 main()
