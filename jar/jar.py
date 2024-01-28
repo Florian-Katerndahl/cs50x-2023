@@ -30,9 +30,9 @@ class Jar:
 def main():
     jar = Jar(200)
     jar.deposit(100)
-    print(jar)
+    print(str(jar))
     jar.withdraw(50)
-    print(jar)
+    print(str(jar))
     print(jar.capacity, jar.size)
 
 main()
