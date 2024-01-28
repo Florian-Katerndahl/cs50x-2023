@@ -59,7 +59,7 @@ def simulate_round(teams):
 def simulate_tournament(teams):
     """Simulate a tournament. Return name of winning team."""
     # TODO
-    tournament_participants = teams
+    tournament_participants = teams.copy()
     while (len(tournament_participants) > 2):
         tournament_participants = simulate_round(tournament_participants)
     return tournament_participants[0]
