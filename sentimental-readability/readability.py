@@ -12,7 +12,7 @@ def main():
 
 def coleman_liau(text):
     word_count = len(text.split())
-    sentence_count = len(text.split("!?."))
+    sentence_count = text.count(".") + text.count("!") + text.count("?")
 
     letter_count = 0
     for letter in text:
