@@ -19,7 +19,7 @@ change_owed -= n_nickels * 5
 n_pennies = change_owed // 1
 change_owed -= n_pennies * 1
 
-print(n_quarters + n_dimes + n_nickels + n_pennies)
+print(n_quarters, n_dimes, n_nickels, n_pennies)
 
 if change_owed:
     raise ValueError(f"The fuck... {change_owed = }")
