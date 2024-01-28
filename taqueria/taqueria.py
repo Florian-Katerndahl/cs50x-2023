@@ -13,7 +13,7 @@ def main():
 
     total = 0.0
 
-    while 1:
+    while True:
         try:
             order = input("Item: ")
         except EOFError:
