@@ -1,7 +1,7 @@
 from cs50 import get_string
 
 def main():
-    card = get_string("Number: ")
+    card = get_string("Number: ").strip()
     if len(card) not in [13, 15, 16] or not luhn(card):
         print("INVALID")
     elif is_master(card):
