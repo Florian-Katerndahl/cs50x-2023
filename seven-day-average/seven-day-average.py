@@ -56,9 +56,8 @@ def calculate(reader):
 def comparative_averages(new_cases, states):
     for state in states:
         state_cases = new_cases[state]
-        print(state_cases)
         first_week_avg = sum(state_cases[:7]) / 7.0
-        second_week_avg = sum(state_cases[6:]) / 7.0
+        second_week_avg = sum(state_cases[7:]) / 7.0
 
         diff = second_week_avg - first_week_avg
         try:
