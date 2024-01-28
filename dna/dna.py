@@ -18,18 +18,24 @@ def main():
 
     # TODO: Read DNA sequence file into a variable
     with open(sys.argv[2], "rt") as f:
-        seq = f.readline()
+        seq = f.readline().flatten()
 
     # TODO: Find longest match of each STR in DNA sequence
     subsequences = {}
     for subsequence in db.keys()[2:]:
-        subsequences.update{subsequence: longest_match(seq, subsequence)}
+        subsequences.update({subsequence: longest_match(seq, subsequence)})
 
     # TODO: Check database for matching profiles
     for suspect in db:
+        str_count = 0
         for STR, count in subsequences.items():
-            if suspect.get(STR) != count:
-                break
+            if suspect.get(STR) == count:
+                str_count += 1
+        if str_count == len(db.keys()[2:]):
+            print(suspect.get("name"))
+            return
+
+    print("No match")
 
     return
 
