@@ -22,17 +22,18 @@ def main():
 
     # TODO: Find longest match of each STR in DNA sequence
     subsequences = {}
-    print(db[0].keys())
-    for subsequence in db[0].keys()[2:]:
+    keys = list(db[0].keys())
+    for subsequence in keys[1:]:
         subsequences.update({subsequence: longest_match(seq, subsequence)})
 
     # TODO: Check database for matching profiles
     for suspect in db:
         str_count = 0
         for STR, count in subsequences.items():
-            if suspect.get(STR) == count:
+            print(suspect.get(STR), count)
+            if int(suspect.get(STR)) == count:
                 str_count += 1
-        if str_count == len(db.keys()[2:]):
+        if str_count == len(keys[1:]):
             print(suspect.get("name"))
             return
 
