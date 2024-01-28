@@ -1,5 +1,6 @@
 from cs50 import get_string
 
+
 def main():
     card = get_string("Number: ").strip()
     if len(card) not in [13, 15, 16] or not luhn(card):
@@ -13,8 +14,9 @@ def main():
     else:
         print("INVALID")
 
+
 def luhn(card_number):
-    """How did I come up with the solution in C??"""
+    """How did I come up with the solution in C?? More time?"""
     card_number = card_number[-1::-1]
 
     sum = []
@@ -49,5 +51,6 @@ def is_master(card_number):
     if len(card_number) == 16 and card_number[:2] in ["51", "52", "53", "54", "55"]:
         return True
     return False
+
 
 main()
