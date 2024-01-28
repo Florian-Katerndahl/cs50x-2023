@@ -5,7 +5,7 @@ def main():
     if len(card) not in [13, 15, 16] or not luhn(card):
         print("INVALID 1")
     elif is_master(card):
-        print("MASTER")
+        print("MASTERCARD")
     elif is_visa(card):
         print("VISA")
     elif is_amex(card):
@@ -14,6 +14,7 @@ def main():
         print("INVALID 2")
 
 def luhn(card_number):
+    """How did I come up with the solution in C??"""
     card_number = card_number[-1::-1]
 
     sum = []
@@ -26,7 +27,7 @@ def luhn(card_number):
             sos += int(digit)
 
     sum = 0
-    for i in range(0, len(card_number) + 1, 2):
+    for i in range(0, len(card_number), 2):
         sum += int(card_number[i])
 
     return (sum + sos) % 10 == 0
