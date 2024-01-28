@@ -18,7 +18,9 @@ change_owed -= n_nickels * 0.05
 n_pennies = change_owed // 0.01
 change_owed -= n_pennies * 0.01
 
+print(f"{int(n_quarters + n_dimes + n_nickels + n_pennies)}")
+
 if change_owed:
-    raise ValueError("The fuck...")
+    raise ValueError(f"The fuck... {change_owed = }")
 
 print(f"{int(n_quarters + n_dimes + n_nickels + n_pennies)}")
