@@ -15,22 +15,20 @@ def main():
 
 def luhn(card_number):
     card_number = card_number[-1::-1]
-    print(card_number)
+
     sum = []
     for i in range(1, len(card_number), 2):
-        print(i,"",  end="")
         sum += [int(card_number[i]) * 2]
-    print(sum)
+
     sos = 0
     for s in sum:
         for digit in str(s):
             sos += int(digit)
-    print(sos)
+
     sum = 0
     for i in range(0, len(card_number) + 1, 2):
-        print(i,"",  end="")
-        sum += int(card_number[i-1])
-    print(sum)
+        sum += int(card_number[i])
+
     return (sum + sos) % 10 == 0
 
 
