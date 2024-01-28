@@ -51,6 +51,8 @@ int is_valid(int src[256], int digits)
     for (int i = 0; i < digits; i++)
     {
         int tmp = src[i] * (1 + (i % 2));
+        // tmp % 10 -> 0-9
+        // ((tmp / 10) % 10) -> 10s digit, if applicable
         chksm += tmp % 10 + ((tmp / 10) % 10);
     }
     return !(chksm % 10);
