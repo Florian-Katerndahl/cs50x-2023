@@ -21,8 +21,12 @@ def main():
         seq = f.readline()
 
     # TODO: Find longest match of each STR in DNA sequence
+    subsequences = {}
+    for subsequence in db.keys()[2:]:
+        subsequences.update{subsequence: longest_match(seq, subsequence)}
 
     # TODO: Check database for matching profiles
+    
 
     return
 
