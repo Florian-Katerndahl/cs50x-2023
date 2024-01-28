@@ -3,7 +3,7 @@ from cs50 import get_string
 def main():
     card = get_string("Number: ").strip()
     if len(card) not in [13, 15, 16] or not luhn(card):
-        print("INVALID 1")
+        print("INVALID")
     elif is_master(card):
         print("MASTERCARD")
     elif is_visa(card):
@@ -11,7 +11,7 @@ def main():
     elif is_amex(card):
         print("AMEX")
     else:
-        print("INVALID 2")
+        print("INVALID")
 
 def luhn(card_number):
     """How did I come up with the solution in C??"""
