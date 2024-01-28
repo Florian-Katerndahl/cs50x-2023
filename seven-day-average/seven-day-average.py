@@ -39,9 +39,9 @@ def calculate(reader):
 
     for row in reader:
         state = row.get("state")
-        previous = previous_cases.get(state, default=0)
-        new = row["cases"] - previous
-        new_cases[state] += [new]
+        previous = previous_cases.get(state, 0)
+        new = int(row["cases"]) - previous
+        new_cases.update({state: new_cases.get(state, []) + [new]})
         previous_cases[state] = new
 
     return new_cases
