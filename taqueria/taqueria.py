@@ -11,6 +11,21 @@ def main():
         "Tortilla Salad": 8.00
     }
 
+    total = 0.0
+
     while 1:
-        order = input("Item: ")
-        if 
+        try:
+            order = input("Item: ")
+        except EOFError:
+            break
+
+        item_price = menu.get(order.title(), None)
+        try:
+            total += item_price
+        except TypeError:
+            pass
+        else:
+            print(f"Total: ${total:.2f}")
+
+
+main()
