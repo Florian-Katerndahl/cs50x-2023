@@ -11,7 +11,7 @@ def main():
     elif is_amex(card):
         print("AMEX")
     else:
-        print("UNREACHABLE")
+        print("INVALID")
 
 def luhn(card_number):
     sum = []
