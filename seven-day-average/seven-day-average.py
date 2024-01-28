@@ -54,7 +54,19 @@ def calculate(reader):
 
 # TODO: Calculate and print out seven day average for given state
 def comparative_averages(new_cases, states):
-    ...
+    for state in states:
+        state_cases = new_cases[state]
+        first_week_avg = sum(state_cases[:7]) / 7
+        second_week_avg = sum(state_cases[6:]) / 7
+
+        diff = second_week_avg - first_week_avg
+        try:
+            change = diff / first_week_avg
+        except ZeroDivisionError:
+            print("Dunno")
+        else:
+            print(f"{state} had a 7-day average of {second_week_avg} and {'an' if change > 0 else 'a'} {'increase' if change > 0 else 'decrease'}of {change * 100:.0}%.")
+
 
 
 main()
