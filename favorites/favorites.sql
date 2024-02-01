@@ -50,4 +50,32 @@ UPDATE shows
 SET title = "Parks and Recreation"
 WHERE title LIKE "Parks%";
 
+UPDATE shows
+SET title = "Sherlock"
+WHERE title LIKE "Sherlock";
+
+UPDATE shows
+SET title = "Squid Game"
+WHERE title LIKE "squid GaMe";
+
+UPDATE shows
+SET title = "The Bachelorette"
+WHERE title LIKE "%bachelorette";
+
+UPDATE shows
+SET title = "The Crown"
+WHERE title LIKE "%crown";
+
+UPDATE shows
+SET title = "The Office"
+WHERE title LIKE "%office";
+
+UPDATE shows
+SET title = "The Queen's Gambit"
+WHERE title LIKE "%Gambit";
+
+UPDATE shows
+SET title = "The Untamed"
+WHERE title LIKE "%untamed";
+
 
