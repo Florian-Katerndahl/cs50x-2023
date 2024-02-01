@@ -5,4 +5,4 @@ WHERE stars.person_id IN (
     WHERE name = "Bradley Cooper" OR name = "Jennifer Lawrence"
     )
 GROUP BY movies.id
-LIMIT 10;
+HAVING COUNT(*) = 2;
