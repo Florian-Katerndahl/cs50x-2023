@@ -8,7 +8,7 @@ WHERE title LIKE "Arrow";
 
 UPDATE shows
 SET title = "Avatar: The Last Airbender"
-WHERE title LIKE "Avatar: The%";
+WHERE title LIKE "Avatar%";
 
 UPDATE shows
 SET title = "Brooklyn Nine-Nine"
@@ -79,3 +79,5 @@ SET title = "The Untamed"
 WHERE title LIKE "%untamed";
 
 
+-- Why do you think it’s necessary to “clean” data when you can use the SQL LIKE statement?
+--  To ensure data correctness prior to further analysis/processing.
