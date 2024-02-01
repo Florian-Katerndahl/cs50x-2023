@@ -16,6 +16,8 @@ for row in rows:
                "VALUES (?)", row["student_name"])
     houses |= set((row["house"], row["head"]))
 
+print(houses)
+
 for house in houses:
     db.execute("INSERT INTO houses (name, head)"
                "VALUES (?, ?)", house[0], house[1])
