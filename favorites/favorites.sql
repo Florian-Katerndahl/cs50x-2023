@@ -19,4 +19,5 @@ SET title = "Community"
 WHERE title LIKE "Community";
 
 UPDATE shows
-SET title = "Family 
+SET title = "Family Guy"
+WHERE title LIKE "Family%";
