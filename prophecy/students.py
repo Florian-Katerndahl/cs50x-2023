@@ -19,9 +19,8 @@ for house in houses:
     db.execute("INSERT INTO houses (name, head)"
                "VALUES (?, ?)", house[0], house[1])
 
-students = db.excute("SELECT id, name FROM students")
-houses = db.execute("SELECT id, house FROM houses")
-
-for student in students:
+for row in rows:
+    sid = db.execute("SELECT id FROM students WHERE name = ?", row["student_name"])
+    hid = db.execute("SELECT id FROM houses WHERE name = ?", row["house"])
     db.execute("INSERT INTO house_assignments (student_id, house_id)"
-               "VALUES (?, ?)", )
+               "VALUES (?, ?)", sid[0]["id"], hid[0]["id"])
