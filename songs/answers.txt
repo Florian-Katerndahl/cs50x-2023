@@ -1,0 +1,10 @@
+1. If songs.db contains the top 100 songs of one listener from 2018, how would you characterize their audio aura?
+    SELECT AVG(energy), AVG(valence), AVG(danceability) FROM songs;
+    given a database with the 100 most streamed songs from a user.
+
+
+2. Hypothesize about why the way you’ve calculated this aura might not be very representative of the listener. What better ways of calculating this aura would you propose?
+    - disregards the number of times a person listened to a particular song -> weighted average
+    - disregards genre mixes
+    - disregards other song attributes
+    - disregards listening behaviour (e.g. listening to entire albums from one artist vs. only one song)
