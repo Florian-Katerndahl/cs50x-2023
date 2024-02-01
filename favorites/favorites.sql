@@ -11,5 +11,12 @@ SET title = "Avatar: The Last Airbender"
 WHERE title LIKE "Avatar: The%";
 
 UPDATE shows
-SET title = "Brookly Nine-Nine"
-WHERE title LIKE 
+SET title = "Brooklyn Nine-Nine"
+WHERE title LIKE "Brooklyn Nine-Nine";
+
+UPDATE shows
+SET title = "Community"
+WHERE title LIKE "Community";
+
+UPDATE shows
+SET title = "Family 
