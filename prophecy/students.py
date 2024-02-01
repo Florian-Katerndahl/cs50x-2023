@@ -3,6 +3,26 @@ import csv
 
 db = SQL("sqlite:///roster.db")
 
+db.execute("CREATE TABLE IF NOT EXISTS students ("
+           "id INTEGER,"
+           "name TEXT,"
+           "PRIMARY KEY(id)"
+           ")")
+
+db.execute("CREATE TABLE IF NOT EXISTS houses ("
+           "id INTEGER,"
+           "name TEXT,"
+           "head TEXT,"
+           "PRIMARY KEY(id)"
+           ")")
+
+db.execute("CREATE TABLE IF NOT EXISTS house_assignments ("
+           "student_id INTEGER,"
+           "house_id INTEGER,"
+           "FOREIGN KEY(student_id) REFERENCES students(id),"
+           "FOREIGN KEY(house_id) REFERENCES houses(id)"
+           ")")
+
 rows = []
 houses = set()
 with open("students.csv", "rt") as f:
