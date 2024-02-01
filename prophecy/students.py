@@ -4,8 +4,8 @@ import csv
 db = SQL("sqlite:///roster.db")
 
 rows = []
-houses = ()
-heads = ()
+houses = set()
+heads = set()
 with open("students.csv", "rt") as f:
     reader = csv.DictReader(f)
     for row in reader:
@@ -14,5 +14,9 @@ with open("students.csv", "rt") as f:
 for row in rows:
     db.execute("INSERT INTO students (name)"
                "VALUES (?)", row["student_name"])
-    houses
+    houses |= set((row["house"], row["head"]))
+
+for house in houses:
+    db.execute("INSERT INTO houses (name, head)"
+               "VALUES (?, ?)", house[0], house[1])
 
