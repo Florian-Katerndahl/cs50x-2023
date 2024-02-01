@@ -14,7 +14,7 @@ with open("students.csv", "rt") as f:
 for row in rows:
     db.execute("INSERT INTO students (name)"
                "VALUES (?)", row["student_name"])
-    houses |= set((row["house"], row["head"]))
+    houses.add((row["house"], row["head"]))
 
 print(houses)
 
