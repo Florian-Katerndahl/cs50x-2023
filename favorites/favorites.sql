@@ -12,7 +12,7 @@ WHERE title LIKE "Avatar: The%";
 
 UPDATE shows
 SET title = "Brooklyn Nine-Nine"
-WHERE title LIKE "Brooklyn Nine-Nine";
+WHERE title LIKE "Brooklyn%";
 
 UPDATE shows
 SET title = "Community"
@@ -44,7 +44,7 @@ WHERE title LIKE "How%";
 
 UPDATE shows
 SET title = "It's Always Sunny in Philadelphia"
-WHERE title LIKE "It's%";
+WHERE title LIKE "It%";
 
 UPDATE shows
 SET title = "Parks and Recreation"
