@@ -38,12 +38,12 @@ WHERE passengers.passport_number IN (
 GROUP BY flights.id
 HAVING COUNT(*) >= 2;
 
--- this query returns two suspects which match all descriptions
-SELECT people.id, people.name, people.phone_number, flights.id, phone_calls.duration FROM atm_transactions
+SELECT people.name, people.phone_number, flights.id, airports.full_name, phone_calls.duration FROM atm_transactions
 JOIN bank_accounts ON atm_transactions.account_number = bank_accounts.account_number
 JOIN people ON bank_accounts.person_id = people.id
 JOIN passengers ON people.passport_number = passengers.passport_number
 JOIN flights ON passengers.flight_id = flights.id
+JOIN airports ON flights.destination_airport_id = airports.id
 JOIN bakery_security_logs ON people.license_plate = bakery_security_logs.license_plate
 JOIN phone_calls ON people.phone_number = phone_calls.caller
 WHERE
@@ -54,19 +54,12 @@ WHERE
     -- select all people who additionally took a flight on the 29th july 2021
     AND (flights.year = 2021 AND flights.month = 7 AND flights.day = 29)
     -- select all people who additionally called someone on 28th july 2021 for less than a minute
-    AND (phone_calls.year = 2021 AND phone_calls.month = 7 AND phone_calls.day = 28 AND phone_calls.duration <= 60);
+    AND (phone_calls.year = 2021 AND phone_calls.month = 7 AND phone_calls.day = 28 AND phone_calls.duration <= 60)
+-- thief took earliest flight and does not get accompanied (which I thought the interviewee meant with they)
+ORDER BY flights.hour, flights.minute
+LIMIT 1;
 
-
-
--- suspected thief or helper talked on phone with whom?
--- Luca was called by Walter and Kathryn, only ... was also on flight ID 36 to LaGuardia Airport
-SELECT id, caller, receiver, year, month, day, duration, pcaller, preceiver FROM phone_calls
-JOIN (SELECT phone_number as caller_num, name as pcaller FROM people) ON caller_num = phone_calls.caller
-JOIN (SELECT phone_number as reciever_num, name as preceiver FROM people) ON reciever_num = phone_calls.receiver
-WHERE year = 2021 AND month = 7 AND day = 28 AND phone_calls.duration <= 60;
-
--- Who withdrew money on the morning of 28th july 2021?
-SELECT people.passport_number FROM atm_transactions
-JOIN bank_accounts ON atm_transactions.account_number = bank_accounts.account_number
-JOIN people ON bank_accounts.person_id = people.id
-WHERE year = 2021 AND month = 7 AND day = 28 AND atm_location = "Leggett Street" AND transaction_type = "withdraw";
+-- who did the thief (Bruce) call?
+SELECT name FROM people
+JOIN phone_calls ON people.phone_number = phone_calls.receiver
+WHERE caller = "(367) 555-5533" AND day = 28 AND month = 7 AND year = 2021 AND duration <= 60;
