@@ -58,7 +58,7 @@ WHERE
 SELECT id, caller, receiver, year, month, day, duration, pcaller, preceiver FROM phone_calls
 JOIN (SELECT phone_number as caller_num, name as pcaller FROM people) ON caller_num = phone_calls.caller
 JOIN (SELECT phone_number as reciever_num, name as preceiver FROM people) ON reciever_num = phone_calls.receiver
-WHERE year = 2021 AND month = 7 AND day = 28 AND (caller_num IN ("(367) 555-5533", "(389) 555-5198") OR reciever_num IN ("(367) 555-5533", "(389) 555-5198"));
+WHERE year = 2021 AND month = 7 AND day = 28 AND phone_calls.duration <= 60;
 
 -- Who withdrew money on the morning of 28th july 2021?
 SELECT people.passport_number FROM atm_transactions
