@@ -12,33 +12,8 @@ WHERE year = 2021 AND month = 7 AND day = 28 AND street = "Humphrey Street" AND 
 SELECT name, transcript FROM interviews
 WHERE year = 2021 AND month = 7 AND day = 28 AND transcript LIKE "%bakery%";
 
-SELECT license_plate FROM bakery_security_logs
-WHERE year = 2021 AND month = 7 AND day = 28 AND hour = 10 AND minute >= 5 AND minute <= 25 AND activity = "exit";
-
-SELECT * FROM people
-WHERE license_plate IN (
-    SELECT license_plate FROM bakery_security_logs
-    WHERE year = 2021 AND month = 7 AND day = 28 AND hour = 10 AND minute >= 5 AND minute <= 25 AND activity = "exit"
-);
-
--- filter flights taking of one day after theft with at least two pepole boarded from person table where one's license plate was recorderd
--- flight ID 36 has thief and comapgnion
--- flight goes to LaGuardia
-SELECT flights.id, airports.full_name FROM flights
-JOIN passengers ON flights.id = passengers.flight_id
-JOIN people ON passengers.passport_number = people.passport_number
-JOIN airports ON flights.destination_airport_id = airports.id
-WHERE passengers.passport_number IN (
-    SELECT passport_number FROM people
-    WHERE license_plate IN (
-        SELECT license_plate FROM bakery_security_logs
-        WHERE year = 2021 AND month = 7 AND day = 28 AND hour = 10 AND minute >= 5 AND minute <= 25 AND activity = "exit"
-    )
-) AND flights.year = 2021 AND flights.month = 7 AND flights.day = 29
-GROUP BY flights.id
-HAVING COUNT(*) >= 2;
-
-SELECT people.name, people.phone_number, flights.id, airports.full_name, phone_calls.duration FROM atm_transactions
+-- WHY THE FUCK IS THIS airports.city and what the heck is airport_full_name then?
+SELECT people.name, people.phone_number, flights.id, airports.city, phone_calls.duration FROM atm_transactions
 JOIN bank_accounts ON atm_transactions.account_number = bank_accounts.account_number
 JOIN people ON bank_accounts.person_id = people.id
 JOIN passengers ON people.passport_number = passengers.passport_number
