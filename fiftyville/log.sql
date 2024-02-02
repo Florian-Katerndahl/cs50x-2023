@@ -49,9 +49,11 @@ WHERE license_plate IN (
 
 -- filter flights taking of one day after theft with at least two pepole boarded from person table where one's license plate was recorderd
 -- flight ID 36 has thief and comapgnion
-SELECT flights.id FROM flights
+-- flight goes to LaGuardia
+SELECT flights.id, airports.full_name FROM flights
 JOIN passengers ON flights.id = passengers.flight_id
 JOIN people ON passengers.passport_number = people.passport_number
+JOIN airports ON flights.destination_airport_id = airports.id
 WHERE passengers.passport_number IN (
     SELECT passport_number FROM people
     WHERE license_plate IN (
@@ -61,11 +63,6 @@ WHERE passengers.passport_number IN (
 ) AND flights.year = 2021 AND flights.month = 7 AND flights.day = 29
 GROUP BY flights.id
 HAVING COUNT(*) >= 2;
-
--- flight destination of flight on next day
-SELECT airports.full_name FROM flights
-JOIN airports ON flights.destination_airport_id = airports.id
-WHERE flights.id = 36;
 
 -- this query returns three people. Two of which were on the same plane. Either one of those (Bruce, Luca) has to be the thief.
 SELECT people.id, people.name, people.phone_number, flights.id FROM atm_transactions
@@ -88,15 +85,3 @@ SELECT * FROM phone_calls
 JOIN (SELECT phone_number as caller_num, name as pcaller FROM people) ON caller_num = phone_calls.caller
 JOIN (SELECT phone_number as reciever_num, name as pcallee FROM people) ON reciever_num = phone_calls.receiver
 WHERE year = 2021 AND month = 7 AND day = 28 AND (caller_num = "(389) 555-5198"OR reciever_num = "(389) 555-5198");
-
-
-SELECT people.name FROM flights
-JOIN passengers ON flights.id = passengers.flight_id
-JOIN people ON passengers.passport_number = people.passport_number
-WHERE passengers.passport_number IN (
-    SELECT passport_number FROM people
-    WHERE license_plate IN (
-        SELECT license_plate FROM bakery_security_logs
-        WHERE year = 2021 AND month = 7 AND day = 28 AND hour = 10 AND minute >= 5 AND minute <= 25 AND activity = "exit"
-    )
-) AND flights.year = 2021 AND flights.month = 7 AND flights.day = 29 AND flights.id = 36;
