@@ -65,3 +65,8 @@ SELECT people.passport_number FROM atm_transactions
 JOIN bank_accounts ON atm_transactions.account_number = bank_accounts.account_number
 JOIN people ON bank_accounts.person_id = people.id
 WHERE year = 2021 AND month = 7 AND day = 28 AND atm_location = "Leggett Street" AND transaction_type = "withdraw";
+
+SELECT * FROM people
+JOIN (SELECT caller, year, month, day, duration FROM phone_calls) ON people.phone_number = caller
+JOIN (SELECT receiver, year, month, day, duration FROM phone_calls) ON people.phone_number = receiver
+LIMIT 10;
