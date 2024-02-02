@@ -81,7 +81,7 @@ WHERE
 
 -- suspected thief or helper talked on phone with whom?
 -- Luca was called by Walter and Kathryn, only ... was also on flight ID 36 to LaGuardia Airport
-SELECT * FROM phone_calls
+SELECT id, caller, receiver, year, month, day, duration, pcaller, preceiver FROM phone_calls
 JOIN (SELECT phone_number as caller_num, name as pcaller FROM people) ON caller_num = phone_calls.caller
-JOIN (SELECT phone_number as reciever_num, name as pcallee FROM people) ON reciever_num = phone_calls.receiver
+JOIN (SELECT phone_number as reciever_num, name as preceiver FROM people) ON reciever_num = phone_calls.receiver
 WHERE year = 2021 AND month = 7 AND day = 28 AND (caller_num = "(389) 555-5198"OR reciever_num = "(389) 555-5198");
