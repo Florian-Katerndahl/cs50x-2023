@@ -39,7 +39,7 @@ GROUP BY flights.id
 HAVING COUNT(*) >= 2;
 
 -- this query returns three people. Two of which were on the same plane. Either one of those (Bruce, Luca) has to be the thief.
-SELECT people.id, people.name, people.phone_number, flights.id FROM atm_transactions
+SELECT people.id, people.name, people.phone_number, flights.id, phone_calls.duration FROM atm_transactions
 JOIN bank_accounts ON atm_transactions.account_number = bank_accounts.account_number
 JOIN people ON bank_accounts.person_id = people.id
 JOIN passengers ON people.passport_number = passengers.passport_number
