@@ -38,7 +38,7 @@ WHERE passengers.passport_number IN (
 GROUP BY flights.id
 HAVING COUNT(*) >= 2;
 
--- this query returns three people. Two of which were on the same plane. Either one of those (Bruce, Luca) has to be the thief.
+-- this query returns two suspects which match all descriptions
 SELECT people.id, people.name, people.phone_number, flights.id, phone_calls.duration FROM atm_transactions
 JOIN bank_accounts ON atm_transactions.account_number = bank_accounts.account_number
 JOIN people ON bank_accounts.person_id = people.id
@@ -50,11 +50,13 @@ WHERE
     -- select all people who withdrew cash at ATM Legget Street not 28th july 2021
     (atm_transactions.year = 2021 AND atm_transactions.month = 7 AND atm_transactions.day = 28 AND atm_transactions.atm_location = "Leggett Street" AND atm_transactions.transaction_type = "withdraw")
     -- select all pepople who additionally left the bakery by car on the 28th july 2021 between 10:5 and 10:25
-    AND (bakery_security_logs.year = 2021 AND bakery_security_logs.month = 7 AND bakery_security_logs.day = 28 AND bakery_security_logs.hour = 10 AND bakery_security_logs.minute >= 5 AND bakery_security_logs.minute <= 25 AND bakery_security_logs.activity = "exit")
+    AND (bakery_security_logs.year = 2021 AND bakery_security_logs.month = 7 AND bakery_security_logs.day = 28 AND bakery_security_logs.hour = 10 AND bakery_security_logs.minute >= 15 AND bakery_security_logs.minute <= 25 AND bakery_security_logs.activity = "exit")
     -- select all people who additionally took a flight on the 29th july 2021
     AND (flights.year = 2021 AND flights.month = 7 AND flights.day = 29)
     -- select all people who additionally called someone on 28th july 2021 for less than a minute
     AND (phone_calls.year = 2021 AND phone_calls.month = 7 AND phone_calls.day = 28 AND phone_calls.duration <= 60);
+
+
 
 -- suspected thief or helper talked on phone with whom?
 -- Luca was called by Walter and Kathryn, only ... was also on flight ID 36 to LaGuardia Airport
@@ -68,9 +70,3 @@ SELECT people.passport_number FROM atm_transactions
 JOIN bank_accounts ON atm_transactions.account_number = bank_accounts.account_number
 JOIN people ON bank_accounts.person_id = people.id
 WHERE year = 2021 AND month = 7 AND day = 28 AND atm_location = "Leggett Street" AND transaction_type = "withdraw";
-
-SELECT * FROM people
-JOIN (SELECT caller, duration AS dcaller FROM phone_calls) ON people.phone_number = caller
-JOIN (SELECT receiver, year, month, day, duration as dreceiver FROM phone_calls) ON people.phone_number = receiver
-WHERE year = 2021 AND month = 7 AND day = 28 AND dcaller <= 60
-LIMIT 10;
