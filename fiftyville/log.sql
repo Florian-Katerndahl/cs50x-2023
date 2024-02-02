@@ -67,9 +67,7 @@ SELECT airports.full_name FROM flights
 JOIN airports ON flights.destination_airport_id = airports.id
 WHERE flights.id = 36;
 
--- thief withdrew money
--- either thief or person who helped thief returned
--- number in question: (389) 555-5198
+-- this query returns three people. Two of which were on the same plane. Either one of those (Bruce, Luca) has to be the thief.
 SELECT people.id, people.name, people.phone_number, flights.id FROM atm_transactions
 JOIN bank_accounts ON atm_transactions.account_number = bank_accounts.account_number
 JOIN people ON bank_accounts.person_id = people.id
@@ -77,11 +75,12 @@ JOIN passengers ON people.passport_number = passengers.passport_number
 JOIN flights ON passengers.flight_id = flights.id
 JOIN bakery_security_logs ON people.license_plate = bakery_security_logs.license_plate
 WHERE
+    -- select all people who withdrew cash at ATM Legget Street not 28th july 2021
     (atm_transactions.year = 2021 AND atm_transactions.month = 7 AND atm_transactions.day = 28 AND atm_transactions.atm_location = "Leggett Street" AND atm_transactions.transaction_type = "withdraw")
+    -- select all pepople who additionally left the bakery by car on the 28th july 2021 between 10:5 and 10:25
     AND (bakery_security_logs.year = 2021 AND bakery_security_logs.month = 7 AND bakery_security_logs.day = 28 AND bakery_security_logs.hour = 10 AND bakery_security_logs.minute >= 5 AND bakery_security_logs.minute <= 25 AND bakery_security_logs.activity = "exit")
-    AND (flights.year = 2021 AND flights.month = 7 AND flights.day = 29)
-GROUP BY flights.id
-HAVING COUNT(*) >= 2;
+    -- select all people who additionally took a flight on the 29th july 2021
+    AND (flights.year = 2021 AND flights.month = 7 AND flights.day = 29);
 
 -- suspected thief or helper talked on phone with whom?
 -- Luca was called by Walter and Kathryn, only ... was also on flight ID 36 to LaGuardia Airport
