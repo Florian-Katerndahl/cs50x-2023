@@ -14,7 +14,7 @@ WHERE year = 2021 AND month = 7 AND day = 28 AND transcript LIKE "%bakery%";
 
 -- WHY THE FUCK IS THIS airports.city and what the heck is airport_full_name then?
 -- ok, the full_name is the full airport name. Still confusing :/
-SELECT people.name, people.phone_number, airports.city FROM atm_transactions
+SELECT people.name as thief, people.phone_number, airports.city as "escapement city" FROM atm_transactions
 JOIN bank_accounts ON atm_transactions.account_number = bank_accounts.account_number
 JOIN people ON bank_accounts.person_id = people.id
 JOIN passengers ON people.passport_number = passengers.passport_number
