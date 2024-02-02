@@ -67,6 +67,7 @@ JOIN people ON bank_accounts.person_id = people.id
 WHERE year = 2021 AND month = 7 AND day = 28 AND atm_location = "Leggett Street" AND transaction_type = "withdraw";
 
 SELECT * FROM people
-JOIN (SELECT caller, year, month, day, duration FROM phone_calls) ON people.phone_number = caller
-JOIN (SELECT receiver, year, month, day, duration FROM phone_calls) ON people.phone_number = receiver
+JOIN (SELECT caller, duration AS dcaller FROM phone_calls) ON people.phone_number = caller
+JOIN (SELECT receiver, year, month, day, duration as dreceiver FROM phone_calls) ON people.phone_number = receiver
+WHERE year = 2021 AND month = 7 AND day = 28 AND dcaller <= 60
 LIMIT 10;
