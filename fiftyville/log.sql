@@ -13,7 +13,8 @@ SELECT name, transcript FROM interviews
 WHERE year = 2021 AND month = 7 AND day = 28 AND transcript LIKE "%bakery%";
 
 -- WHY THE FUCK IS THIS airports.city and what the heck is airport_full_name then?
-SELECT people.name, people.phone_number, flights.id, airports.city, phone_calls.duration FROM atm_transactions
+-- ok, the full_name is the full airport name. Still confusing :/
+SELECT people.name, people.phone_number, airports.city FROM atm_transactions
 JOIN bank_accounts ON atm_transactions.account_number = bank_accounts.account_number
 JOIN people ON bank_accounts.person_id = people.id
 JOIN passengers ON people.passport_number = passengers.passport_number
@@ -35,6 +36,6 @@ ORDER BY flights.hour, flights.minute
 LIMIT 1;
 
 -- who did the thief (Bruce) call?
-SELECT name FROM people
+SELECT name AS accomplice FROM people
 JOIN phone_calls ON people.phone_number = phone_calls.receiver
 WHERE caller = "(367) 555-5533" AND day = 28 AND month = 7 AND year = 2021 AND duration <= 60;
