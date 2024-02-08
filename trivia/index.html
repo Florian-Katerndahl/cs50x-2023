@@ -34,15 +34,18 @@
         </div>
     </body>
     <script>
+        
+
         document.querySelector('#freetext_button').addEventListener('click', (element, event) => {
             var answer = document.querySelector('#freetext_answer');
             var q2 = document.querySelector('#q2-result');
-            console.log(q2);
+            console.log(q2)
             if (answer.value == "New Zealand") {
                 answer.style.backgroundColor = "green";
-                q2.childrend.add();
+                q2.innerHTML = "<p>Correct!</p>";
             } else {
                 answer.style.backgroundColor = "red";
+                q2.innerHTML = "<p>Incorrect!</p>";
             }
         });
     </script>
