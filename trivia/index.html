@@ -5,12 +5,6 @@
         <!-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet"> -->
         <link href="styles.css" rel="stylesheet">
         <title>Trivia!</title>
-        <script defer>
-            let check_freetext = document.querySelector('#freetext_button');
-            check_freetext.addEvenListener('click', (element, event) => {
-                console.log("Button pressed");
-            });
-        </script>
     </head>
     <body>
         <div class="header">
@@ -38,4 +32,16 @@
             </div>
         </div>
     </body>
+    <script>
+        document.querySelector('#freetext_button').addEventListener('click', (element, event) => {
+            var answer = document.querySelector('#freetext_answer');
+            if (answer == "New Zealand") {
+                console.log("Correct");
+            } else {
+                console.log(answer);
+                console.log("Wow, you're stupid.");
+            }
+
+        });
+    </script>
 </html>
