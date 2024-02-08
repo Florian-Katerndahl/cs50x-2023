@@ -18,6 +18,7 @@
       </header>
       <main>
         <h2>Why do you care about me?</h2>
+        <p><button id="change-image">Klick mich!</button></p>
         <h2>Web-Entwicklung und Hämorrhoiden</h2>
         <p>Hämorrhoiden (von altgriechisch αἷμα haima „Blut“ und ῥεῖν rhein „fließen“; veraltete Bezeichnungen blinde Adern, goldene Adern, Goldadern), in vereinfachter Sprache auch Hämorriden[1] genannt, sind arterio­venöse Gefäßpolster, die ringförmig unter der Enddarmschleimhaut angelegt sind und dem Feinverschluss des Afters dienen. Es handelt sich um variköse Erweiterungen der Venen des Enddarms im Bereich der Schließmuskeln des Afters. Wenn von Hämorrhoiden gesprochen wird, sind damit aber meist vergrößerte oder tiefer getretene Hämorrhoiden im Sinne eines Hämorrhoidalleidens gemeint, die Beschwerden verursachen. Diese Beschwerden sind vor allem wiederholte anale Blutungen und anales Nässen, quälender Juckreiz und Stuhlschmieren.</p>
 
@@ -29,4 +30,11 @@
         HTML + CSS + Javascript = 💩
       </footer>
     </body>
+    <script>
+      let button = document.querySelector('#change-image');
+
+    button.addEventListener('click', (element, event) => {
+        console.log(document.querySelector('#iotd').setAttribute("src", "https://wallpaperaccess.com/full/4879805.jpg"))
+    });
+    </script>
 </html>
