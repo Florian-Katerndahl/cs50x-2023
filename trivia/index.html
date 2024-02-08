@@ -16,11 +16,12 @@
                 <h2>Part 1: Multiple Choice </h2>
                 <hr>
                 <h3>What is the approximate ratio of people to sheep in New Zealand?</h3>
-                <button>6 people per 1 sheep</button>
-                <button>3 people per 1 sheep</button>
-                <button>1 people per 1 sheep</button>
-                <button>6 people per 3 sheep</button>
-                <button>6 people per 6 sheep</button>
+                <div id="q1-result"></div>
+                <button value="option 1">6 people per 1 sheep</button>
+                <button value="option 2">3 people per 1 sheep</button>
+                <button value="option 3">1 people per 1 sheep</button>
+                <button value="option 4">6 people per 3 sheep</button>
+                <button value="option 5">6 people per 6 sheep</button>
             </div>
 
             <div class="section">
@@ -34,7 +35,29 @@
         </div>
     </body>
     <script>
-        
+        function is_correct(luil) {
+            console.log(luil.target.value);
+            if (luil.target.value == "option 4")
+                return true;
+            return false;
+        }
+
+        let buttons = document.querySelectorAll('button');
+        for (var button of buttons) {
+            if (button.id != "")
+                continue;
+
+            button.addEventListener('click', (event, element) => {
+                var q1 = document.querySelector('#q1-result');
+                if (is_correct(event)) {
+                    button.style.backgroundColor = "green";
+                    q1.innerHTML = "<p>Correct!</p>";
+                } else {
+                    button.style.backgroundColor = "red";
+                    q1.innerHTML = "<p>Incorrect</p>";
+                }
+            });
+        }
 
         document.querySelector('#freetext_button').addEventListener('click', (element, event) => {
             var answer = document.querySelector('#freetext_answer');
@@ -45,7 +68,7 @@
                 q2.innerHTML = "<p>Correct!</p>";
             } else {
                 answer.style.backgroundColor = "red";
-                q2.innerHTML = "<p>Incorrect!</p>";
+                q2.innerHTML = "<p>Incorrect</p>";
             }
         });
     </script>
