@@ -34,11 +34,12 @@
     </body>
     <script>
         document.querySelector('#freetext_button').addEventListener('click', (element, event) => {
+            console.log(element)
             var answer = document.querySelector('#freetext_answer');
-            if (answer == "New Zealand") {
+            if (answer.value == "New Zealand") {
+
                 console.log("Correct");
             } else {
-                console.log(answer);
                 console.log("Wow, you're stupid.");
             }
 
