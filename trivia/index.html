@@ -50,10 +50,10 @@
             button.addEventListener('click', (event, element) => {
                 var q1 = document.querySelector('#q1-result');
                 if (is_correct(event)) {
-                    button.style.backgroundColor = "green";
+                    event.target.style.backgroundColor = "green";
                     q1.innerHTML = "<p>Correct!</p>";
                 } else {
-                    button.style.backgroundColor = "red";
+                    event.target.style.backgroundColor = "red";
                     q1.innerHTML = "<p>Incorrect</p>";
                 }
             });
