@@ -26,7 +26,8 @@
             <div class="section">
                 <h2>Part 2: Free Response</h2>
                 <hr>
-                <h3 id="q2">In which country is it illegal to own only one guinea pig, as a lone guinea pig might lonely?</h3>
+                <h3>In which country is it illegal to own only one guinea pig, as a lone guinea pig might lonely?</h3>
+                <div id="q2-result"></div>
                 <input type="text" id="freetext_answer" placeholder="Answer">
                 <button id="freetext_button">Check Answer</button>
             </div>
@@ -34,12 +35,12 @@
     </body>
     <script>
         document.querySelector('#freetext_button').addEventListener('click', (element, event) => {
-            console.log(element)
             var answer = document.querySelector('#freetext_answer');
-            var q2 = document.querySelector('#q2');
+            var q2 = document.querySelector('#q2-result');
+            console.log(q2);
             if (answer.value == "New Zealand") {
                 answer.style.backgroundColor = "green";
-                console.log(q2);
+                q2.childrend.add();
             } else {
                 answer.style.backgroundColor = "red";
             }
