@@ -34,8 +34,11 @@
       let button = document.querySelector('#change-image');
 
       button.addEventListener('click', (element, event) => {
-        
-          console.log(document.querySelector('#iotd').setAttribute("src", "https://wallpaperaccess.com/full/4879805.jpg"))
+        console.log(document.body.style.backgroundImage);
+          if (document.body.style.backgroundImage == "")
+            document.body.style.backgroundImage = "url('4879805.jpg')";
+          else
+            document.body.style.backgroundImage = "";
       });
     </script>
 </html>
