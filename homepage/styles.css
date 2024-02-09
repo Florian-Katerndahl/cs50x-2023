@@ -16,3 +16,11 @@ a {
 p {
     margin-top: 3em;
 }
+
+input[type="text"]:enabled {
+    background-color: red;
+}
+
+input[type="text"]:disabled {
+    background-color: none;
+}
