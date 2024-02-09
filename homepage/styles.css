@@ -11,3 +11,7 @@ a {
     color: darkgreen;
     text-decoration-line: none;
 }
+
+p {
+    margin-above: 20em;
+}
