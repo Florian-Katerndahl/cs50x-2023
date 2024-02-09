@@ -6,3 +6,8 @@ footer {
     font-family: "Comic Sans MS", "Comic Sans", cursive;
     border: 20px;
 }
+
+a {
+    color: darkgreen;
+    text-decoration-line: none;
+}
