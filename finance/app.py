@@ -123,6 +123,8 @@ def register():
 
         db.execute("INSERT INTO users (username, hash) VALUES (?, ?);", username, generate_password_hash(pw))
 
+        return redirect("/login")
+
     return render_template("register.html")
 
 
