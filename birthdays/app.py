@@ -59,8 +59,10 @@ def delete():
 
 @app.route("/edit", methods=["POST"])
 def edit():
-    person = db.execute("SELECT name, month, day FROM birthdays WHERE id = ?;", request.form.get("id"))
+    person = db.execute("SELECT * FROM birthdays WHERE id = ?;", request.form.get("id"))
     if not person:
         redirect("/")
 
     
+
+    return render_template("edit.html", person=person)
