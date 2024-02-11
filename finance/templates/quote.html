@@ -4,6 +4,13 @@
 Get a quote
 {% endblock %}
 
-{% block body %}
-
+{% block main %}
+<form action="/quote" method="post">
+    <div>
+        <input type="text" name="quote" required placeholder="stock symbol" autofocus>
+    </div>
+    <div>
+        <button type="submit">Get quote</button>
+    </div>
+</form>
 {% endblock %}
