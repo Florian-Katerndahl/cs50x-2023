@@ -113,11 +113,16 @@ def register():
         username = request.form.get("username")
         if not username:
             return apology("Username is required")
-        if not db.execute("SELECT )
+        if db.execute("SELECT username FROM users WHERE username = ?;", username):
+            return apology("User already exists")
+
         pw = request.form.get("password")
         cf = request.form.get("confirmation")
         if not pw or pw != cf:
             return apology("Password required and needs to be repeated")
+
+        db.execute("INSERT INTO users (username, hash) VALUES (?, ?);", username, generate_password_hash(pw))
+
     return render_template("register.html")
 
 
