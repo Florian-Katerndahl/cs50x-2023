@@ -111,9 +111,9 @@ def register():
     """Register user"""
     if request.method == "POST":
         username = request.form.get("username")
-        
         if not username:
             return apology("Username is required")
+        if not db.execute("SELECT )
         pw = request.form.get("password")
         cf = request.form.get("confirmation")
         if not pw or pw != cf:
