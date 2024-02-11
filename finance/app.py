@@ -45,7 +45,6 @@ def index():
 def buy():
     """Buy shares of stock"""
     if request.method == "POST":
-        return apology("/")
         symbol = request.form.get("symbol")
         shares = request.form.get("shares")
         try:
@@ -60,7 +59,7 @@ def buy():
         if not market_results:
             return apology("Not a valid stock")
 
-        money = db.execute("SELECT money FROM users WHERE id = ?;", session["user_id"])
+        money = db.execute("SELECT cash FROM users WHERE id = ?;", session["user_id"])
         if money - (shares * market_results["price"]) < 0.0:
             return apology("Not enough money")
 
@@ -69,7 +68,7 @@ def buy():
         db.execute("INSERT INTO history (uuid, symbol, shares, price, action) VALUES (?, ?, ?, ?, ?);",
                    session["user_id"], symbol, shares, market_result["price"], "buy")
 
-        db.execute("UPDATE users SET money = ? WHERE id = ?;",
+        db.execute("UPDATE users SET cash = ? WHERE id = ?;",
                    money, session["user_id"])
 
         return redirect("/")
