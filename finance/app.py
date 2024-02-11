@@ -57,7 +57,8 @@ def buy():
         if not market_results:
             return apology("Not a valid stock")
 
-        
+        money = db.execute("SELECT money FROM users WHERE id = ?;", session["user_id"])
+        if 
 
     return render_template("buy.html")
 
