@@ -21,9 +21,7 @@ Session(app)
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///finance.db")
 
-db.execute("CREATE TABLE IF NOT EXISTS history ("
-           ""
-           ");")
+db.execute("CREATE TABLE IF NOT EXISTS history (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, uuid INTEGER FOREIGN KEY users(id) NOT NULL, symbol VARCHAR(255) NOT NULL, price NUMBERIC NOT NULL);")
 
 
 @app.after_request
