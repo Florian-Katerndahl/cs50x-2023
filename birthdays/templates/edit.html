@@ -15,10 +15,10 @@
 
                 <h2>Update Birthday</h2>
                 <form action="/edit" method="post">
-                    <input name="id" type="text" hidden value="{{ person['id'] }}" required>
-                    <input name="name" type="text" autocomplete="off" value="{{ person['name'] }}" required>
-                    <input name="month" type="number" autocomplete="off" value="{{ person['month'] }}" required min="1" max="12" step="1">
-                    <input name="day" type="number" autocomplete="off" value="{{ person['day'] }}" required min="1" max="31" step="1">
+                    <input name="id" type="text" hidden value="{{ person[0]['id'] }}" required>
+                    <input name="name" type="text" autocomplete="off" value="{{ person[0]['name'] }}" required>
+                    <input name="month" type="number" autocomplete="off" value="{{ person[0]['month'] }}" required min="1" max="12" step="1">
+                    <input name="day" type="number" autocomplete="off" value="{{ person[0]['day'] }}" required min="1" max="31" step="1">
                     <button type="submit">Update Birthday</button>
                 </form>
             </div>

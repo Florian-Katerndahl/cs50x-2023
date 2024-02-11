@@ -59,7 +59,15 @@ def delete():
 
 @app.route("/edit", methods=["GET", "POST"])
 def edit():
-    if request.method == "POST":
+    if request.method == "POST":#
+        name = request.form.get("name")
+        try:
+            month = int(request.form.get("month"))
+            day = int(request.form.get("day"))
+        except ValueError:
+            return redirect("/")
+
+        db.execute("UPDATE birthdays SET name = ?, month = ?, day = ? WHERE id = ?;", name, month, day, request.form.get("id"))
         return redirect("/")
     else:
         person = db.execute("SELECT * FROM birthdays WHERE id = ?;", request.args.get("id"))
