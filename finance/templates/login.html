@@ -4,6 +4,13 @@
     Log In
 {% endblock %}
 
+{% block user_created %}
+{% with message = get_flashed_message() %}
+{% if message %}
+{}
+{% endblock %}
+
+
 {% block main %}
     <form action="/login" method="post">
         <div class="mb-3">

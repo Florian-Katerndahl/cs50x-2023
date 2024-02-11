@@ -123,7 +123,7 @@ def register():
 
         db.execute("INSERT INTO users (username, hash) VALUES (?, ?);", username, generate_password_hash(pw))
 
-        flash("suc)
+        flash("Account successfully created!")
         return redirect("/login")
 
     return render_template("register.html")
