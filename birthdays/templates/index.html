@@ -31,6 +31,7 @@
                             <th>Name</th>
                             <th>Birthday</th>
                             <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,6 +43,12 @@
                                 <form action="/delete" method="post">
                                     <input name="id" type="text" hidden value="{{ birthday['id'] }}">
                                     <button type="submit">Delete</button>
+                                </form>
+                            </td>
+                            <td>
+                                <form action="/edit" method="post">
+                                    <input name="id" type="text" hidden value="{{ birthday['id'] }}">
+                                    <button type="submit">Edit</button>
                                 </form>
                             </td>
                         </tr>

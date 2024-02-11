@@ -34,10 +34,9 @@ def index():
         except ValueError:
             return redirect("/")
 
-        if not name or not 1 >= month > 12 or not 1 >= day > 31:
+        if not name or (month < 1 or month > 12) or (day < 1 or day > 31):
             return redirect("/")
 
-        print("Submit")
         db.execute("INSERT INTO birthdays (name, month, day) VALUES (?, ?, ?);", name, month, day)
 
         return redirect("/")
@@ -56,3 +55,12 @@ def delete():
     if id:
         db.execute("DELETE FROM birthdays WHERE id = ?;", id)
     return redirect("/")
+
+
+@app.route("/edit", methods=["POST"])
+def edit():
+    person = db.execute("SELECT name, month, day FROM birthdays WHERE id = ?;", request.form.get("id"))
+    if not person:
+        redirect("/")
+
+    
