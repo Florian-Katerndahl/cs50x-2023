@@ -34,10 +34,7 @@ def index():
         except ValueError:
             return redirect("/")
 
-        if 1 > month > 12:
-            exit(1)
-        if not name or 1 > month > 12 or 1 > day > 31:
-            print("invalid fields")
+        if not name or not 1 > month > 12 or not 1 > day > 31:
             return redirect("/")
 
         db.execute("INSERT INTO birthdays (name, month, day) VALUES (?, ?, ?);", name, month, day)
