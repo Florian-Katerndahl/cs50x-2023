@@ -70,5 +70,5 @@ def edit():
         if not people:
             redirect("/")
 
-
+    print(people)
     return render_template("edit.html", person=person, people=people)
