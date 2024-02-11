@@ -39,6 +39,10 @@ def index():
     """Show portfolio of stocks"""
     purchases = db.execute("SELCT * FROM history WHERE uuid = ?;", session["user_id"])
     user = db.execute("SELCT * FROM users WHERE id = ?;", session["user_id"])[0]
+    bought = 0
+    
+    if purchases:
+
     return render_template("index.html", purchases=purchases, user=user)
 
 
