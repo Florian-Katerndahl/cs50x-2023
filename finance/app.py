@@ -21,7 +21,7 @@ Session(app)
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///finance.db")
 
-db.execute("CREATE TABLE IF NOT EXISTS history (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, uuid INTEGER FOREIGN KEY REFERENCES users(id) NOT NULL, symbol VARCHAR(255) NOT NULL, price NUMBERIC NOT NULL);")
+db.execute("CREATE TABLE IF NOT EXISTS history (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, uuid INTEGER NOT NULL, symbol VARCHAR(255) NOT NULL, shares INTEGER NOT NULL, price NUMBERIC NOT NULL, action VARCHAR(5) NOT NULL, FOREIGN KEY (uuid) REFERENCES users(id));")
 
 
 @app.after_request
@@ -64,6 +64,11 @@ def buy():
             return apology("Not enough money")
 
         money -= shares * market_results["price"]
+
+        db.execute("INSERT INTO history (uuid, symbol, shares, price, action) VALUES (?, ?, ?, ?, ?);",
+                   session["user_id"], symbol, shares, market_result["price"], "buy")
+
+        
 
     return render_template("buy.html")
 
