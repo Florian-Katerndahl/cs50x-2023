@@ -59,7 +59,8 @@ def buy():
         if not market_results:
             return apology("Not a valid stock")
 
-        money = db.execute("SELECT cash FROM users WHERE id = ?;", session["user_id"])
+        print(shares, market_results["price"])
+        money = db.execute("SELECT cash FROM users WHERE id = ?;", session["user_id"])[0]
         if money - (shares * market_results["price"]) < 0.0:
             return apology("Not enough money")
 
