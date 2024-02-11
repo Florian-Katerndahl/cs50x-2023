@@ -45,6 +45,7 @@ def index():
 def buy():
     """Buy shares of stock"""
     if request.method == "POST":
+        return apology("/")
         symbol = request.form.get("symbol")
         shares = request.form.get("shares")
         try:
