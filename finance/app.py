@@ -21,6 +21,10 @@ Session(app)
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///finance.db")
 
+db.execute("CREATE TABLE IF NOT EXISTS history ("
+           ""
+           ");")
+
 
 @app.after_request
 def after_request(response):
@@ -58,7 +62,10 @@ def buy():
             return apology("Not a valid stock")
 
         money = db.execute("SELECT money FROM users WHERE id = ?;", session["user_id"])
-        if 
+        if money - (shares * market_results["price"]) < 0.0:
+            return apology("Not enough money")
+
+        money -= shares * market_results["price"]
 
     return render_template("buy.html")
 
