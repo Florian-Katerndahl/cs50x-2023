@@ -44,14 +44,14 @@ def index():
     else:
 
         # TODO: Display the entries in the database on index.html
-        birthdays = db.execute("SELECT name, day, month FROM birthdays;")
+        birthdays = db.execute("SELECT * FROM birthdays;")
 
         return render_template("index.html", birthdays=birthdays)
 
 
 @app.route("/delete", methods=["POST"])
 def delete():
-    name = request.form.get("name")
-    if name:
-        db.execute("DELETE ")
+    id = request.form.get("id")
+    if id:
+        db.execute("DELETE FROM brithdays WHERE id = ?;", id)
     return redirect("/")
