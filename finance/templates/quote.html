@@ -6,11 +6,11 @@ Get a quote
 
 {% block main %}
 <form action="/quote" method="post">
-    <div>
-        <input type="text" name="quote" required placeholder="stock symbol" autofocus>
-    </div>
-    <div>
-        <button type="submit" class="btn btn-primary">Get quote</button>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" name="quote" placeholder="Stock Name">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button">Get quote</button>
+        </div>
     </div>
 </form>
 {% endblock %}
