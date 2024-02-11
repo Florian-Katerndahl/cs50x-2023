@@ -1,19 +1,6 @@
-{% extends "layout.html" %}
+{% extends "quote.html" %}
 
-{%block title %}
-Get a quote
-{% endblock %}
-
-{% block main %}
-<form action="/quote" method="post">
-    <div class="input-group mb-3">
-        <input type="text" class="form-control" name="quote" placeholder="Stock Name">
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button">Get quote</button>
-        </div>
-    </div>
-</form>
-
+{% block quote %}
 <table class="table">
     <tr>
         <th>Stock symbol</th>
