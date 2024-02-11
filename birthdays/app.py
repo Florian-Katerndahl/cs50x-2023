@@ -57,12 +57,18 @@ def delete():
     return redirect("/")
 
 
-@app.route("/edit", methods=["POST"])
+@app.route("/edit", methods=["GET", "POST"])
 def edit():
-    person = db.execute("SELECT * FROM birthdays WHERE id = ?;", request.form.get("id"))
-    if not person:
-        redirect("/")
+    if request.method == "POST":
+        return redirect("/")
+    else:
+        person = db.execute("SELECT * FROM birthdays WHERE id = ?;", request.form.get("id"))
+        if not person:
+            redirect("/")
 
-    
+        people = db.execute("SELECT * FROM birthdays WHERE id != ?;", request.form.get("id"))
+        if not people:
+            redirect("/")
 
-    return render_template("edit.html", person=person)
+
+    return render_template("edit.html", person=person, people=people)
