@@ -59,15 +59,14 @@ def buy():
         if not market_results:
             return apology("Not a valid stock")
 
-        print(shares, market_results["price"])
-        money = db.execute("SELECT cash FROM users WHERE id = ?;", session["user_id"])[0]
+        money = db.execute("SELECT cash FROM users WHERE id = ?;", session["user_id"])[0]["cash"]
         if money - (shares * market_results["price"]) < 0.0:
             return apology("Not enough money")
 
         money -= shares * market_results["price"]
 
         db.execute("INSERT INTO history (uuid, symbol, shares, price, action) VALUES (?, ?, ?, ?, ?);",
-                   session["user_id"], symbol, shares, market_result["price"], "buy")
+                   session["user_id"], symbol, shares, market_results["price"], "buy")
 
         db.execute("UPDATE users SET cash = ? WHERE id = ?;",
                    money, session["user_id"])
