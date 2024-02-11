@@ -16,8 +16,8 @@
                 <h2>Add a Birthday</h2>
                 <form action="/" method="post">
                     <input name="name" type="text" autocomplete="off" placeholder="Name" required>
-                    <input name="month" type="number" autocomplete="off" placeholder="Month" required>
-                    <input name="day" type="number" autocomplete="off" placeholder="Day" required>
+                    <input name="month" type="number" autocomplete="off" placeholder="Month" required min="1" max="12" step="1">
+                    <input name="day" type="number" autocomplete="off" placeholder="Day" required min="1" max="31" step="1">
                     <button type="submit">Add Birthday</button>
                 </form>
             </div>

@@ -65,6 +65,10 @@ input[type="text"]:hover, input[type="number"]:hover {
     transition: color 2s ease-in-out, background-color 0.15s ease-in-out;
 }
 
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
 table {
     background-color: transparent;
     margin-bottom: 1rem;
