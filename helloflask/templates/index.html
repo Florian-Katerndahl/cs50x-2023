@@ -5,8 +5,8 @@
     <p>What is your favorite color?</p>
     <select name="color">
         {% for color in colors %}
-        <option value="{{ color.}}">Havard Crimson</option>
-        <option value="blue">Yale Blue</option>
+        <option value="{{ colors[color] }}">{{ color }}</option>
+        {% endfor %}
     </select>
     <button type="submit">Submit</button>
 </form>
