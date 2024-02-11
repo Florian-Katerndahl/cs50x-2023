@@ -38,7 +38,8 @@ def after_request(response):
 def index():
     """Show portfolio of stocks"""
     purchases = db.execute("SELCT * FROM history WHERE uuid = ?;", session["user_id"])
-    return render_template("index.html", purchases)
+    user = db.execute("SELCT * FROM users WHERE id = ?;", session["user_id"])[0]
+    return render_template("index.html", purchases=purchases, user=user)
 
 
 @app.route("/buy", methods=["GET", "POST"])
