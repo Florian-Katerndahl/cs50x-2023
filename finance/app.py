@@ -68,6 +68,9 @@ def buy():
         db.execute("INSERT INTO history (uuid, symbol, shares, price, action) VALUES (?, ?, ?, ?, ?);",
                    session["user_id"], symbol, shares, market_result["price"], "buy")
 
+        db.execute("UPDATE users SET money = ? WHERE id = ?;",
+                   money, session["user_id"])
+
         return redirect("/")
 
     return render_template("buy.html")
