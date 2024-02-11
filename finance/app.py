@@ -68,7 +68,7 @@ def buy():
         db.execute("INSERT INTO history (uuid, symbol, shares, price, action) VALUES (?, ?, ?, ?, ?);",
                    session["user_id"], symbol, shares, market_result["price"], "buy")
 
-        
+        return redirect("/")
 
     return render_template("buy.html")
 
