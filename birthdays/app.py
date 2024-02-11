@@ -62,13 +62,13 @@ def edit():
     if request.method == "POST":
         return redirect("/")
     else:
-        person = db.execute("SELECT * FROM birthdays WHERE id = ?;", request.form.get("id"))
+        person = db.execute("SELECT * FROM birthdays WHERE id = ?;", request.args.get("id"))
         if not person:
             redirect("/")
 
-        people = db.execute("SELECT * FROM birthdays WHERE id != ?;", request.form.get("id"))
+        people = db.execute("SELECT * FROM birthdays WHERE id != ?;", request.args.get("id"))
         if not people:
             redirect("/")
 
-    print(people)
+    print(person, people)
     return render_template("edit.html", person=person, people=people)
