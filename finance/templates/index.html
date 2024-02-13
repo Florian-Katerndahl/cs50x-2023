@@ -6,8 +6,8 @@ Homepage
 
 {% block main %}
 <h1>Overview</h1>
-<p>Your current cash balance is: {{ '%.2f' % cash }}</p>
-<p>Yout total balance is: {{ '%.2f' % total }}</p>
+<p>Your current cash balance is: {{ cash | usd }}</p>
+<p>Yout total balance is: {{ total | usd }}</p>
 
 <h1>Your stocks</h1>
 <table class="table">
@@ -22,8 +22,8 @@ Homepage
     <tr>
         <td>{{ purchase["symbol"] }}</td>
         <td>{{ purchase["shares"] }}</td>
-        <td>{{ '%.2f' % purchase["price"] }}</td>
-        <td>{{ '%.2f' % purchase["value"] }}</td>
+        <td>{{ purchase["price"] | usd }}</td>
+        <td>{{ purchase["value"] | usd }}</td>
     </tr>
     {% endfor %}
     {% endif %}

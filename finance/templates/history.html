@@ -20,7 +20,7 @@ Trading history
         <td>{{ entry["action"] }}</td>
         <td>{{ entry["symbol"] }}</td>
         <td>{{ entry["shares"] }}</td>
-        <td>{{ '%.2f' % entry["price"] }}</td>
+        <td>{{ entry["price"] | usd }}</td>
         <td>{{ entry["dt"] }}</td>
     </tr>
     {% endfor %}
