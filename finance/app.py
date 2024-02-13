@@ -159,7 +159,7 @@ def logout():
 def quote():
     """Get stock quote."""
     if request.method == "POST":
-        name = request.form.get("quote")
+        name = request.form.get("symbol")
         if not name:
             return apology("Stock name required")
 
