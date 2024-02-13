@@ -38,17 +38,17 @@ def after_request(response):
 @login_required
 def index():
     """Show portfolio of stocks"""
-    purchases = db.execute("SELECT * FROM history WHERE uuid = ?;", session["user_id"])
+    owned_stocks = db.execute("SELECT * FROM owned WHERE uuid = ?;", session["user_id"])
     user = db.execute("SELECT * FROM users WHERE id = ?;", session["user_id"])[0]
 
-    for idx, purchase in enumerate(purchases):
+    for idx, purchase in enumerate(owned_stocks):
         stock_update = lookup(purchase["symbol"])
-        purchases[idx]["price"] = stock_update["price"]
-        purchases[idx]["value"] = purchases[idx]["price"] * purchases[idx]["shares"]
+        owned_stocks[idx]["price"] = stock_update["price"]
+        owned_stocks[idx]["value"] = owned_stocks[idx]["price"] * owned_stocks[idx]["shares"]
 
-    total = sum([item["value"] for item in purchases])
+    total = sum([item["value"] for item in owned_stocks])
 
-    return render_template("index.html", purchases=purchases, user=user,
+    return render_template("index.html", purchases=owned_stocks, user=user,
                            cash=user["cash"], total=user["cash"] + total)
 
 
@@ -79,6 +79,9 @@ def buy():
 
         db.execute("INSERT INTO history (uuid, symbol, shares, price, action) VALUES (?, ?, ?, ?, ?);",
                    session["user_id"], symbol, shares, market_results["price"], "buy")
+
+        db.execute("INSERT INTO owned (uuid, symbol, shares) VALUES (?, ?, ?);",
+                   session["user_id", symbol, shares])
 
         db.execute("UPDATE users SET cash = ? WHERE id = ?;",
                    money, session["user_id"])
