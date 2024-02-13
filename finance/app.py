@@ -21,7 +21,7 @@ Session(app)
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///finance.db")
 
-db.execute("CREATE TABLE IF NOT EXISTS history (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, uuid INTEGER NOT NULL, symbol VARCHAR(255) NOT NULL, shares INTEGER NOT NULL, price NUMBERIC NOT NULL, action VARCHAR(5) NOT NULL, FOREIGN KEY (uuid) REFERENCES users(id));")
+db.execute("CREATE TABLE IF NOT EXISTS history (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, uuid INTEGER NOT NULL, symbol VARCHAR(255) NOT NULL, shares INTEGER NOT NULL, price NUMBERIC NOT NULL, action VARCHAR(5) NOT NULL, dt DATETIME NOT NULL, FOREIGN KEY (uuid) REFERENCES users(id));")
 db.execute("CREATE TABLE IF NOT EXISTS owned (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, uuid INTEGER NOT NULL, symbol VARCHAR(255) NOT NULL UNIQUE, shares INTEGER NOT NULL, FOREIGN KEY (uuid) REFERENCES users(id));")
 
 
@@ -77,7 +77,7 @@ def buy():
 
         money -= shares * market_results["price"]
 
-        db.execute("INSERT INTO history (uuid, symbol, shares, price, action) VALUES (?, ?, ?, ?, ?);",
+        db.execute("INSERT INTO history (uuid, symbol, shares, price, action, dt) VALUES (?, ?, ?, ?, ?, ?);",
                    session["user_id"], symbol, shares, market_results["price"], "buy")
 
         owned_share = db.execute("SELECT * FROM owned WHERE uuid = ? AND symbol = ?;",
