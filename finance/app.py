@@ -1,7 +1,7 @@
 import os
 
 from cs50 import SQL
-from flask import Flask, flash, redirect, render_template, request, session
+from flask import Flask, flash, get_flashed_messages, redirect, render_template, request, session
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime
@@ -231,3 +231,12 @@ def sell():
         return redirect("/")
 
     return render_template("sell.html", stocks = owned_stocks)
+
+@app.route("/profile", methods=["GET", "POST"])
+@login_required
+def profile():
+    if request.method == "POST":
+
+        flash("Password updated")
+        return redirect("/profile")
+    return render_template("profile.html")
