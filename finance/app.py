@@ -202,11 +202,11 @@ def sell():
     owned_symbols = [item["symbol"] for item in owned_stocks]
     if request.method == "POST":
         sell_symbol = request.form.get("symbol")
-        print(request.form.get("symbol"))
         if sell_symbol not in owned_symbols:
             return apology("Can't sell stock you don't own")
 
-        stock_in_question = filter(lambda x: x["symbol"] == sell_symbol, owned_stocks)
+        print(filter(lambda x: x["symbol"] == sell_symbol, owned_stocks))
+        stock_in_question = list(filter(lambda x: x["symbol"] == sell_symbol, owned_stocks))
         sell_quantity = request.form.get("shares")
         if sell_quantity > stock_in_question["shares"]:
             return apology("Can't sell more shares than you own")
