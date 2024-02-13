@@ -8,6 +8,7 @@ Trading history
 <h1>History</h1>
 <table class="table">
     <tr>
+        <th>Action</th>
         <th>Stock</th>
         <th>Shares</th>
         <th>Price</th>
@@ -16,6 +17,7 @@ Trading history
     {% if history %}
     {% for entry in history %}
     <tr>
+        <td>{{ entry["action"] }}</td>
         <td>{{ entry["symbol"] }}</td>
         <td>{{ entry["shares"] }}</td>
         <td>{{ entry["price"] }}</td>
