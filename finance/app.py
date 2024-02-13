@@ -83,6 +83,11 @@ def buy():
         db.execute("INSERT INTO owned (uuid, symbol, shares) VALUES (?, ?, ?);",
                    session["user_id", symbol, shares])
 
+        db.execute("IF NOT EXISTS (SELECT 1 FROM owned WHERE symbol = ? AND uuid = ?)" \
+                   "BEGIN" \
+                   "INSERT INTO owned (uuid, symbol, shares) VALUES (?, ?, ?)" \
+                   "")
+
         db.execute("UPDATE users SET cash = ? WHERE id = ?;",
                    money, session["user_id"])
 
