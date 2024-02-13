@@ -6,16 +6,9 @@ Homepage
 
 {% block main %}
 <h1>Overview</h1>
-<table class="table">
-    <tr>
-        <th>Current cash balance</th>
-        <th>Current total</th>
-    </tr>
-    <tr>
-        <td>{{ '%.2f' % cash }}</td>
-        <td>{{ '%.2f' % total }}</td>
-    </tr>
-</table>
+<p>Your current cash balance is: {{ '%.2f' % cash }}</p>
+<p>Yout total balance is: {{ '%.2f' % total }}</p>
+
 <h1>Your stocks</h1>
 <table class="table">
     <tr>
