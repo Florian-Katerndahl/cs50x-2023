@@ -253,10 +253,12 @@ def profile(action: str = ""):
             try:
                 cash_addition = int(request.form.get("balance"))
             except ValueError:
-                return apology("Balance must be a number")
+                flash("Balance must be a number")
+                return redirect("/profile")
 
             if cash_addition < 1:
-                return apology("Balance must be a positive number")
+                flash("Balance must be a positive number")
+                return redirect("/profile")
 
             balance += cash_addition
             db.execute("UPDATE users SET cash = ? WHERE id = ?;", balance, session["user_id"])
