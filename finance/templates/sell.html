@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Sell stocks
+{% endblock %}
+
+{% block main %}
+<form action="/sell" method="post">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" name="symbol" placeholder="Stock Name" required autofocus>
+        <input type="number" class="form-control" name="shares" placeholder="Shares" required min="1" autocomplete="off">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="submit">Buy</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
