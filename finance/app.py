@@ -232,9 +232,12 @@ def sell():
 
     return render_template("sell.html", stocks = owned_stocks)
 
-@app.route("/profile/<string:action>", methods=["GET", "POST"])
+@app.route("/profile")
+@app.route("/profile/<string:action>", methods=["POST"])
 @login_required
-def profile(action: str):
+def profile(action: str = ""):
+    balance = db.execute("SELECT cash FROM users WHERE id = ?;", session["user_id"])[0]["cash"]
+
     if request.method == "POST":
         if action == "password":
             pw = request.form.get("password")
@@ -242,12 +245,24 @@ def profile(action: str):
             if not pw or pw != cf:
                 return apology("Password required and needs to be repeated")
 
-            db.execute("UPDATE users SET hash = ? WHERE id = ?;", generate_password_hash(pw), username)
+            db.execute("UPDATE users SET hash = ? WHERE id = ?;",
+                       generate_password_hash(pw), session["user_id"])
 
             flash("Password updated")
         elif action == "balance":
-            pass
+            try:
+                cash_addition = int(request.form.get("balance"))
+            except ValueError:
+                return apology("Balance must be a number")
+
+            if cash_addition < 1:
+                return apology("Balance must be a positive number")
+
+            balance += cash_addition
+            db.execute("UPDATE users SET cash = ? WHERE id = ?;", balance, session["user_id"])
         else:
-            return abort(404)
+            return abort(418)
+
         return redirect("/profile")
-    return render_template("profile.html")
+
+    return render_template("profile.html", balance=balance)
