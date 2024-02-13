@@ -209,6 +209,7 @@ def sell():
 
         stock_in_question = db.execute("SELECT shares FROM owned WHERE uuid = ? AND symbol = ?;",
                                        session["user_id"], sell_symbol)[0]
+        
         sell_quantity = int(request.form.get("shares"))
         if sell_quantity > stock_in_question["shares"]:
             return apology("Can't sell more shares than you own")
