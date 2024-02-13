@@ -206,7 +206,7 @@ def sell():
             return apology("Can't sell stock you don't own")
 
         print(filter(lambda x: x["symbol"] == sell_symbol, owned_stocks))
-        stock_in_question = list(filter(lambda x: x["symbol"] == sell_symbol, owned_stocks))
+        stock_in_question = dict(filter(lambda x: x["symbol"] == sell_symbol, owned_stocks))
         sell_quantity = request.form.get("shares")
         if sell_quantity > stock_in_question["shares"]:
             return apology("Can't sell more shares than you own")
