@@ -7,6 +7,13 @@ Sell stocks
 {% block main %}
 <form action="/sell" method="post">
     <div class="input-group mb-3">
+        <select name="symbol" class="form-control" required autofocus>
+            {% if stocks %}
+            {% for stock in stocks %}
+            <option value="{{ stock['symbol'] }}">{{ stock["symbol"] }}</option>
+            {% endfor %}
+            {% endif %}
+        </select>
         <input type="text" class="form-control" name="symbol" placeholder="Stock Name" required autofocus>
         <input type="number" class="form-control" name="shares" placeholder="Shares" required min="1" autocomplete="off">
         <div class="input-group-append">
