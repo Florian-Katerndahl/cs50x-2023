@@ -1,7 +1,7 @@
 import os
 
 from cs50 import SQL
-from flask import Flask, flash, get_flashed_messages, redirect, render_template, request, session
+from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime
@@ -232,10 +232,16 @@ def sell():
 
     return render_template("sell.html", stocks = owned_stocks)
 
-@app.route("/profile", methods=["GET", "POST"])
+@app.route("/profile/<action>", methods=["GET", "POST"])
 @login_required
 def profile():
     if request.method == "POST":
+        pw = request.form.get("password")
+        cf = request.form.get("confirmation")
+        if not pw or pw != cf:
+            return apology("Password required and needs to be repeated")
+
+        db.execute("UPDATE users SET hash = ? WHERE id = ?;", generate_password_hash(pw), username)
 
         flash("Password updated")
         return redirect("/profile")
