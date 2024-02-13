@@ -203,22 +203,23 @@ def sell():
 
     if request.method == "POST":
         user = db.execute("SELECT * FROM users WHERE id = ?;", session["user_id"])[0]
+
         sell_symbol = request.form.get("symbol")
         if sell_symbol not in owned_symbols:
             return apology("Can't sell stock you don't own")
 
         stock_in_question = db.execute("SELECT shares FROM owned WHERE uuid = ? AND symbol = ?;",
                                        session["user_id"], sell_symbol)[0]
-        
+
         sell_quantity = int(request.form.get("shares"))
         if sell_quantity > stock_in_question["shares"]:
             return apology("Can't sell more shares than you own")
 
         stock_info = lookup(sell_symbol)
-        money = db.execute("SELECT cash FROM users WHERE id = ?;", session["user_id"])[0]["cash"]
+        money = user["cash"]
         money += sell_quantity * stock_info["price"]
 
-        db.execute("UDPATE owned SET shares = ? WHERE uuid = ? AND symbol = ?;",
+        db.execute("UPDATE owned SET shares = ? WHERE uuid = ? AND symbol = ?;",
                    stock_in_question["shares"] - sell_quantity, session["user_id"], sell_symbol)
 
         db.execute("INSERT INTO history (uuid, symbol, shares, price, action, dt) VALUES (?, ?, ?, ?, ?, ?);",
