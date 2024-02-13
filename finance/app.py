@@ -80,16 +80,15 @@ def buy():
         db.execute("INSERT INTO history (uuid, symbol, shares, price, action) VALUES (?, ?, ?, ?, ?);",
                    session["user_id"], symbol, shares, market_results["price"], "buy")
 
-        db.execute("INSERT INTO owned (uuid, symbol, shares) VALUES (?, ?, ?);",
-                   session["user_id", symbol, shares])
+        owned_share = db.execute("SELECT * FROM owned WHERE uuid = ? AND symbol = ?;",
+                                 session["user_id"], symbol)
 
-        db.execute("IF NOT EXISTS (SELECT 1 FROM owned WHERE symbol = ? AND uuid = ?)" \
-                   "BEGIN" \
-                   "INSERT INTO owned (uuid, symbol, shares) VALUES (?, ?, ?)" \
-                   "END" \
-                   "ELSE" \
-                   "UPDATE owned SET shares = ? WHERE symbol = ? AND uuid = ?;",
-                   symbol, session["user_id"], session["user_id"], symbol, shares)
+        if owned_share:
+            db.execute("UPDATE owned SET shares = ? WHERE uuid = ? AND symbol = ?;",
+                       shares + owned_share[0]["shares"], session["user_id"], symbol)
+        else:
+            db.execute("INSERT INTO owned (uuid, symbol, shares) VALUES (?, ?, ?);",
+                       session["user_id"], symbol, shares)
 
         db.execute("UPDATE users SET cash = ? WHERE id = ?;",
                    money, session["user_id"])
