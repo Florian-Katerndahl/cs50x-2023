@@ -44,7 +44,7 @@ def index():
     if purchases:
         pass
 
-    return render_template("index.html", purchases=purchases, user=user)
+    return render_template("index.html", purchases=purchases, user=user, cash=10000.1, total=2.0)
 
 
 @app.route("/buy", methods=["GET", "POST"])
