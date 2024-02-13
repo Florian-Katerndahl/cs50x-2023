@@ -41,8 +41,12 @@ def index():
     user = db.execute("SELECT * FROM users WHERE id = ?;", session["user_id"])[0]
     bought = 0
 
-    if purchases:
+    for idx, purchase in enumerate(purchases):
+        stock_update = lookup(purchase["symbol"])
+        purchases[idx]["price"] = stock_update["price"]
+        purchases[idx]["value"] = purchases[idx]["price"] * purchases[idx]["shares"]
         pass
+
 
     return render_template("index.html", purchases=purchases, user=user, cash=10000.1, total=2.0)
 
