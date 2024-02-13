@@ -39,16 +39,16 @@ def index():
     """Show portfolio of stocks"""
     purchases = db.execute("SELECT * FROM history WHERE uuid = ?;", session["user_id"])
     user = db.execute("SELECT * FROM users WHERE id = ?;", session["user_id"])[0]
-    bought = 0
 
     for idx, purchase in enumerate(purchases):
         stock_update = lookup(purchase["symbol"])
         purchases[idx]["price"] = stock_update["price"]
         purchases[idx]["value"] = purchases[idx]["price"] * purchases[idx]["shares"]
-        pass
 
+    total = sum([item["value"] for item in purchases])
 
-    return render_template("index.html", purchases=purchases, user=user, cash=10000.1, total=2.0)
+    return render_template("index.html", purchases=purchases, user=user,
+                           cash=user["cash"], total=user["cash"] + total)
 
 
 @app.route("/buy", methods=["GET", "POST"])
