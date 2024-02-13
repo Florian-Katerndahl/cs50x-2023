@@ -37,11 +37,12 @@ def after_request(response):
 @login_required
 def index():
     """Show portfolio of stocks"""
-    purchases = db.execute("SELCT * FROM history WHERE uuid = ?;", session["user_id"])
-    user = db.execute("SELCT * FROM users WHERE id = ?;", session["user_id"])[0]
+    purchases = db.execute("SELECT * FROM history WHERE uuid = ?;", session["user_id"])
+    user = db.execute("SELECT * FROM users WHERE id = ?;", session["user_id"])[0]
     bought = 0
-    
+
     if purchases:
+        pass
 
     return render_template("index.html", purchases=purchases, user=user)
 
