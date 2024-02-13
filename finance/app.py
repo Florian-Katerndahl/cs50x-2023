@@ -4,6 +4,7 @@ from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
+from datetime import datetime
 
 from helpers import apology, login_required, lookup, usd
 
@@ -78,7 +79,7 @@ def buy():
         money -= shares * market_results["price"]
 
         db.execute("INSERT INTO history (uuid, symbol, shares, price, action, dt) VALUES (?, ?, ?, ?, ?, ?);",
-                   session["user_id"], symbol, shares, market_results["price"], "buy")
+                   session["user_id"], symbol, shares, market_results["price"], "buy", datetime.now().strftime('%F %T'))
 
         owned_share = db.execute("SELECT * FROM owned WHERE uuid = ? AND symbol = ?;",
                                  session["user_id"], symbol)
